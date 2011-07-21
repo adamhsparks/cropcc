@@ -3,12 +3,10 @@
 \alias{weatherData}
 \docType{package}
 \title{
-What the package does (short line)
-~~ package title ~~
+weatherData: global daily weather data
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+This package allows the user to derive global daily weather data from a number of sources.
 }
 \details{
 \tabular{ll}{
@@ -16,28 +14,25 @@ Package: \tab weatherData\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2011-07-19\cr
-License: \tab What license is it under?\cr
+License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
 ~~ An overview of how to use the package, including the most important ~~
 ~~ functions ~~
 }
 \author{
-Who wrote it
+Jacob van Etten
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+Maintainer: Jacob van Etten <jacobvanetten@yahoo.com>
 }
 \references{
 ~~ Literature or other references for background information ~~
 }
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
+
 \keyword{ package }
 \seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
+
 }
 \examples{
-~~ simple examples of the most important functions ~~
+
 }

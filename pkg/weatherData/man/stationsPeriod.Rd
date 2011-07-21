@@ -2,10 +2,10 @@
 \alias{stationsPeriod}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
+Subset stations by period
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Subset the stations table, selecting stations with weather data in a given period of time
 }
 \usage{
 stationsPeriod(startDate, endDate, stations = data(stations), wholePeriod = FALSE)
@@ -39,7 +39,7 @@ stationsPeriod(startDate, endDate, stations = data(stations), wholePeriod = FALS
 %% ~put references to the literature/web site here ~
 }
 \author{
-%%  ~~who you are~~
+Jacob van Etten
 }
 \note{
 %%  ~~further notes~~
@@ -51,19 +51,9 @@ stationsPeriod(startDate, endDate, stations = data(stations), wholePeriod = FALS
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
 
-## The function is currently defined as
-function(startDate, endDate, stations=data(stations), wholePeriod=FALSE)
-{
-if(startDate >= endDate) stop("startDate before or equal to endDate")
-if(!wholePeriod) stations <- stations[stations$BEGIN <= endDate & stations$END >= startDate,]
-if(wholePeriod) stations <- stations[stations$BEGIN <= startDate & stations$END >= endDate,]
-return(stations)
   }
-}
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }

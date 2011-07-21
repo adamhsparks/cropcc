@@ -16,8 +16,11 @@ This file has some missing data for altitude and some other problems.
 A clean version of this dataset is provided here.
 
 The following changes were made.
+
 1. All variables were converted to SI units.
+
 2. Some stations were removed from the set, because of impossible coordinates.
+
 3. Altitude data were checked and corrected where necessary.
 We looked up the altitude of the stations using the SRTM data (Jarvis et al. 2008).
 We changed the altitude to the SRTM altitude when stations had either:
