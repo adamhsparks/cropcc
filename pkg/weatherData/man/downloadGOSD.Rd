@@ -17,60 +17,46 @@ Re-distribution of these data by others must provide this same notification."
 \usage{
 downloadGOSD(startYear, endYear, stations = data(stations), silent = TRUE, tries = 2, localdir = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{startYear}{
-%%     ~~Describe \code{startYear} here~~
+first year to download
 }
   \item{endYear}{
-%%     ~~Describe \code{endYear} here~~
+last year to download
 }
   \item{stations}{
-%%     ~~Describe \code{stations} here~~
+(subsetted) table with stations to download
 }
   \item{silent}{
-%%     ~~Describe \code{silent} here~~
+report progress or not (default is FALSE)
 }
   \item{tries}{
-%%     ~~Describe \code{tries} here~~
+number of times to retry when download of a particular station-year file fails (default is 2)
 }
   \item{localdir}{
-%%     ~~Describe \code{localdir} here~~
+local directory to which the data should be written (default is getwd())
 }
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+The function downloads the data by station-year file for the specified time period and stations.
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+A list of file names
 }
 \references{
-%% ~put references to the literature/web site here ~
+ftp://ftp.ncdc.noaa.gov/pub/data/gsod/readme.txt
 }
 \author{
-%%  ~~who you are~~
+Jacob van Etten
 }
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
+\code{\link{makeTableGOSD}}
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ data }
+

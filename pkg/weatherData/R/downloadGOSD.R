@@ -49,7 +49,7 @@ function(startYear, endYear, stations=data(stations), silent=TRUE, tries=2, loca
 
 				while(tried > 0.5)
 				{
-					tryIt <- try(download.file(urlYearStation, fileYearStation, quiet=silent), silent = T)
+					tryIt <- try(download.file(urlYearStation, fileYearStation, quiet=silent), silent = TRUE)
 					if(class(tryIt) == "try-error") {tried <- tried - 1} 
 					else {tried <- 0}
 				}

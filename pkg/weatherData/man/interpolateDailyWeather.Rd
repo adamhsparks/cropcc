@@ -13,39 +13,35 @@ interpolateDailyWeather(tableGOSD, locations, startDate, endDate, vars = c("TEMP
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{tableGOSD}{
-%%     ~~Describe \code{tableGOSD} here~~
+table with daily weather data for stations
 }
   \item{locations}{
-%%     ~~Describe \code{locations} here~~
+locations for which values should be interpolated
 }
   \item{startDate}{
-%%     ~~Describe \code{startDate} here~~
+first date of the period to cover
 }
   \item{endDate}{
-%%     ~~Describe \code{endDate} here~~
+last data of the period to cover
 }
   \item{vars}{
-%%     ~~Describe \code{vars} here~~
+variables that should be interpolated
 }
   \item{covars}{
-%%     ~~Describe \code{covars} here~~
+co-variables that should be included in the interpolation (default is ALT, altitude)
 }
   \item{stations}{
-%%     ~~Describe \code{stations} here~~
+table with stations data
 }
   \item{logtr}{
-%%     ~~Describe \code{logtr} here~~
+variables to log-transform
 }
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
+data frame with interpolated values for the selected variables
 }
 \references{
 %% ~put references to the literature/web site here ~

@@ -23,15 +23,19 @@ The following changes were made.
 
 3. Altitude data were checked and corrected where necessary.
 We looked up the altitude of the stations using the SRTM data (Jarvis et al. 2008).
+
 We changed the altitude to the SRTM altitude when stations had either:
+
 a) an original altitude of 0 and a difference with the SRTM altitude of more than 50 m.
+
 b) an original altitude of more than 0 and a difference with the SRTM altitude of more than 150 m.
+
 
 Users of these data should take into account the following (from the NCDC website):
 
 "The following data and products may have conditions placed on their international commercial use. 
 They can be used within the U.S. or for non-commercial international activities without restriction. 
-The non-U.S. data cannot be redistributed for commercial purposes. 
+The non-U.S. data cannot be redistributed for commercial purposes.
 Re-distribution of these data by others must provide this same notification."
 }
 \references{
