@@ -8,53 +8,28 @@ Subset stations by period
 Subset the stations table, selecting stations with weather data in a given period of time
 }
 \usage{
-stationsPeriod(startDate, endDate, stations = data(stations), wholePeriod = FALSE)
+stationsPeriod(startDate, endDate, stations, wholePeriod = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{startDate}{
-%%     ~~Describe \code{startDate} here~~
-}
-  \item{endDate}{
-%%     ~~Describe \code{endDate} here~~
-}
-  \item{stations}{
-%%     ~~Describe \code{stations} here~~
-}
-  \item{wholePeriod}{
-%%     ~~Describe \code{wholePeriod} here~~
-}
+  \item{startDate}{first date for which to include weather data}
+  \item{endDate}{last date for which to include weather data}
+  \item{stations}{stations data table (data frame)}
+  \item{wholePeriod}{select only stations that cover the entire period}
 }
 \details{
-%%  ~~ If necessary, more details than the description above ~~
+
 }
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
+data frame
 }
 \author{
 Jacob van Etten
 }
-\note{
-%%  ~~further notes~~
-}
 
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-
+data(stations)
+stationsSubset <- stationsPeriod("2010-01-01","2010-12-31", stations=stations)
   }
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ data }
+
