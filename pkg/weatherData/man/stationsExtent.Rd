@@ -8,7 +8,7 @@ Subset stations by extent
 Subset the stations table, selecting stations located within a certain extent (bounding box)
 }
 \usage{
-stationsExtent(extent, stations = data(stations))
+stationsExtent(extent, stations)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

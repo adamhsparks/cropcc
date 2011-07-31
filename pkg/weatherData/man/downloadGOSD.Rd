@@ -15,7 +15,7 @@ The non-U.S. data cannot be redistributed for commercial purposes.
 Re-distribution of these data by others must provide this same notification."
 }
 \usage{
-downloadGOSD(startYear, endYear, stations = data(stations), silent = TRUE, tries = 2, localdir = NULL)
+downloadGOSD(startYear, endYear, stations, silent = TRUE, tries = 2, localdir = NULL)
 }
 \arguments{
   \item{startYear}{
@@ -44,7 +44,7 @@ The function downloads the data by station-year file for the specified time peri
 A list of file names
 }
 \references{
-ftp://ftp.ncdc.noaa.gov/pub/data/gsod/readme.txt
+\url{ftp://ftp.ncdc.noaa.gov/pub/data/gsod/readme.txt}
 }
 \author{
 Jacob van Etten

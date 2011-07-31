@@ -1,5 +1,5 @@
 downloadGOSD <-
-function(startYear, endYear, stations=data(stations), silent=TRUE, tries=2, localdir=NULL)
+function(startYear, endYear, stations, silent=TRUE, tries=2, localdir=NULL)
 {
 	startDate <- as.Date(paste(startYear,"-01-01",sep=""))
 	endDate <- as.Date(paste(endYear,"-12-31",sep=""))
