@@ -1,6 +1,5 @@
 \name{makeTableGOSD}
 \alias{makeTableGOSD}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Make a table with Global Summary of Day data
 }
