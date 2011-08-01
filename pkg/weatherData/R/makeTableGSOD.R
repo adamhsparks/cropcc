@@ -1,4 +1,4 @@
-makeTableGOSD <-
+makeTableGSOD <-
 	function(files=NULL, folder=getwd())
 	{
 		if(is.null(files)) files <- list.files(path = folder, pattern = "^gosd", all.files = TRUE, full.names = TRUE, recursive = FALSE)

@@ -1,6 +1,6 @@
-\name{downloadGOSD}
-\alias{downloadGOSD}
-%- Also NEED an '\alias' for EACH other topic documented here.
+\name{downloadGSOD}
+\alias{downloadGSOD}
+
 \title{
 Download Global Summary of Day data 
 }
@@ -15,7 +15,7 @@ The non-U.S. data cannot be redistributed for commercial purposes.
 Re-distribution of these data by others must provide this same notification."
 }
 \usage{
-downloadGOSD(startYear, endYear, stations, silent = TRUE, tries = 2, localdir = NULL)
+downloadGSOD(startYear, endYear, stations, silent = TRUE, tries = 2, localdir = NULL)
 }
 \arguments{
   \item{startYear}{
@@ -51,7 +51,7 @@ Jacob van Etten
 }
 
 \seealso{
-\code{\link{makeTableGOSD}}
+\code{\link{makeTableGSOD}}
 }
 \examples{
 

@@ -1,5 +1,5 @@
-\name{makeTableGOSD}
-\alias{makeTableGOSD}
+\name{makeTableGSOD}
+\alias{makeTableGSOD}
 \title{
 Make a table with Global Summary of Day data
 }
@@ -9,7 +9,7 @@ This function creates a table from downloaded GSOD files on disk.
 Variables are converted to SI units.
 }
 \usage{
-makeTableGOSD(files = NULL, folder = getwd())
+makeTableGSOD(files = NULL, folder = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -125,12 +125,11 @@ data frame
 Jacob van Etten
 }
 \seealso{
-\code{\link{downloadGOSD}}, ~~~
+\code{\link{downloadGSOD}}, ~~~
 }
 \examples{
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ data }
