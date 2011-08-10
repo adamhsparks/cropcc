@@ -15,7 +15,7 @@ temperature <- function(Time, Tmax, Tmin, sunrise, TminNext)
 
 thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zenith=96)
 {
-	stop("does not work yet")
+	warning("not checked yet")
 	
 	ID <- unique(growPlaceDate$ID)
 	

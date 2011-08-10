@@ -2,6 +2,7 @@
 #http://williams.best.vwh.net/sunrise_sunset_example.htm
 #note, however that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
 
+
 sunrise <- function(day, month, year, longitude, latitude, zenith=96)
 {
 	longitude <- longitude * (pi/180)	
@@ -16,13 +17,13 @@ sunrise <- function(day, month, year, longitude, latitude, zenith=96)
 	M <- ((0.9856 * Time) - 3.289) * (pi/180)
 	L <- M + ((1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634) * (pi/180)
 
-	if(L>2*pi) L <- L - 2*pi
-	if(L<0) L <- L + 2*pi
+	L[L>2*pi] <- L[L>2*pi] - 2*pi
+	L[L<0] <- L[L<0] + 2*pi
 	
 	RA <- atan(0.91764 * tan(L))
 	
-	if(RA>2*pi) RA <- RA - 2*pi
-	if(RA<0) RA <- RA + 2*pi
+	RA[RA>2*pi] <- RA[RA>2*pi] - 2*pi
+	RA[RA<0] <- RA[RA<0] + 2*pi
 	
 	Lquadrant  = floor( L/ (0.5*pi)) * 0.5*pi
 	RAquadrant = floor(RA/ (0.5*pi)) * 0.5*pi
@@ -58,13 +59,13 @@ sunset <- function(day, month, year, longitude, latitude, zenith=96)
 	M <- ((0.9856 * Time) - 3.289) * (pi/180)
 	L <- M + ((1.916 * sin(M)) + (0.020 * sin(2 * M)) + 282.634) * (pi/180)
 
-	if(L>2*pi) L <- L - 2*pi
-	if(L<0) L <- L + 2*pi
+	L[L>2*pi] <- L[L>2*pi] - 2*pi
+	L[L<0] <- L[L<0] + 2*pi
 	
 	RA <- atan(0.91764 * tan(L))
 	
-	if(RA>2*pi) RA <- RA - 2*pi
-	if(RA<0) RA <- RA + 2*pi
+	RA[RA>2*pi] <- RA[RA>2*pi] - 2*pi
+	RA[RA<0] <- RA[RA<0] + 2*pi	
 	
 	Lquadrant  = floor( L/ (0.5*pi)) * 0.5*pi
 	RAquadrant = floor(RA/ (0.5*pi)) * 0.5*pi
