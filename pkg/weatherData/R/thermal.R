@@ -15,8 +15,6 @@ temperature <- function(Time, Tmax, Tmin, sunr, TminNext)
 
 thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zenith=96)
 {
-	warning("not checked yet")
-	
 	ID <- unique(growPlaceDate$ID)
 	
 	# make table of ID-season combinations from growPlaceDate
