@@ -43,15 +43,15 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zen
 		longitude <- growPlaceDate$LON[gID][1]
 		latitude <- growPlaceDate$LAT[gID][1]
 		
-		Start <- growPlaceDate$START[gID]		
-		End <- growPlaceDate$END[gID]
+		Start <- as.Date(growPlaceDate$START[gID])		
+		End <- as.Date(growPlaceDate$END[gID])
 		
 		# subset everything here to avoid calculating periods that are not relevant
 		datesWeather <- as.Date(paste(year,month,day,sep="-"))
 		datesCrop <- NULL
 		for(j in 1: length(Start))
 		{
-			datesCrop <- c(datesCrop, as.Date(Start[j]):as.Date(End[j]))
+			datesCrop <- c(datesCrop, Start[j]:End[j])
 		}
 
 		sDW <- which(as.numeric(datesWeather) %in% datesCrop)
@@ -69,10 +69,10 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zen
 		Exceed <- thermalStressDaily(criticalTemp, Tmax, Tmin, SR, TminNext) 
 		
 		#now sum the ranges of the dates for the different seasons and put into the table
-		for(k in 1:length(wID))
+		for(k in 1:length(gID))
 		{
-			index <- match(Start[k]:End[k], sDW)
-			result$THERMALSTRESS[wID[k]] <- sum(Exceed[index])
+			index <- match(Start[k]:End[k], dates)
+			result$THERMALSTRESS[gID[k]] <- sum(Exceed[index])
 		}
 		
 	}
