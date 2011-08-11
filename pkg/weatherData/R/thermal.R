@@ -1,12 +1,12 @@
-temperature <- function(Time, Tmax, Tmin, sunrise, TminNext) 
+temperature <- function(Time, Tmax, Tmin, sunr, TminNext) 
 {
 	Temp <- vector(length=length(Time))
 	Tave <- (Tmax + Tmin) / 2
 	Amp <- (Tmax - Tmin) / 2
 
-	Temp[Time > 14] <- (((Tmax + TminNext) / 2) + ((Tmax - TminNext) / 2) * (cos(pi * (Time + 14) / (10 + sunrise))))[Time > 14]
-	Temp[Time < sunrise] <- (Tave + Amp * (cos(pi * (Time + 10) / (10 + sunrise))))[Time < sunrise]
-	Temp[Time >= sunrise & Time <= 14] <- (Tave - Amp * (cos( pi * (Time - sunrise) / (14 - sunrise))))[Time >= sunrise & Time <= 14]
+	Temp[Time > 14] <- (((Tmax + TminNext) / 2) + ((Tmax - TminNext) / 2) * (cos(pi * (Time + 14) / (10 + sunr))))[Time > 14]
+	Temp[Time < sunr] <- (Tave + Amp * (cos(pi * (Time + 10) / (10 + sunr))))[Time < sunr]
+	Temp[Time >= sunr & Time <= 14] <- (Tave - Amp * (cos( pi * (Time - sunr) / (14 - sunr))))[Time >= sunr & Time <= 14]
 	
 	Temp[Amp<0] <- NA
 
