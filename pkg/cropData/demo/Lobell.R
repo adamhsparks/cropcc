@@ -21,7 +21,7 @@ data(stationsLobell)
 #save(trialDataLobell,file="trialDataLobell.Rdata")
 data(trialDataLobell)
 
-ipW <- interpolateDailyWeather(WeatherDataCATable, stationsLobell, "1999-1-1", "2007-12-31", stations = stationsSelected)
+ipW <- interpolateDailyWeather(WeatherDataLobell, stationsLobell, "1999-1-1", "2007-12-31", stations = stationsSelected)
 
 
 
