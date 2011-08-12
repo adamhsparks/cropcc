@@ -1,0 +1,12 @@
+Package: cropData
+Type: Package
+Title: Modelling crop trial data
+Version: 1.0
+Date: 2011-07-19
+Suggests: fields
+Requires: weatherData
+Author: Alberto Labarga, Jacob van Etten
+Maintainer: Alberto Labarga <alberto.labarga@scientifik.info>
+Description: Modelling crop trial data
+License: GPL (>=3)
+LazyLoad: yes
