@@ -26,9 +26,9 @@ We looked up the altitude of the stations using the SRTM data (Jarvis et al. 200
 
 We changed the altitude to the SRTM altitude when stations had either:
 
-a) an original altitude of 0 and a difference with the SRTM altitude of more than 50 m.
+a) an original altitude of 0 and a difference with the SRTM altitude of more than 15 percent.
 
-b) an original altitude of more than 0 and a difference with the SRTM altitude of more than 150 m.
+b) an original altitude of more than 0 and a difference with the SRTM altitude of more than 50 m.
 
 
 Users of these data should take into account the following (from the NCDC website):
