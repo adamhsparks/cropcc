@@ -28,6 +28,11 @@ interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, va
 
 	locations <- locations[c("ID","LON","LAT","ALT")]
 	
+	if(!is.numeric(locations$LON)){locations$LON <- as.numeric(locations$LON); warning("locations column LON forced to numeric")}
+	if(!is.numeric(locations$LAT)){locations$LAT <- as.numeric(locations$LAT); warning("locations column LAT forced to numeric")}
+	if(!is.numeric(locations$ALT)){locations$ALT <- as.numeric(locations$ALT); warning("locations column ALT forced to numeric")}
+	#TODO more controls
+	
 	#transform some variables
 	if(!is.null(sqrtTr)) {tableGSOD[sqrtTr] <- sqrt(tableGSOD[sqrtTr])} #TO DO
 

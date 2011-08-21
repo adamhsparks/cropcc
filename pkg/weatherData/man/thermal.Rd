@@ -10,20 +10,21 @@ Temperature and thermal stress
 Calculate temperatures and thermal stress from weather data (daily minimum and maximum temperatures).
 }
 \usage{
-thermalStressSeasonal(criticalTemp, dailyWeather, growPlaceDate, zenith=96)
+thermalStressSeasonal(criticalTemp, dailyWeather, trialData, trialLocs, zenith=96)
 thermalStressDaily(criticalTemp, Tmax, Tmin, sunr, TminNext)
 temperature(Time, Tmax, Tmin, sunr, TminNext)
 }
 \arguments{
-  \item{criticalTemp}{temperature above which thermal stress is experienced}
-  \item{dailyWeather}{data frame containing daily weather data}
-  \item{growPlaceDate}{data frame containing data about place and period of growth}
-  \item{zenith}{zenith angle, see ?sunrise}
-  \item{Tmax}{single number or vector with daily maximum temperature values}
-  \item{Tmin}{single number or vector with daily minimum temperature values}
-  \item{sunr}{single number or vector with daily time of sunrise}
-  \item{TminNext}{single number or vector with minimum temperature values for the next day}
-  \item{Time}{single number or vector with (local mean) time of day in hours}
+  \item{criticalTemp}{ temperature above which thermal stress is experienced}
+  \item{dailyWeather}{ data frame containing daily weather data}
+  \item{trialData}{ data frame containing trial data, with start (START) and end (END) dates of the growing season}
+  \item{trialLocs}{ data frame containing trial locations}  
+  \item{zenith}{ zenith angle, see ?sunrise}
+  \item{Tmax}{ single number or vector with daily maximum temperature values}
+  \item{Tmin}{ single number or vector with daily minimum temperature values}
+  \item{sunr}{ single number or vector with daily time of sunrise}
+  \item{TminNext}{ single number or vector with minimum temperature values for the next day}
+  \item{Time}{ single number or vector with (local mean) time of day in hours}
 }
 
 \value{

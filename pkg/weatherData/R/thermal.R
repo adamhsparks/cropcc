@@ -13,12 +13,12 @@ temperature <- function(Time, Tmax, Tmin, sunr, TminNext)
 	return(Temp)
 }
 
-thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zenith=96)
+thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLocs, zenith=96)
 {
-	ID <- unique(growPlaceDate$ID)
+	ID <- unique(trialData$ID)
 	
-	# make table of ID-season combinations from growPlaceDate
-	result <- growPlaceDate[c("ID","START","END")]
+	# make table of ID-season combinations from trialData
+	result <- trialData[c("ID","START","END")]
 	THERMALSTRESS <- vector(length=length(result[,1]))
 	result <- cbind(result,THERMALSTRESS)
 	
@@ -36,13 +36,12 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zen
 		day <- as.integer(substring(moda,3,4))
 		
 		# now get info about locations and seasons
-		gID <- which(growPlaceDate$ID == i)
+		longitude <- trialLocs$LON[trialLocs$ID == i]
+		latitude <- trialLocs$LAT[trialLocs$ID == i]
 
-		longitude <- growPlaceDate$LON[gID][1]
-		latitude <- growPlaceDate$LAT[gID][1]
-		
-		Start <- as.Date(growPlaceDate$START[gID])		
-		End <- as.Date(growPlaceDate$END[gID])
+		tID <- which(trialData$ID == i)		
+		Start <- as.Date(trialData$START[tID])		
+		End <- as.Date(trialData$END[tID])
 		
 		# subset everything here to avoid calculating periods that are not relevant
 		datesWeather <- as.Date(paste(year,month,day,sep="-"))
@@ -64,19 +63,31 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, growPlaceDate, zen
 		#now the calculations
 		SR <- sunrise(day, month, year, longitude, latitude, zenith)
 		TminNext <- c(Tmin[-1],Tmin[length(Tmin)])
-		Exceed <- thermalStressDaily(criticalTemp, Tmax, Tmin, SR, TminNext) 
+		Exceed <- thermalStressDaily(criticalTemp, Tmax, Tmin, SR, TminNext)
+		
+		#if there is an NA, then interpolate the value
+		if(sum(is.na(Exceed)) > 0) 
+		{
+		
+			index <- which(is.na(Exceed))
+			index <- index[index > 1 & index < length(Exceed)]
+			Exceed[index] <- rowMeans(cbind(c(0,Exceed)[index],c(Exceed,0)[index+1]))
+		
+		}
 		
 		#now sum the ranges of the dates for the different seasons and put into the table
-		for(k in 1:length(gID))
+		for(k in 1:length(tID))
 		{
 			index <- match(Start[k]:End[k], dates)
-			result$THERMALSTRESS[gID[k]] <- sum(Exceed[index])
+			result$THERMALSTRESS[tID[k]] <- sum(Exceed[index])
 		}
 		
 	}
 	
 	return(result)
 }
+
+
 
 thermalStressDaily <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
 {

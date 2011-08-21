@@ -1,4 +1,4 @@
-## A quick demo to overview the package
+## A quick demo to give an overview of the package
 ## 
 
 pause <- function(msg=NA){  
@@ -31,11 +31,11 @@ mystations <- stationsPeriod("2010-01-01", "2010-12-31", spanishStations, wholeP
 ## merge data
 ##
 
-# tableGOSD <- makeTableGSOD()
-# save(tableGOSD,file = "tableGOSD.Rdata")
+# tableGSOD <- makeTableGSOD()
+# save(tableGOSD,file = "tableGSOD.Rdata")
 
-data(tableGOSD)
-head(tableGOSD)
+data(tableGSOD)
+head(tableGSOD)
 pause()
 
 ## interpolate data
@@ -48,7 +48,7 @@ locations$ALT <- 0
 startDate <- "2010-07-06"
 endDate <- "2010-07-06"
 
-weather <- interpolateDailyWeather(tableGOSD, locations, startDate, endDate, vars = c("TEMP"), covars = NULL, stations = mystations, logtr = NULL)
+weather <- interpolateDailyWeather(tableGSOD, locations, startDate, endDate, vars = c("TEMP"), covars = NULL, stations = mystations, logtr = NULL)
 
 library(maps)
 map("world",xlim=c(-10,2),ylim=c(35,44),add=T)
