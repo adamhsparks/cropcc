@@ -44,10 +44,10 @@ interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, va
 
 	#make the final table as a list: station name, year, date and weather vars
 	inDaWe <- vector(mode="list",length=length(vars)+3)
-	names(inDaWe) <- c("ID", "year", "moda", vars)
+	names(inDaWe) <- c("ID", "Year", "Date", vars)
 	inDaWe$ID <- rep(locations$ID,times=length(days))
-	inDaWe$year <- rep(years,each=dim(locations)[1])
-	inDaWe$moda <- rep(monthDays,each=dim(locations)[1])
+	inDaWe$Year <- rep(years,each=dim(locations)[1])
+	inDaWe$Date <- rep(days,each=dim(locations)[1])
 
 	ll <- length(locations[,1])
 	for(i in 4:length(inDaWe)) inDaWe[[i]] <- rep(NA, times=ll*length(days))

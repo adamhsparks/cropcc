@@ -1,3 +1,28 @@
+# Author: Robert J. Hijmans, r.hijmans@gmail.com
+# License GPL3
+# Version 0.1  January 2009
+
+.yearFromDate <- function(date) {
+# to avoid date shifts because of your local time zone if date is a POSIX. ..
+# date is a string like "2007-7-10"    YYYY-M-D
+	date <- as.character(date)
+	as.numeric(format(as.Date(date), "%Y"))
+}
+
+.monthFromDate <- function(date) {
+	date <- as.character(date)
+	as.numeric(format(as.Date(date), "%m"))
+}
+
+.dayFromDate <- function(date) {
+	date <- as.character(date)
+	as.numeric(format(as.Date(date), "%d"))
+}
+
+# Author: Jacob van Etten
+# License GPL3
+# Version 1.0 2011
+
 temperature <- function(Time, Tmax, Tmin, sunr, TminNext) 
 {
 	Temp <- vector(length=length(Time))
@@ -18,9 +43,7 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 	ID <- unique(trialData$ID)
 	
 	# make table of ID-season combinations from trialData
-	result <- trialData[c("ID","START","END")]
-	THERMALSTRESS <- vector(length=length(result[,1]))
-	result <- cbind(result,THERMALSTRESS)
+	result <- vector(length=length(trialData[,1]))
 	
 	# now do things by location
 	for(i in ID)
@@ -29,11 +52,12 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		wID <- which(dailyWeather$ID == i)
 		Tmax <- dailyWeather$MAX[wID]
 		Tmin <-dailyWeather$MIN[wID]
-		moda <- dailyWeather$moda[wID]
+		Date <- dailyWeather$Date[wID]
 
-		year <- dailyWeather$year[wID]
-		month <- as.integer(substring(moda,1,2))
-		day <- as.integer(substring(moda,3,4))
+		year <- dailyWeather$Year[wID]
+		datesWeather <- dailyWeather$Date
+		month <- .monthFromDate(datesWeather)
+		day <- .dayFromDate(datesWeather)
 		
 		# now get info about locations and seasons
 		longitude <- trialLocs$LON[trialLocs$ID == i]
@@ -44,7 +68,6 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		End <- as.Date(trialData$END[tID])
 		
 		# subset everything here to avoid calculating periods that are not relevant
-		datesWeather <- as.Date(paste(year,month,day,sep="-"))
 		datesCrop <- NULL
 		for(j in 1: length(Start))
 		{
@@ -79,7 +102,7 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		for(k in 1:length(tID))
 		{
 			index <- match(Start[k]:End[k], dates)
-			result$THERMALSTRESS[tID[k]] <- sum(Exceed[index])
+			result[tID[k]] <- sum(Exceed[index])
 		}
 		
 	}
@@ -114,7 +137,7 @@ thermalStressDaily <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
 	
 	for(i in index)
 	{
-		result[i] <- optimize(function(Time){abs(Tave[i] + Amp[i] * (cos(pi * (Time + 10) / (10 + sunr[i]))) - criticalTemp)})$minimum
+		result[i] <- optimize(function(Time){abs(Tave[i] + Amp[i] * (cos(pi * (Time + 10) / (10 + sunr[i]))) - criticalTemp)}, c(0,sunr[i]))$minimum
 	}
 	
 	return(result)
