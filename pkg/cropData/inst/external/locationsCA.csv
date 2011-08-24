@@ -1,27 +1,27 @@
 ID,Station,SubnationalArea,Country,InstComp,LON,LAT,ALT
-1,Acayucan,Veracruz,Mexico,Monsanto,-95.0551491,18.0049214,NA
-2,Bani,,Republica Dominicana,IDIAF,-70.3333282,18.2669733,NA
-3,Comayagua,,Honduras,DICTA,-87.6333351,14.4499989,NA
-4,Concepcion de Pilas,Pejiballe,Costa Rica,,-83.5666695,9.166667,NA
-5,Cuyuta,Escuintla,Guatemala,,-90.8833351,14.0999994,NA
-6,Danli,,Honduras,,-86.5833282,14.0333328,NA
-7,El Ejido,,Panama,,-80.3854211,7.916667,NA
-8,El Portillo,Masaya?,Nicaragua,INTA,-86.1057514,11.8821767,NA
-9,Empalizada,Juticalpa,Honduras,,-86.1666679,14.6500006,NA
-10,Frailesca,Chiapas,Mexico,,-93.23,16.23,NA
-11,Guarare,,Panama,,-80.28,7.82,NA
-12,Hidalgo,,Mexico,,-99.01,20.67,NA
-13,La Maquina,Suchitepequez,Guatemala,ICTA,-91.5574135,14.383274,NA
-14,Las Vegas,,Guatemala,,-89.8,15.1,NA
-15,"El Parque, Los Chiles",,Costa Rica,,-84.71,11.03,NA
-16,Maracay,,Venezuela,,-67.5958366,10.2469449,NA
-17,Masaya,,Nicaragua,,-86.09,11.98,NA
-18,Monjas,Jalapa?,Guatemala,,-89.87,14.5,NA
-19,Nayarit,,Mexico,Monsanto,-104.8930556,21.50833333,NA
-20,Nueva Concepcion,Escuintla,Guatemala,,-91.299722,14.199722,NA
-21,Playitas,Comayagua?,Honduras,DICTA,-87.6833305,14.4166665,NA
-22,Quezada,Jutiapa,Guatemala,,-89.9926525,14.2644273,NA
-23,San Andres,La Libertad,El Salvador,CENTA,-89.3970585,13.8166676,NA
-24,San Pedro Pinula,Jalapa,Guatemala,ICTA,-89.8500023,14.6666665,NA
-25,Santa Cruz Porrillo,,El Salvador,,-88.81,13.45,NA
-26,Santa Rosa,Managua?,Nicaragua,,-86.225,12.145,NA
+1,Acayucan,Veracruz,Mexico,Monsanto,-95.0551491,18.0049214,101
+2,Bani,,Republica Dominicana,IDIAF,-70.3333282,18.2669733,52
+3,Comayagua,,Honduras,DICTA,-87.6333351,14.4499989,596
+4,Concepcion de Pilas,Pejiballe,Costa Rica,,-83.5666695,9.166667,435
+5,Cuyuta,Escuintla,Guatemala,,-90.8833351,14.0999994,50
+6,Danli,,Honduras,,-86.5833282,14.0333328,763
+7,El Ejido,,Panama,,-80.3854211,7.916667,36
+8,El Portillo,Masaya?,Nicaragua,INTA,-86.1057514,11.8821767,430
+9,Empalizada,Juticalpa,Honduras,,-86.1666679,14.6500006,357
+10,Frailesca,Chiapas,Mexico,,-93.23,16.23,665
+11,Guarare,,Panama,,-80.28,7.82,36
+12,Hidalgo,,Mexico,,-99.01,20.67,1698
+13,La Maquina,Suchitepequez,Guatemala,ICTA,-91.5574135,14.383274,102
+14,Las Vegas,,Guatemala,,-89.8,15.1,1215
+15,"El Parque, Los Chiles",,Costa Rica,,-84.71,11.03,41
+16,Maracay,,Venezuela,,-67.5958366,10.2469449,448
+17,Masaya,,Nicaragua,,-86.09,11.98,243
+18,Monjas,Jalapa?,Guatemala,,-89.87,14.5,963
+19,Nayarit,,Mexico,Monsanto,-104.8930556,21.50833333,930
+20,Nueva Concepcion,Escuintla,Guatemala,,-91.299722,14.199722,58
+21,Playitas,Comayagua?,Honduras,DICTA,-87.6833305,14.4166665,590
+22,Quezada,Jutiapa,Guatemala,,-89.9926525,14.2644273,922
+23,San Andres,La Libertad,El Salvador,CENTA,-89.3970585,13.8166676,506
+24,San Pedro Pinula,Jalapa,Guatemala,ICTA,-89.8500023,14.6666665,1090
+25,Santa Cruz Porrillo,,El Salvador,,-88.81,13.45,44
+26,Santa Rosa,Managua?,Nicaragua,,-86.225,12.145,83
