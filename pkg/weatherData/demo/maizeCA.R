@@ -3,14 +3,16 @@ library(maps)
 library(geonames)
 
 data(stations)
-setwd("D:/Data/CCAFS/PCCMCA-Maize/weatherDataCA")
+#setwd("")
 
 # get crop data
-trial <- read.csv("D:/Data/CCAFS/PCCMCA-Maize/trialsCA.csv")
-locs <- read.csv("D:/Data/CCAFS/PCCMCA-Maize/locationsCA.csv")
+trial <- read.csv(system.file("external/trialsCA.csv", package="cropData"))
+locs <- read.csv(system.file("external/locationsCA.csv", package="cropData"))
 
 # use geonames server to get altitude data for trial locations
+# just for demonstration; the values are already in the table
 for(i in 1:dim(locs)[1]) {locs$ALT[i] <- GNsrtm3(locs$LAT[i],locs$LON[i])[1]}
+locs$ALT <- as.numeric(locs$ALT)
 
 # select weather stations
 stations <- stations[!is.na(stations$ALT),]
