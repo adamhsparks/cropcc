@@ -11,7 +11,9 @@ trial <- read.csv(system.file("external/trialsCA.csv", package="cropData"))
 locs <- read.csv(system.file("external/locationsCA.csv", package="cropData"))
 
 # use geonames server to get altitude data for trial locations
-for(i in 1:dim(locs)[1]) {Sys.sleep(1); locs$ALT[i] <- GNsrtm3(locs$LAT[i],locs$LON[i])[1]}
+# just for demonstration, the values are already in the table
+for(i in 1:dim(locs)[1]) {locs$ALT[i] <- GNsrtm3(locs$LAT[i],locs$LON[i])[1]}
+locs$ALT <- as.numeric(locs$ALT)
 
 # select weather stations
 stations <- stations[!is.na(stations$ALT),]
@@ -24,7 +26,7 @@ map("world",add=TRUE, interior=F)
 
 #weatherCA <- downloadGSOD(2003, 2005, stations = stationsSelected, silent = TRUE, tries = 2, localdir = NULL) #can be omitted second time
 #weatherCA <- makeTableGSOD(weatherCA) #can be replaced by following line second time
-#weatherCA <- makeTableGSOD()
+weatherCA <- makeTableGSOD()
 weatherCA <- na.omit(weatherCA)
 
 # interpolate thermal stress by year
