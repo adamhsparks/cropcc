@@ -22,6 +22,9 @@
 # Author: Jacob van Etten
 # License GPL3
 # Version 1.0 2011
+# http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
+# http://williams.best.vwh.net/sunrise_sunset_example.htm
+# note, however that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
 
 temperature <- function(Time, Tmax, Tmin, sunr, TminNext) 
 {
@@ -110,8 +113,6 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 	return(result)
 }
 
-
-
 thermalStressDaily <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
 {
 	Tave <- (Tmax + Tmin) / 2
@@ -142,7 +143,3 @@ thermalStressDaily <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
 	
 	return(result)
 }
-
-#http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
-#http://williams.best.vwh.net/sunrise_sunset_example.htm
-#note, however that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
