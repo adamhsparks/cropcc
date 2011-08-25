@@ -55,7 +55,7 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		Date <- dailyWeather$Date[wID]
 
 		year <- dailyWeather$Year[wID]
-		datesWeather <- dailyWeather$Date
+		datesWeather <- dailyWeather$Date[wID] # changed by AL
 		month <- .monthFromDate(datesWeather)
 		day <- .dayFromDate(datesWeather)
 		
