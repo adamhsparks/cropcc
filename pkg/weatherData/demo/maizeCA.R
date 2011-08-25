@@ -1,6 +1,7 @@
 library(weatherData)
 library(maps)
 library(geonames)
+library(mgcv)
 
 data(stations)
 #setwd("")

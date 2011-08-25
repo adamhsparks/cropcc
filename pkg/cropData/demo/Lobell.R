@@ -23,6 +23,9 @@ data(trialDataLobell)
 
 ipW <- interpolateDailyWeather(WeatherDataLobell, stationsLobell, "1999-1-1", "2007-12-31", stations = stationsSelected)
 
-
+require(mapdata)
+map("worldHires",xlim=c(-10,50),ylim=c(-40,10))
+points(stationsLobell[which(stationsLobell$ID %in% trialDataLobell$ID),c("LON","LAT")], pch=4, col="blue")
+points(stationsSelected[,c("LON","LAT")], pch=3)
 
 
