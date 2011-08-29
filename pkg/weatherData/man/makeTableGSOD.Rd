@@ -9,7 +9,7 @@ This function creates a table from downloaded GSOD files on disk.
 Variables are converted to SI units.
 }
 \usage{
-makeTableGSOD(files = NULL, folder = getwd())
+makeTableGSOD(folder = getwd(), files = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -10,7 +10,7 @@ Temperature and thermal stress
 Calculate temperatures and thermal stress from weather data (daily minimum and maximum temperatures).
 }
 \usage{
-thermalStressSeasonal(criticalTemp, dailyWeather, trialData, trialLocs, zenith=96)
+thermalStressSeasonal(criticalTemp, dailyWeather, trialData, trialLocs, startEnd = c("START","END"), zenith=96)
 thermalStressDaily(criticalTemp, Tmax, Tmin, sunr, TminNext)
 temperature(Time, Tmax, Tmin, sunr, TminNext)
 }
@@ -19,6 +19,7 @@ temperature(Time, Tmax, Tmin, sunr, TminNext)
   \item{dailyWeather}{ data frame containing daily weather data}
   \item{trialData}{ data frame containing trial data, with start (START) and end (END) dates of the growing season}
   \item{trialLocs}{ data frame containing trial locations}  
+  \item{startEnd}{ character vector of two, indicating which column to select for start and end dates from trialData}
   \item{zenith}{ zenith angle, see ?sunrise}
   \item{Tmax}{ single number or vector with daily maximum temperature values}
   \item{Tmin}{ single number or vector with daily minimum temperature values}
