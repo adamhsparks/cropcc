@@ -13,12 +13,13 @@ makeTableGSOD(files = NULL, folder = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{files}{
-vector of paths to the data files
-}
   \item{folder}{
 path to the folder containing the data files; ignored if argument 'files' is not NULL.
 }
+  \item{files}{
+vector of paths to the data files
+}
+
 }
 
 \value{

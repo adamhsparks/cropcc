@@ -9,7 +9,7 @@ sunrise <- function(day, month, year, longitude, latitude, zenith=96)
 	latitude <- latitude * (pi/180)	
 	
 	d <- as.character(paste(year,month,day, sep="-"))
-    doy <- as.numeric(format(as.Date(d), "%j"))
+    doy <- .doyFromDate(d)
 	
 	lngHour <- longitude / (pi/12)
 	Time <- doy + ((6 - lngHour) / 24)

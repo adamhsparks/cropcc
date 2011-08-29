@@ -19,12 +19,18 @@
 	as.numeric(format(as.Date(date), "%d"))
 }
 
+.doyFromDate <- function(date) {
+	date <- as.character(date)
+	as.numeric(format(as.Date(date), "%j"))
+}
+
 # Author: Jacob van Etten
 # License GPL3
 # Version 1.0 2011
 # http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
 # http://williams.best.vwh.net/sunrise_sunset_example.htm
 # note, however that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
+
 
 temperature <- function(Time, Tmax, Tmin, sunr, TminNext) 
 {
@@ -41,7 +47,7 @@ temperature <- function(Time, Tmax, Tmin, sunr, TminNext)
 	return(Temp)
 }
 
-thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLocs, zenith=96)
+thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLocs, startEnd=c("START","END"), zenith=96)
 {
 	ID <- unique(trialData$ID)
 	
@@ -67,8 +73,8 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		latitude <- trialLocs$LAT[trialLocs$ID == i]
 
 		tID <- which(trialData$ID == i)		
-		Start <- as.Date(trialData$START[tID])		
-		End <- as.Date(trialData$END[tID])
+		Start <- as.Date(trialData[tID,startEnd[1]])		
+		End <- as.Date(trialData[tID,startEnd[2]])
 		
 		# subset everything here to avoid calculating periods that are not relevant
 		datesCrop <- NULL
