@@ -18,7 +18,6 @@ locs$ALT <- as.numeric(locs$ALT)
 # select weather stations
 stations <- stations[!is.na(stations$ALT),]
 stationsSelected <- stationsExtent(c(-110,-60,5,25), stations)
-
 stationsSelected <- stationsSelected[stationsSelected$CTRY != "CU",]
 stationsSelected <- stationsSelected[stationsSelected$CTRY != "US",]
 stationsSelected <- stationsSelected[stationsSelected$CTRY != "PU",]
@@ -57,7 +56,7 @@ trial["TEMPSTRESS35"] <- thermalStressSeasonal(35, ipW, trial, locs)
 trial["TEMPSTRESS40"] <- thermalStressSeasonal(40, ipW, trial, locs)
 
 # precipitation
-trial[c("PRECTOTAL","PRECCV"] <- precipitationSeasonal(ipW, trial)
+trial[c("PRECTOTAL","PRECCV")] <- precipitationSeasonal(ipW, trial)
 
 # radiation
 trial["RADIATION"] <- radiationSeasonal(ipW, trial, locs)
