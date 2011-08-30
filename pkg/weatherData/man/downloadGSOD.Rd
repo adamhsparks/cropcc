@@ -1,5 +1,6 @@
 \name{downloadGSOD}
 \alias{downloadGSOD}
+\alias{listFilesGSOD}
 
 \title{
 Download Global Summary of Day data 
@@ -16,6 +17,7 @@ Re-distribution of these data by others must provide this same notification."
 }
 \usage{
 downloadGSOD(startYear, endYear, stations, silent = TRUE, tries = 2, localdir = NULL)
+listFilesGSOD(startYear, endYear, stations, localdir=NULL)
 }
 \arguments{
   \item{startYear}{
@@ -34,11 +36,13 @@ report progress or not (default is FALSE)
 number of times to retry when download of a particular station-year file fails (default is 2)
 }
   \item{localdir}{
-local directory to which the data should be written (default is getwd())
+local directory to which the data should be written (default is NULL)
 }
 }
 \details{
-The function downloads the data by station-year file for the specified time period and stations.
+The function downloadGSOD downloads the data by station-year file for the specified time period and stations.
+listFilesGSOD provides a vector of file names, which could be used with a downloading programme or plug-in.
+Both functions first look in localdir to see if the file already exists if localdir is given.
 }
 \value{
 A list of file names
