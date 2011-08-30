@@ -4,7 +4,7 @@ library(maps)
 library(geonames)
 
 data(stations)
-setwd("D:/Data/CCAFS/PCCMCA-Maize/weatherDataCA")
+setwd(paste(system.file(package="cropData"), "/external", sep=""))
 
 # get crop data
 trial <- read.csv(system.file("external/trialsCA.csv", package="cropData"))
@@ -13,7 +13,7 @@ locs <- read.csv(system.file("external/locationsCA.csv", package="cropData"))
 # use geonames server to get altitude data for trial locations
 # just for demonstration, the values are already in the table
 # for(i in 1:dim(locs)[1]) {locs$ALT[i] <- GNsrtm3(locs$LAT[i],locs$LON[i])[1]}
-locs$ALT <- as.numeric(locs$ALT)
+# locs$ALT <- as.numeric(locs$ALT)
 
 # select weather stations
 stations <- stations[!is.na(stations$ALT),]
@@ -28,13 +28,20 @@ plot(stationsSelected[c("LON","LAT")], pch=3, cex=.5)
 points(locs[c("LON","LAT")], pch=15)
 map("world",add=TRUE, interior=F)
 
-weatherCA <- downloadGSOD(2003, 2005, stations = stationsSelected, silent = TRUE, tries = 2, localdir = NULL) #can be omitted second time
-weatherCA <- makeTableGSOD(weatherCA) #can be replaced by following line second time
-#weatherCA <- makeTableGSOD("D:/Data/CCAFS/PCCMCA-Maize/weatherDataCA")
+listFilesGSOD(2003, 2005, stations=stationsSelected)
+
+# if the following doesn´t work, try to download the files with a download manager
+# for this you can use the file created in the last line of code above
+# it is a long list with the URLs of the files to be downloaded
+# see ?listFilesGSOD for more instructions
+
+weatherCA <- downloadGSOD(2003, 2005, stations = stationsSelected, silent = TRUE, tries = 2, overwrite = FALSE) 
+weatherCA <- makeTableGSOD() 
+
 weatherCA <- na.omit(weatherCA)
 
 # interpolate data
-ipW2003 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2003-5-15", "2003-9-25", stations = stationsSelected)
+ipW2003 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2003-5-15", "2003-9-25", stations = stationsSelected) #ignore the warnings
 ipW2004 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2004-5-15", "2004-9-25", stations = stationsSelected)
 ipW2005 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2005-5-15", "2005-9-25", stations = stationsSelected)
 ipW <- rbind(ipW2003,ipW2004,ipW2005)
