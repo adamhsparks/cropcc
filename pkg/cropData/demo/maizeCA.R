@@ -1,7 +1,9 @@
-require(cropData)
+library(cropData)
 library(weatherData)
 library(maps)
-library(geonames)
+library(vegan)
+
+# library(geonames)
 
 data(stations)
 setwd(paste(system.file(package="cropData"), "/external", sep=""))
@@ -28,45 +30,33 @@ plot(stationsSelected[c("LON","LAT")], pch=3, cex=.5)
 points(locs[c("LON","LAT")], pch=15)
 map("world",add=TRUE, interior=F)
 
-listFilesGSOD(2003, 2005, stations=stationsSelected)
-
-# if the following doesn´t work, try to download the files with a download manager
-# for this you can use the file created in the last line of code above
-# it is a long list with the URLs of the files to be downloaded
-# see ?listFilesGSOD for more instructions
-
-weatherCA <- downloadGSOD(2003, 2005, stations = stationsSelected, silent = TRUE, tries = 2, overwrite = FALSE) 
+# weatherCA <- downloadGSOD(2003, 2005, stations = stationsSelected, silent = TRUE, tries = 2, overwrite = FALSE) 
 weatherCA <- makeTableGSOD() 
+
+# if this doesn't work, try to download the files with a download manager, see ?listFilesGSOD
+# for this you can use the list of files created thusly
+# listFilesGSOD(2003, 2005, stations=stationsSelected)
 
 weatherCA <- na.omit(weatherCA)
 
 # interpolate data
-ipW2003 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2003-5-15", "2003-9-25", stations = stationsSelected) #ignore the warnings
+# to speed things up we select only the growing season to interpolate
+# we suppose planting is on the 15th of May and harvest is on the 25th of August
+ipW2003 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2003-5-15", "2003-9-25", stations = stationsSelected, silent=FALSE) #ignore the warnings
 ipW2004 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2004-5-15", "2004-9-25", stations = stationsSelected)
 ipW2005 <- interpolateDailyWeather(weatherCA, locs[c("ID", "LON", "LAT", "ALT")], "2005-5-15", "2005-9-25", stations = stationsSelected)
 ipW <- rbind(ipW2003,ipW2004,ipW2005)
 
+# add sowing and harvesting dates to trial
 START <- paste(trial$Year, "5-15", sep="-")
 END <- paste(trial$Year, "9-25", sep="-")
+trial <- cbind(trial, START, END)
 
-TEMPSTRESS30 <- rep(NA, times=dim(trial)[1])
-TEMPSTRESS35 <- rep(NA, times=dim(trial)[1])
-TEMPSTRESS40 <- rep(NA, times=dim(trial)[1])
-PRECTOTAL <- rep(NA, times=dim(trial)[1])
-PRECCV <- rep(NA, times=dim(trial)[1])
-RADIATION <- rep(NA, times=dim(trial)[1])
-trial <- cbind(trial, START, END, TEMPSTRESS30, TEMPSTRESS35, TEMPSTRESS40, PRECTOTAL, PRECCV, RADIATION)
-
-# temperature stress
-trial["TEMPSTRESS30"] <- thermalStressSeasonal(30, ipW, trial, locs)
-trial["TEMPSTRESS35"] <- thermalStressSeasonal(35, ipW, trial, locs)
-trial["TEMPSTRESS40"] <- thermalStressSeasonal(40, ipW, trial, locs)
-
-# precipitation
-trial[c("PRECTOTAL","PRECCV")] <- precipitationSeasonal(ipW, trial)
-
-# radiation
-trial["RADIATION"] <- radiationSeasonal(ipW, trial, locs)
+# add ecophysiological variables
+TEMPSTRESS30 <- thermalStressSeasonal(30, ipW, trial, locs)
+PREC <- precipitationSeasonal(ipW, trial)
+RADIATION <- radiationSeasonal(ipW, trial, locs)
+trial <- cbind(trial, TEMPSTRESS30, PREC, RADIATION)
 
 # first some visualization
 pairs(trial)
@@ -82,3 +72,4 @@ step(model2)
 model3 <- lm(log1p(Yield) ~ Variety + Plant.m2 + poly(TEMPSTRESS30,2) + poly(PRECTOTAL,2) + poly(RADIATION,2) + as.factor(Year) + as.factor(ID) + poly(TEMPSTRESS30):Variety, data = trial)
 summary(model3)
 step(model3)
+
