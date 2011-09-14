@@ -2,6 +2,7 @@ library(cropData)
 library(weatherData)
 library(maps)
 library(vegan)
+library(reshape)
 
 # library(geonames)
 
@@ -11,6 +12,8 @@ setwd(paste(system.file(package="cropData"), "/external", sep=""))
 # get crop data
 trial <- read.csv(system.file("external/trialsCA.csv", package="cropData"))
 locs <- read.csv(system.file("external/locationsCA.csv", package="cropData"))
+
+trial$Yield <- log(trial$Yield)
 
 # use geonames server to get altitude data for trial locations
 # just for demonstration, the values are already in the table
@@ -58,18 +61,32 @@ PREC <- precipitationSeasonal(ipW, trial)
 RADIATION <- radiationSeasonal(ipW, trial, locs)
 trial <- cbind(trial, TEMPSTRESS30, PREC, RADIATION)
 
-# first some visualization
-pairs(trial)
+# trial <- read.csv(system.file("external/trialsEnvCA.csv", package="cropData"))
 
-model1 <- lm(log1p(Yield) ~ Plant.m2 + as.factor(Year) + as.factor(Variety) + as.factor(ID) + Variety:ID + Variety:Year, data=trial)
-summary(model1)
-step(model1)
+# now let's analyze GxE interactions
+tr2005 <- trial[trial$Year == 2005, c("Variety","Location","Yield", "Plant.m2")]
 
-model2 <- lm(log1p(Yield) ~ Plant.m2 + TEMPSTRESS30 + TEMPSTRESS35 + TEMPSTRESS40 + PRECTOTAL + RADIATION + as.factor(Year) + as.factor(ID), data = trial)
-summary(model2)
-step(model2)
+m <-  lm(Yield ~ Variety + Location + Plant.m2, data=tr2005) # G + GxE are left over, the rest is filtered out
+tr2005$Yield <- residuals(m)
+tr2005 <- tr2005[,c("Variety","Location","Yield")]
 
-model3 <- lm(log1p(Yield) ~ Variety + Plant.m2 + poly(TEMPSTRESS30,2) + poly(PRECTOTAL,2) + poly(RADIATION,2) + as.factor(Year) + as.factor(ID) + poly(TEMPSTRESS30):Variety, data = trial)
-summary(model3)
-step(model3)
+tr2005 <- melt(tr2005)
+tr2005 <- acast(tr2005, Location ~ Variety)
+pca2005 <- princomp(tr2005)
+biplot(pca2005)
+loadings(pca2005)
 
+# now let's can incorporate the environmental variables in this analysis by doing an RDA
+env2005 <- trial[trial$Year == 2005, c("Location", "TEMPSTRESS30", "PRECSUM", "PRECCV", "RADIATION")]
+env2005 <- unique(env2005)
+rownames(env2005) <- env2005$Location
+env2005 <- env2005[,-1]
+rda2005 <- rda(tr2005, env2005)
+summary(rda2005)
+plot(rda2005)
+
+# Lobell (2011) type strategy, but with polynomials
+
+model <- lm(Yield ~ Variety + Plant.m2 + poly(TEMPSTRESS30,2) + poly(PRECSUM,2) + poly(RADIATION,2) + as.factor(Year) + as.factor(ID) + poly(TEMPSTRESS30):Variety, data = trial)
+summary(model)
+step(model)
