@@ -1,5 +1,5 @@
 downloadGSOD <-
-function(startYear, endYear, stations, silent=TRUE, tries=2, localdir=NULL)
+function(startYear, endYear, stations, silent=TRUE, tries=2, overwrite=TRUE, folder=getwd())
 {
 	startDate <- as.Date(paste(startYear,"-01-01",sep=""))
 	endDate <- as.Date(paste(endYear,"-12-31",sep=""))
@@ -9,6 +9,13 @@ function(startYear, endYear, stations, silent=TRUE, tries=2, localdir=NULL)
 	if(!silent) cat("total ", length(stations[,1]), " stations to be dowloaded", "\n")
 	files <- NULL
 
+	if(!overwrite)
+	{
+	
+		filesPresent <- list.files(path = folder)
+	
+	}
+	
 	#loop by station
 
 	for(station in 1:length(stations[,1]))
@@ -26,38 +33,43 @@ function(startYear, endYear, stations, silent=TRUE, tries=2, localdir=NULL)
 
 		for (year in START:END)
 		{
-			if(!is.null(localdir))
+			fileYearStation <- paste(folder, "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")
+			
+			if(!overwrite)
 			{
-				tryit <- try(file(paste(localdir, "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")))
-				if(class(tryit) != "try-error") 
+				
+				if(fileYearStation %in% filesPresent) 
 				{
 					absent <- FALSE
-					files <- c(files, tryit)
+					if(!silent) cat("file already there.\n")
+					files <- c(files, fileYearStation)
 				}
 			}
 
-			if(is.null(localdir) | absent)
+			if(overwrite | absent)
 			{
 	
 				#set things up -- url and file name, counter for tries
 
 				urlYearStation <- paste("ftp://ftp.ncdc.noaa.gov/pub/data/gsod/", year, "/", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")
-				fileYearStation <- paste(getwd(), "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")
 				tried <- tries
 
 				#while loop to try more than once
 
 				while(tried > 0.5)
 				{
-					tryIt <- try(download.file(urlYearStation, fileYearStation, quiet=silent), silent = TRUE)
-					if(class(tryIt) == "try-error") {tried <- tried - 1} 
+					tryIt <- try(download.file(urlYearStation, fileYearStation, quiet=silent), silent = silent)
+					if(inherits(tryIt,"try-error")) {
+						
+						tried <- tried - 1
+						if(!silent) cat(tried, " tries left.\n")
+					} 
 					else {tried <- 0}
 				}
 
 				#add file name to final file list
 
 				files <- c(files, fileYearStation)
-
 
 			}
 
@@ -75,7 +87,7 @@ function(startYear, endYear, stations, silent=TRUE, tries=2, localdir=NULL)
 }
 
 listFilesGSOD <-
-function(startYear, endYear, stations, localdir=NULL)
+function(startYear, endYear, stations, folder=getwd(), clipboard=FALSE)
 {
 	startDate <- as.Date(paste(startYear,"-01-01",sep=""))
 	endDate <- as.Date(paste(endYear,"-12-31",sep=""))
@@ -83,6 +95,14 @@ function(startYear, endYear, stations, localdir=NULL)
 	stations <- stationsPeriod(startDate, endDate, stations)
 
 	files <- NULL
+	
+	if(!overwrite)
+	{
+	
+		filesPresent <- list.files(path = folder)
+	
+	}
+	
 
 	#loop by station
 
@@ -101,16 +121,15 @@ function(startYear, endYear, stations, localdir=NULL)
 
 		for (year in START:END)
 		{
-			if(!is.null(localdir))
+			
+			if(!is.null(folder))
 			{
-				tryit <- try(file(paste(localdir, "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")))
-				if(class(tryit) != "try-error") 
-				{
-					absent <- FALSE
-				}
+				
+				absent <- !(file(paste(folder, "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")) %in% filesPresent)
+				
 			}
 
-			if(is.null(localdir) | absent)
+			if(is.null(folder) | absent)
 			{
 	
 				#set things up -- url and file name, counter for tries
@@ -130,7 +149,16 @@ function(startYear, endYear, stations, localdir=NULL)
 
 
 	}
+	if(clipboard)
+	{
+		writeClipboard(paste(files, collapse=" "))
+		
+	} else { 
 	
-	return(files)
+		write.table(files,paste(folder, "/GSODfiles.txt", sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE)
+		return(paste(folder, "/GOSDfiles.txt", sep=""))
+	}	
+	
+
 	
 }

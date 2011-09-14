@@ -34,7 +34,10 @@ co-variables that should be included in the interpolation (default is "ALT", alt
 table with stations data
 }
   \item{sqrtTr}{
-variables to undergo square-root transformation (default: "PRCP")
+variables to undergo square-root transformation (default: "PRCP", precipitation)
+}
+  \item{silent}{
+will show interpolated surfaces if FALSE (default: TRUE)
 }
 }
 \details{

@@ -18,7 +18,7 @@
             Dist.args=list(miles=TRUE)) )
 }
 
-interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, vars=c("TEMP","MAX","MIN","PRCP"), covars="ALT", stations, sqrtTr=("PRCP")) #covars should be present in the stations file
+interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, vars=c("TEMP","MAX","MIN","PRCP"), covars="ALT", stations, sqrtTr=("PRCP"), silent=TRUE) #covars should be present in the stations file
 {
 	require(fields)
 
@@ -68,7 +68,7 @@ interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, va
 				{
 					#make daily interpolation and predict for each location
 					model <- try(.TpsLonLat(Y=ssubV[Yvar], x=ssubV[c("LON","LAT")], Z=unlist(ssubV["ALT"]))) 
-					#surface(model)
+					if(!silent) surface(model)
 					#model <- fastTps(Y=ssub[Yvar], x=ssub[c("LON","LAT")], Z=ssub["ALT"], lon.lat=TRUE, theta=theta)
 					if(!inherits(model, "try-error")) {inDaWe[[Yvar]][(ll*(i-1)+1):(ll*i)] <- predict(model, x=locations[,c("LON","LAT")], Z=locations[,"ALT"])}
 				}
