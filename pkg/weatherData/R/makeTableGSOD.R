@@ -1,6 +1,6 @@
 makeTableGSOD <- function(folder=getwd(), files=NULL)
 	{
-		if(is.null(files)) files <- list.files(path = folder, pattern = "^gosd", all.files = TRUE, full.names = TRUE, recursive = FALSE)
+		if(is.null(files)) files <- list.files(path = folder, pattern = "op.gz$", all.files = TRUE, full.names = TRUE, recursive = FALSE)
 		
 		if(length(files)<1) {stop("no GSOD files in this folder")}
 		#set up things
