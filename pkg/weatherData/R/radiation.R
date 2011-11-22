@@ -42,7 +42,7 @@ radiationSeasonal <- function(dailyWeather, trialData, trialLocs, method="HR2", 
 		Tmin <-dailyWeather$MIN[wID]
 
 		year <- dailyWeather$Year[wID]
-		datesWeather <- dailyWeather$Date[wID] # changed by AL
+		datesWeather <- as.Date(dailyWeather$Date[wID]) # changed by AL
 		month <- .monthFromDate(datesWeather)
 		day <- .dayFromDate(datesWeather)
 		

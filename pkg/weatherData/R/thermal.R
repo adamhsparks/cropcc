@@ -2,26 +2,26 @@
 # License GPL3
 # Version 0.1  January 2009
 
-.yearFromDate <- function(date) {
+.yearFromDate <- function(Date) {
 # to avoid date shifts because of your local time zone if date is a POSIX. ..
-# date is a string like "2007-7-10"    YYYY-M-D
-	date <- as.character(date)
-	as.numeric(format(as.Date(date), "%Y"))
+# Date is a string like "2007-7-10"    YYYY-M-D
+	Date <- as.character(Date)
+	as.numeric(format(as.Date(Date), "%Y"))
 }
 
-.monthFromDate <- function(date) {
-	date <- as.character(date)
-	as.numeric(format(as.Date(date), "%m"))
+.monthFromDate <- function(Date) {
+	Date <- as.character(Date)
+	as.numeric(format(as.Date(Date), "%m"))
 }
 
-.dayFromDate <- function(date) {
-	date <- as.character(date)
-	as.numeric(format(as.Date(date), "%d"))
+.dayFromDate <- function(Date) {
+	Date <- as.character(Date)
+	as.numeric(format(as.Date(Date), "%d"))
 }
 
-.doyFromDate <- function(date) {
-	date <- as.character(date)
-	as.numeric(format(as.Date(date), "%j"))
+.doyFromDate <- function(Date) {
+	Date <- as.character(Date)
+	as.numeric(format(as.Date(Date), "%j"))
 }
 
 # Author: Jacob van Etten
@@ -29,7 +29,7 @@
 # Version 1.0 2011
 # http://williams.best.vwh.net/sunrise_sunset_algorithm.htm
 # http://williams.best.vwh.net/sunrise_sunset_example.htm
-# note, however that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
+# note that this function calculates the value of the sunrise in local mean time (solar time), not UTC.
 
 
 temperature <- function(Time, Tmax, Tmin, sunr, TminNext) 
@@ -64,7 +64,7 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 		Date <- dailyWeather$Date[wID]
 
 		year <- dailyWeather$Year[wID]
-		datesWeather <- dailyWeather$Date[wID] # changed by AL
+		datesWeather <- as.Date(dailyWeather$Date[wID]) # changed by AL
 		month <- .monthFromDate(datesWeather)
 		day <- .dayFromDate(datesWeather)
 		

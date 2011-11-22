@@ -74,6 +74,9 @@ interpolateDailyWeather <- function(tableGSOD, locations, startDate, endDate, va
 				}
 			}
 		}
+		
+		#if there are 3 or 4 data points I could do IDW for points within the convex hull of the coords
+		
 	}
 	result <- as.data.frame(inDaWe)
 	if(!is.null(sqrtTr)) 

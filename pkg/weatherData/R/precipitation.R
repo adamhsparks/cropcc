@@ -16,7 +16,7 @@ precipitationSeasonal <- function(dailyWeather, trialData, func=c("sum","cv"), s
 		PRCP <- dailyWeather$PRCP[wID]
 
 		year <- dailyWeather$Year[wID]
-		datesWeather <- dailyWeather$Date[wID] # changed by AL
+		datesWeather <- as.Date(dailyWeather$Date[wID]) # changed by AL
 		month <- .monthFromDate(datesWeather)
 		day <- .dayFromDate(datesWeather)
 		
