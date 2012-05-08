@@ -34,9 +34,7 @@ single number or vector with thermal stress duration (in hours) or temperature v
 \author{
 Jacob van Etten
 }
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+
 \examples{
 # Illustration of the thermal stress concept
 s <- sunrise(25, 6, 1990, -74.3, 40.9, zenith=(90+50/60))

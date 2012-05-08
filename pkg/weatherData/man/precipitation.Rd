@@ -24,10 +24,4 @@ vector with summary variables on precipitation
 \author{
 Jacob van Etten
 }
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
-
-}
 \keyword{ data }

@@ -32,10 +32,7 @@ vector with summary variables on radiation
 \author{
 Jacob van Etten
 }
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
 \examples{
-
+radiationDaily("01-01-2001", 5, 10, 20, method="HR2")
 }
 \keyword{ data }

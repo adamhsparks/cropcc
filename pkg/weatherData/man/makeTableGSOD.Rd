@@ -128,9 +128,7 @@ Jacob van Etten
 \seealso{
 \code{\link{downloadGSOD}}, ~~~
 }
-\examples{
 
-}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ data }

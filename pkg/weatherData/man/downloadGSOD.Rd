@@ -17,7 +17,7 @@ Re-distribution of these data by others must provide this same notification."
 }
 \usage{
 downloadGSOD(startYear, endYear, stations, silent = TRUE, tries = 2, overwrite= TRUE, folder = getwd())
-listFilesGSOD(startYear, endYear, stations, folder = getwd(), clipboard = FALSE)
+listFilesGSOD(startYear, endYear, stations, overwrite, folder = getwd(), clipboard = FALSE)
 }
 \arguments{
   \item{startYear}{ first year to download}
@@ -36,10 +36,10 @@ listFilesGSOD provides a vector of file names, which could be used with a downlo
 listFilesGSOD creates a batch file that can be loaded into a download manager. 
 For instance, use Free Download Manager. http://www.freedownloadmanager.org/
 Click [File] - [Import] - [Import list of downloads] to upload the text file created with listFilesGSOD().
-You will need to fiddle a bit with the settings to make.
+You will probably need to fiddle a bit with the settings of FDM to make it work smoothly.
 }
 \value{
-A list of file names
+listFielsGSOD returns a list of file names
 }
 \references{
 \url{ftp://ftp.ncdc.noaa.gov/pub/data/gsod/readme.txt}
@@ -52,9 +52,10 @@ Jacob van Etten
 \code{\link{makeTableGSOD}}
 }
 \examples{
-
+data(stations)
+stations <- stations[1:30,]
+listFilesGSOD(2000, 2001, stations, folder = NULL, clipboard = FALSE)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+
 \keyword{ data }
 

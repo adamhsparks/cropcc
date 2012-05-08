@@ -40,30 +40,13 @@ variables to undergo square-root transformation (default: "PRCP", precipitation)
 will show interpolated surfaces if FALSE (default: TRUE)
 }
 }
-\details{
 
-}
 \value{
 data frame with interpolated values for the selected variables
-}
-\references{
-
 }
 \author{
 Jacob van Etten
 }
-\note{
 
-}
-
-
-
-\seealso{
-
-}
-\examples{
-
-
-}
 \keyword{ data }
 \keyword{ spatial }

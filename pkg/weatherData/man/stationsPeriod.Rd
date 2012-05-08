@@ -16,9 +16,7 @@ stationsPeriod(startDate, endDate, stations, wholePeriod = FALSE)
   \item{stations}{stations data table (data frame)}
   \item{wholePeriod}{select only stations that cover the entire period}
 }
-\details{
 
-}
 \value{
 data frame
 }

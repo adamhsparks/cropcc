@@ -17,22 +17,13 @@ Date: \tab 2011-07-19\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 }
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+
 }
 \author{
 Jacob van Etten
 
 Maintainer: Jacob van Etten <jacobvanetten@yahoo.com>
 }
-\references{
-~~ Literature or other references for background information ~~
-}
 
 \keyword{ package }
-\seealso{
 
-}
-\examples{
-
-}

@@ -26,11 +26,12 @@ data frame
 \author{
 Jacob van Etten
 }
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
-\examples{
 
+
+\examples{
+data(stations)
+Extent <- c(10,20,10,20)
+stationsExtent(Extent,stations)
   }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

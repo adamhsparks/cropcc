@@ -87,7 +87,7 @@ function(startYear, endYear, stations, silent=TRUE, tries=2, overwrite=TRUE, fol
 }
 
 listFilesGSOD <-
-function(startYear, endYear, stations, folder=getwd(), clipboard=FALSE)
+function(startYear, endYear, stations, overwrite=TRUE, folder=getwd(), clipboard=FALSE)
 {
 	startDate <- as.Date(paste(startYear,"-01-01",sep=""))
 	endDate <- as.Date(paste(endYear,"-12-31",sep=""))
@@ -156,9 +156,10 @@ function(startYear, endYear, stations, folder=getwd(), clipboard=FALSE)
 	} else { 
 	
 		write.table(files,paste(folder, "/GSODfiles.txt", sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE)
-		return(paste(folder, "/GOSDfiles.txt", sep=""))
+		cat("A file with URLs has been created here: ", paste(folder, "/GSODfiles.txt", sep=""),"\n")
+
 	}	
 	
-
+	return(files)
 	
 }
