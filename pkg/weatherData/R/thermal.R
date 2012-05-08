@@ -119,13 +119,6 @@ thermalStressSeasonal <- function(criticalTemp, dailyWeather, trialData, trialLo
 	return(result)
 }
 
-
-thermalStressDaily2 <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
-{
-(acos(1 - (2 * (Tmax - criticalTemp ) / (Tmax - TminNext))) * (10 + s) / pi) + (acos(1 - (2 * (Tmax - criticalTemp ) / (Tmax - Tmin))) * (14 - s) / pi)
-}
-
-
 thermalStressDaily <- function(criticalTemp, Tmax, Tmin, sunr, TminNext)
 {
 	Tave <- (Tmax + Tmin) / 2

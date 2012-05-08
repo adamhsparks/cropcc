@@ -8,7 +8,7 @@ Interpolate daily weather data
 Interpolate daily weather data and predict weather for given locations
 }
 \usage{
-interpolateDailyWeather(tableGSOD, locations, startDate, endDate, vars = c("TEMP", "MAX", "MIN", "PRCP"), covars = "ALT", stations, sqrtTr = ("PRCP"))
+interpolateDailyWeather(tableGSOD, locations, startDate, endDate, vars = c("TEMP", "MAX", "MIN", "PRCP"), covars = "ALT", stations, sqrtTr = ("PRCP"), silent=TRUE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
