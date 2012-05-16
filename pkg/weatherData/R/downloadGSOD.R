@@ -155,9 +155,12 @@ function(startYear, endYear, stations, overwrite=TRUE, folder=getwd(), clipboard
 		
 	} else { 
 	
-		write.table(files,paste(folder, "/GSODfiles.txt", sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE)
-		cat("A file with URLs has been created here: ", paste(folder, "/GSODfiles.txt", sep=""),"\n")
-
+		if(!is.null(folder))
+		{
+      write.table(files,paste(folder, "/GSODfiles.txt", sep=""), quote=FALSE, row.names=FALSE, col.names=FALSE)
+		  cat("A file with URLs has been created here: ", paste(folder, "/GSODfiles.txt", sep=""),"\n")
+		}
+    
 	}	
 	
 	return(files)
