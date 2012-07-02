@@ -1,0 +1,11 @@
+Package: cropr
+Type: Package
+Title: simulate crop growth
+Version: 1.0
+Date: 2012-07-02
+Suggests: raster
+Author: Jacob van Etten
+Maintainer: Jacob van Etten <jacobvanetten@yahoo.com>
+Description: modular crop simulation model, based on InfoCrop
+License: GPL (>=3)
+LazyLoad: yes
