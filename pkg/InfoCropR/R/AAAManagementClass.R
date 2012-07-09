@@ -8,6 +8,7 @@ setClass(Class="Management",
            SEEDAG = "numeric",
            SOWDEP = "numeric",
            SPROUT = "numeric",
+           SWSWCH = "logical", #SWSWCH is TRUE for fixed sowing date and is FALSE for soil moisture dependence.
            
            #IRRIGATION
            IRRTSF = "function",
