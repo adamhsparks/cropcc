@@ -1,29 +1,32 @@
 # SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
 # SWSWCH IS 1 FOR FIXED SOWING DATE, &IS 0 FOR SOIL MOISTURE DEPENDENCE
 
-sowingDate <- function(Management, Weather)
+sowingDate <- function(i, Management, SoilWaterBalance)
 {
   
   #Fetch inputs
-  if(Management@SWSWCH){return(1)} 
+  SWSWCH <- Management@SWSWCH
+  SOWFXD <- Management@SOWFXD
+  
+  if(SWSWCH) {SOW6 <- ifelse(SOWFXD < i, 0, 1)}
   else
   {
-    #get inputs
-    
-    WCL1
-    WCLSOW
+        
+    #Fetch more inputs
+    WCL1 <- SoilWaterBalance@WCL1 #TODO make object SoilWaterBalance, etc.
+    WCFC1 <- Soil@WCFC1 #add this to Soil (addSoilProperties.R)
     
     #calculate
-    
-    SOW0   = INSW (WCL1-WCLSOW,0.,1.)
-    SOW1   = INTGRL(ZERO, SOW0)
-    SOW5   = INSW(SOW1-1.,0.,1.)
-    SOW6   = INSW(SWSWCH-1.,SOW5, INSW(SOWFXD-TIME-1.,1.,0.))
-    DAS    = INTGRL (ZERO, SOW6)
-    WCLSOW =.85*WCFC1
-    PARAM SWSWCH  =  1.
-    
+    WCLSOW <- 0.85 * WCFC1
+    SOW0   <- ifelse(WCL1-WCLSOW < 0, 1, 0) #check if not the other way around
+    SOW1   <- SOW1 + SOW0
+    SOW5   <- ifelse(SOW1 < 0, 1, 0) #check also
+    SOW6   <- SOW5
   }
+  
+  return(SOW6)
+  
+}
 
   
 

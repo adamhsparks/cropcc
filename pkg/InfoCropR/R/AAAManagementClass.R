@@ -1,7 +1,7 @@
 setClass(Class="Management",
          representation = representation(
            #SOWING DATE
-           PUDLE = "numeric",
+           PUDLE = "logical",
            WCLSOW = "numeric", #??Commented
            NPLH = "numeric",
            NH = "numeric", 
@@ -9,6 +9,7 @@ setClass(Class="Management",
            SOWDEP = "numeric",
            SPROUT = "numeric",
            SWSWCH = "logical", #SWSWCH is TRUE for fixed sowing date and is FALSE for soil moisture dependence.
+           STTIME = "numeric",
            
            #IRRIGATION
            IRRTSF = "function",
@@ -48,13 +49,15 @@ setClass(Class="Management",
          ),
         prototype = prototype(       
           #SOWING DATE
-          PUDLE = 0,
+          PUDLE = FALSE,
           WCLSOW = 0.20,
           NPLH = 3, 
           NH = 33,
           SEEDAG = 0,
           SOWDEP = 30,
           SPROUT = 10,
+          SWSWCH = FALSE,
+          STTIME = 1,
           
           #IRRIGATION
           IRRTSF = approxfun(c(0, 19, 20, 21, 45, 46, 47, 70, 71, 72, 90, 91, 92, 110, 111, 112, 365), 
