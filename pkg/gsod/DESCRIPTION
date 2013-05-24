@@ -1,11 +1,11 @@
-Package: weatherData
+Package: gsod
 Type: Package
 Title: obtain daily weather data
 Version: 1.0
-Date: 2011-07-19
+Date: 2013-02-10
 Suggests: fields
 Author: Jacob van Etten
 Maintainer: Jacob van Etten <jacobvanetten@yahoo.com>
-Description: download daily weather data, interpolate it for any location on earth
+Description: global daily weather data
 License: GPL (>=3)
 LazyLoad: yes

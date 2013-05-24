@@ -1,16 +1,16 @@
-\name{weatherData-package}
-\alias{weatherData-package}
-\alias{weatherData}
+\name{gsod-package}
+\alias{gsod-package}
+\alias{gsod}
 \docType{package}
 \title{
-weatherData: global daily weather data
+gsod: global daily weather data
 }
 \description{
-This package allows the user to derive global daily weather data from a number of sources.
+Obtain (a selection of) the Global Summary of Day (GSOD) daily weather data and interpolate it.
 }
 \details{
 \tabular{ll}{
-Package: \tab weatherData\cr
+Package: \tab gsod\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2011-07-19\cr

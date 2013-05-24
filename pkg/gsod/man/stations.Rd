@@ -19,14 +19,14 @@ The following changes were made.
 
 1. All variables were converted to SI units.
 
-2. Some stations were removed from the set, because of impossible coordinates.
+2. Some stations were removed from the set for having incorrect coordinates.
 
 3. Altitude data were checked and corrected where necessary.
 We looked up the altitude of the stations using the SRTM data (Jarvis et al. 2008).
 
 We changed the altitude to the SRTM altitude when stations had either:
 
-a) an original altitude of 0 and a difference with the SRTM altitude of more than 15 percent.
+a) an original altitude of 0 and a difference with the SRTM altitude of more than 15 m.
 
 b) an original altitude of more than 0 and a difference with the SRTM altitude of more than 50 m.
 

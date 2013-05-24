@@ -2,7 +2,7 @@ makeTableGSOD <- function(folder=getwd(), files=NULL)
 	{
 		if(is.null(files)) files <- list.files(path = folder, pattern = "op.gz$", all.files = TRUE, full.names = TRUE, recursive = FALSE)
 		
-		if(length(files)<1) {stop("no GSOD files in this folder")}
+		if(length(files)<1) {stop("no GSOD files in this folder (files with extension .op.gz)")}
 		#set up things
 
 		start <- c(1,8,15,19,25,32,36,43,47,54,58,65,69,75,79,85,89,96,103,109,111,117,119,124,126,133)

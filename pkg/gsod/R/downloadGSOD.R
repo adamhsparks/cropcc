@@ -1,8 +1,10 @@
 downloadGSOD <-
 function(startYear, endYear, stations, silent=TRUE, tries=2, overwrite=TRUE, folder=getwd())
 {
-	startDate <- as.Date(paste(startYear,"-01-01",sep=""))
-	endDate <- as.Date(paste(endYear,"-12-31",sep=""))
+	if(substring(folder,nchar(folder)) != "/"){folder <- paste(folder, "/", sep="")}
+    
+  startDate <- as.Date(paste(startYear,"-01-01", sep=""))
+	endDate <- as.Date(paste(endYear,"-12-31", sep=""))
 
 	stations <- stationsPeriod(startDate, endDate, stations)
 
@@ -33,7 +35,7 @@ function(startYear, endYear, stations, silent=TRUE, tries=2, overwrite=TRUE, fol
 
 		for (year in START:END)
 		{
-			fileYearStation <- paste(folder, "/", "gosd-", stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")
+			fileYearStation <- paste(folder, stations[station, 2], "-", stations[station, 3], "-", year, ".op.gz", sep = "")
 			
 			if(!overwrite)
 			{
