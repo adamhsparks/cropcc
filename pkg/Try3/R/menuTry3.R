@@ -16,5 +16,7 @@ menuTry3 <- function()
   b5 <- gbutton("Create analysis report", handler = function(h, ...){analysisReport()}, container=group1)
   addSpace(obj=group1, value=10, horizontal=FALSE)
   b6 <- gbutton("Create info sheets", handler = function(h, ...){}, container=group1)
+  addSpace(obj=group1, value=10, horizontal=FALSE)
+  b7 <- gbutton("Set options", handler = function(h, ...){setTry3Options()}, container=group1)
   
 }

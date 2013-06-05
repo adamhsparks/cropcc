@@ -26,7 +26,8 @@ makeRandomization <- function()
   glabel("Names of items:", container=group5)
   setitemnames <- gtext(container=group5, width=100, height=200)
   addHandlerChanged(setitemnames, handler=function(h,...) .GlobalEnv$itemnames <- unlist(strsplit(svalue(h$obj), "\n")))
-
+  addHandlerRightclick(setitemnames, handler=function(h, ...) svalue(setitemnames) <- readLines(file("clipboard")))
+  
   gfilebrowse(text="Select folder to write to:", type="selectdir", container=group1, handler=function(h,...) .GlobalEnv$dirname <- svalue(h$obj))
  
   group2 <- ggroup(horizontal=TRUE, spacing=10, container=group1)
@@ -58,7 +59,7 @@ makeRandomization <- function()
   
   for(i in 1:nobservers) codes[i,2:4] <- itemnames[sample(vars[i,], 3)]
   
-
   write.csv(codes, paste(identification, "Try3randomization.csv", sep=""), row.names=F)
+  gmessage(paste("File", identification, "Try3randomization.csv written to ", .GlobalEnv$dirname, sep=""), title="Done", icon="info")
 
 }
