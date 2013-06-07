@@ -8,35 +8,40 @@ makeModel <- function()
     
   }
   
-  w2 <- gbasicdialog(title="Try3", visible=FALSE, do.buttons=FALSE, width=3000, height=1000) #previous window for size...
+  w2 <- gwindow(title="Try3 - Make model", visible=FALSE, parent=c(0,0)) #previous window for size...
   
-  .GlobalEnv$VarsSelected1 <- NULL
-  .GlobalEnv$VarsSelected2 <- NULL
-  .GlobalEnv$VarsSelected3 <- NULL
-  
-  group1 <- ggroup(horizontal=FALSE, spacing= 20, container=w2)
+  group1 <- ggroup(horizontal=FALSE, spacing= 20, container=w2, use.scrollwindow = TRUE)
   
   nb1 <- gtable(items=myData, container=group1, expand=TRUE)
   addSpace(group1, 20)
   tbl <- glayout(container = group1)
   
-  tbl[1,1] <- "Indicate for each column what it contains."
+  tbl[1,1] <- "Indicate for each category the columns."
   
   nb2 <- ggroup(horizontal=FALSE, container=group1)
   
-  cbhandler1 <- function(h, ...){ .GlobalEnv$VarsSelected1 <- svalue(h$obj)}
-  cbhandler2 <- function(h, ...){ .GlobalEnv$VarsSelected2 <- svalue(h$obj)}
-  cbhandler3 <- function(h, ...){ .GlobalEnv$VarsSelected3 <- svalue(h$obj)}
+  cn <- as.data.frame(cbind(1:ncol(myData), colnames(myData)))
+  colnames(cn) <- c("Column_number", "Variable_name")
   
-  glabel("Rankings",container=nb2, anchor=c(0,0))
-  rb1 <- gcheckboxgroup(colnames(myData), checked=FALSE, handler=cbhandler1, horizontal=FALSE, container=nb2)
-  glabel("Explanatory variables",container=nb2, anchor=c(0,0))
-  rb2 <- gcheckboxgroup(colnames(myData), checked=FALSE, handler=cbhandler2, horizontal=FALSE, container=nb2)
-  glabel("Question categories",container=nb2, anchor=c(0,0))
-  rb3 <- gcheckboxgroup(colnames(myData), checked=FALSE, handler=cbhandler3, horizontal=FALSE, container=nb2)
+  glabel("Ranking variables",container=nb2)
+  aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2,
+                handler = function(h,...) .GlobalEnv$rankingVars <- svalue(h$obj))
+  
+  size(aa) <- c(150,100)
+  
+  glabel("Explanatory variables",container=nb2)
+  bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2,
+         handler = function(h,...) .GlobalEnv$explVars <- svalue(h$obj))
+  
+  glabel("Question categories",container=nb2)
+  cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2,
+         handler = function(h,...) .GlobalEnv$questionVars <- svalue(h$obj))
+   
   addSpring(nb2)
-  b <- gbutton("Go to next step", handler = function(h, ...){dispose(w2)}, container=nb2)
+  b <- gbutton("Create randomization", container=nb2, handler = function(h, ...){
+    
+  })
   
-  visible(w2, set=TRUE)
+  visible(w2) <- TRUE
   
 }
