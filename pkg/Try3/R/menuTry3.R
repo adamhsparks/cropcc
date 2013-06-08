@@ -22,5 +22,5 @@ menuTry3 <- function()
   b8 <- gbutton("Get help", handler = function(h, ...){helpTry3()}, container=group1)
   
   visible(w1) <- TRUE
-  
+  focus(w1) <- TRUE
 }
