@@ -1,3 +1,10 @@
+.combn2 <- function(x, m){
+  cc <- combn(rev(x), m)
+  cc <- cc[c(2,1), ncol(cc):1]
+  cc
+}
+
+
 .treeModel <- function(myData, itemsgiven, rankings, explanatory)
 {
   
@@ -7,13 +14,13 @@
   
   itemnames <- sort(unique(as.vector(unlist(itemsgivenD))))
   
-  cc <- combn2(1:length(itemnames), 2)
+  cc <- .combn2(1:length(itemnames), 2)
   pc <- matrix(NA, nrow=nrow(items), ncol= ncol(cc))
   
   for(i in 1:dim(itemsgivenD)[1])
   {
     
-    aa <- combn2(match(unlist(itemsgivenD[i,]), itemnames)[unlist(rankingsD[i,])], 2)
+    aa <- .combn2(match(unlist(itemsgivenD[i,]), itemnames)[unlist(rankingsD[i,])], 2)
     
     for(j in 1:dim(aa)[2]){
       pc[i, aa[1,j] == cc[1,] & aa[2,j] == cc[2,]] <- 1
