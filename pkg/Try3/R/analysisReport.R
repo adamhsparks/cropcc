@@ -40,7 +40,7 @@ analysisReport <- function()
   group1 <- ggroup(horizontal=FALSE, spacing= 10, container=w5)
   
   glabel(paste("Model summary \nRanking variables:\n", 
-              rankingVars,
+              rankingsVars,
               "\nExplanatory variables:\n",
               explVars,
               "\nQuestion (aspect evaluated) variable:\n",

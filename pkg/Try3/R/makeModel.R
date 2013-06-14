@@ -15,7 +15,7 @@
   itemnames <- sort(unique(as.vector(unlist(itemsgivenD))))
   
   cc <- .combn2(1:length(itemnames), 2)
-  pc <- matrix(NA, nrow=nrow(items), ncol= ncol(cc))
+  pc <- matrix(NA, nrow=nrow(itemsgivenD), ncol= ncol(cc))
   
   for(i in 1:dim(itemsgivenD)[1])
   {
