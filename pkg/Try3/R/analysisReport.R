@@ -42,7 +42,7 @@ analysisReport <- function()
   glabel(paste("Model summary \nRanking variables:\n", 
               rankingsVars,
               "\nExplanatory variables:\n",
-              explVars,
+              explanatoryVars,
               "\nQuestion (aspect evaluated) variable:\n",
               questionVar
   ), container=group1)
