@@ -15,7 +15,7 @@ menuTry3 <- function()
   
   b5 <- gbutton("Create analysis report", handler = function(h, ...){analysisReport()}, container=group1)
 
-  b6 <- gbutton("Create info sheets", handler = function(h, ...){}, container=group1)
+  b6 <- gbutton("Create info sheets", handler = function(h, ...){createInfosheets()}, container=group1)
   
   b7 <- gbutton("Set options", handler = function(h, ...){setTry3Options()}, container=group1)
   

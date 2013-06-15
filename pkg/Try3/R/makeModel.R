@@ -100,14 +100,14 @@ makeModel <- function()
       
     }
     
-    models <- vector(mode="list", length=nq)
+    .GlobalEnv$models <- vector(mode="list", length=nq)
     
     for(i in 1:nq)
     {
       
       if(nq>1){myData_i <- myData[myData[,questionVar] == questions[i],]}
       else{myData_i <- myData}
-      models[[i]] <- .treeModel(myData_i, itemsgivenVars, rankingsVars, explanatoryVars)
+      .GlobalEnv$models[[i]] <- .treeModel(myData_i, itemsgivenVars, rankingsVars, explanatoryVars)
       
     }
     
