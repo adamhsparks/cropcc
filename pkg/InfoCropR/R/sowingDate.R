@@ -1,7 +1,7 @@
 # SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
 # SWSWCH IS 1 FOR FIXED SOWING DATE, &IS 0 FOR SOIL MOISTURE DEPENDENCE
 
-sowingDate <- function(i, Management, SoilWaterBalance)
+sowingDate <- function(i, Management, SoilWater, Soil)
 {
   
   #Fetch inputs
@@ -13,7 +13,7 @@ sowingDate <- function(i, Management, SoilWaterBalance)
   {
         
     #Fetch more inputs
-    WCL1 <- SoilWaterBalance@WCL1 #TODO make object SoilWaterBalance, etc.
+    WCL1 <- SoilWater@WCL1 #TODO make object SoilWaterBalance, etc.
     WCFC1 <- Soil@WCFC1 #add this to Soil (addSoilProperties.R)
     
     #calculate
@@ -31,18 +31,15 @@ sowingDate <- function(i, Management, SoilWaterBalance)
   
 
   
-  #**** ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
+#   #**** ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
+#   
+#   DLYTRP  = INSW(RAINSW-1.,0.,INSW(DAS-SEEDAG,0.,INSW(WCL1-WCLTRP,0.,1.)))
+#   DLYRAN  = INTGRL(ZERO,  DLYTRP)
+#   XT      = INSW(RAINSW-1.,0.,INSW(DLYRAN-1.,1.,0.))
+#   XT1   = INTGRL(XTIN, XT)
+#   INCON XTIN=1.
+#   NEWAGE  = INSW(RAINSW-1.,SEEDAG,INSW(DAS-SEEDAG,0.,XT1))
+#   *RAINSW  = INSW(IRSWCH-1.,1.,0.)
+#   PARAM RAINSW =0.
+#   WCLTRP  = WCFC1*0.85
   
-  DLYTRP  = INSW(RAINSW-1.,0.,INSW(DAS-SEEDAG,0.,INSW(WCL1-WCLTRP,0.,1.)))
-  DLYRAN  = INTGRL(ZERO,  DLYTRP)
-  XT      = INSW(RAINSW-1.,0.,INSW(DLYRAN-1.,1.,0.))
-  XT1   = INTGRL(XTIN, XT)
-  INCON XTIN=1.
-  NEWAGE  = INSW(RAINSW-1.,SEEDAG,INSW(DAS-SEEDAG,0.,XT1))
-  *RAINSW  = INSW(IRSWCH-1.,1.,0.)
-  PARAM RAINSW =0.
-  WCLTRP  = WCFC1*0.85
-  
-  
-  
-}

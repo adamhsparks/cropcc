@@ -1,4 +1,6 @@
-setClass(Class="Crop",
+# crop
+setClass(Class="CropClass",
+         
          representation = representation(
            
            Name = "character",
@@ -8,19 +10,19 @@ setClass(Class="Crop",
            VRSTMX = "numeric", #sensitivity to high temperature of storage organs
            VRSTMN = "numeric", #sensistivity to low temperature of storage organs
            VARNFX = "numeric", #N fixation capability
-           TGMBD = "numeric", #base temperature for sowing to emergence
-           TVBD = "numeric",  #base temperature for emergence to anthesis (TBASE in text?)
-           TGBD = "numeric",  #base temperature from anthesis to maturity
-           TPOPT = "numeric", #optimal temperature (also TOPT in text?)
+           TGMBD  = "numeric", #base temperature for sowing to emergence
+           TVBD   = "numeric",  #base temperature for emergence to anthesis (TBASE in text?)
+           TGBD   = "numeric",  #base temperature from anthesis to maturity
+           TPOPT  = "numeric", #optimal temperature (also TOPT in text?)
            TPMAXD = "numeric", #maximum temperature (also TMAX in text?)
            TTGERM = "numeric", #thermal time for sowing to emergence
-           TTGF = "numeric", #thermal time from anthesis to maturity
-           TTVG = "numeric", #thermal heat units for emergence to anthesis
+           TTGF   = "numeric", #thermal time from anthesis to maturity
+           TTVG   = "numeric", #thermal heat units for emergence to anthesis
            RGRPOT = "numeric",
            SLAVAR = "numeric", #specific leaf area
            RUEMAX = "numeric", #radiation use efficiency
            KDFMAX = "numeric", #extinction coefficient of leaves at flowering stage
-           GNOCF = "numeric",
+           GNOCF  = "numeric",
            POTGWT = "numeric",
            ZRTPOT = "numeric", #root extension growth rate
            NMAXGR = "numeric",
@@ -30,9 +32,9 @@ setClass(Class="Crop",
            TTGMEX = "function",
            DLSTG1 = "numeric",
            DLSTG2 = "numeric",
-           DAYCF = "function", #photoperiod correction factor
-           NDRWT = "function",
-           DRWT = "function",
+           DAYCF  = "function", #photoperiod correction factor
+           NDRWT  = "function",
+           DRWT   = "function",
                         
            #SOURCE-SINK BALANCE
            DSGFIL = "numeric",
@@ -55,10 +57,10 @@ setClass(Class="Crop",
            #LEAF AREA AND OTHER GREEN AREA DEVELOPMENT
            FRLVWT = "numeric",
            DSMAXL = "numeric",
-           RDRT = "function",
-           RDRTP = "function",
+           RDRT   = "function",
+           RDRTP  = "function",
            SENWAT = "function",
-           SLACF = "function", #relative growth rate of leaf area
+           SLACF  = "function", #relative growth rate of leaf area
            LAIFAC = "function",
            SNLVGA = "function",
            DSATMP = "function",
@@ -69,22 +71,22 @@ setClass(Class="Crop",
            GREENF = "numeric", #??? adjustment factor for N-concentration in leaves
            COSNFX = "numeric",
            NMAXLT = "function",
-           RFNLV = "numeric",
-           RFNST = "numeric",
-           RFNRT = "numeric",
+           RFNLV  = "numeric",
+           RFNST  = "numeric",
+           RFNRT  = "numeric",
            NUPTDS = "numeric",
            CRPNFX = "numeric",
            NFXWAT = "function",
            
            #PHOTOSYNTHESIS
-           KDFDS = "function",
-           RCFDS = "function",
-           RCFLN = "function",
-           RCFTP = "function",
+           KDFDS  = "function",
+           RCFDS  = "function",
+           RCFLN  = "function",
+           RCFTP  = "function",
            RCFCO2 = "function",
            
            #PARTITIONING
-           LLVN = "function",
+           LLVN  = "function",
            LLVST = "function",
            FSTRT = "function",
            FLVTB = "function",
@@ -101,43 +103,44 @@ setClass(Class="Crop",
            #7.5 FOR COTTON,CASSAVA,9 FOR GRAINS,SAFFLOWER,SORGHUM,SOYBEAN,SUGARCANE
            
            #ROOT
-           ZRTI = "numeric",
-           ZRTMS = "numeric",
+           ZRTI   = "numeric",
+           ZRTMS  = "numeric",
            EDPTFT = "function",
-           RTMAX = "function",
-           ZRTDS = "numeric",
+           RTMAX  = "function",
+           ZRTDS  = "numeric",
            
            #FROST DAMAGE
-           FROSTD = "function",
-           FRSTDS = "function",
+           FROSTD      = "function",
+           FRSTDS      = "function",
            FINISHFROST = "numeric",
-           FROSSN = "numeric",
+           FROSSN      = "numeric",
            
            #FLOODING SENSITIVITY
            FLDFAC = "function",
            FLODDS = "function",
            FLDCRP = "numeric",
            
+           
            #GENERAL AND SIMULATION CONTROLS
            STDSRT = "numeric",
-           SHCKD = "numeric",
-           RICE = "numeric",
-           NPLSB = "numeric",
+           SHCKD  = "numeric",
+           RICE   = "numeric",
+           NPLSB  = "numeric",
            MUSTRD = "numeric",
            POTATO = "numeric",
            LEGUME = "numeric",
            NHRICE = "numeric", #NH4 uptake capability (e.g. rice)
            #NHRICE=0.1 FOR UPLAND CROPS, 1 FOR RICE
-           FINISHDS = "numeric",
+           FINISHDS     = "numeric",
            FINISHSINKLT = "numeric",
            SWCPOT = "numeric",
            FWCANE = "numeric",
-           DSI = "numeric",
-           ZERO = "numeric",
-           INPOND = "numeric",
+           DSI    = "numeric",
            FCSDEP = "function"
            ),
+         
          prototype = prototype(
+            
            Name = "Wheat",
            
            #VARIETY
@@ -285,11 +288,10 @@ setClass(Class="Crop",
            FINISHSINKLT = 0,
            SWCPOT = 0,
            FWCANE = 1,
-           DSI = 0,
-           ZERO = 0, 
-           INPOND = 0.0,
+           DSI = 0, 
            FCSDEP = approxfun(c(0, 20, 60, 90, 100, 110),c(0, 1, 1, 0.75, 0.4, 0))
          ),
+         
          validity = function(object)
          {
            return(TRUE)

@@ -9,39 +9,38 @@
   WCAD <- max(0.04, -0.0178 + WCWPC* 0.6556)
   KSATC <- SAND * 3
   return(list(BDC, WCSTC, WCFCC, WCWPC, WCAD, KSATC))
-
 }
 
 
-addSoilProperties.R <- function(Soil, Puddle)
+addSoilProperties <- function(Soil)
 {
   
-  PDCF1 <- Puddle$PDCF1
-  PDCF2 <- Puddle$PDCF2
-  PDCF3 <- Puddle$PDCF3
+  PDCF1 <- Soil@PDCF1
+  PDCF2 <- Soil@PDCF2
+  PDCF3 <- Soil@PDCF3
   
   if(!SOILSW)
   {
     
-    BD1 <- Soil$BDM1 * PDCF1
-    BD2 <- Soil$BDM2 * PDCF2
-    BD3 <- Soil$BDM3 * PDCF3
+    BD1 <- Soil@BDM1 * PDCF1
+    BD2 <- Soil@BDM2 * PDCF2
+    BD3 <- Soil@BDM3 * PDCF3
     
-    WCFC1 <- Soil$WCFCM1
-    WCFC2 <- Soil$WCFCM2
-    WCFC3 <- Soil$WCFCM3
+    WCFC1 <- Soil@WCFCM1
+    WCFC2 <- Soil@WCFCM2
+    WCFC3 <- Soil@WCFCM3
     
-    WCWP1 <- Soil$WCWPM1
-    WCWP2 <- Soil$WCWPM2
-    WCWP3 <- Soil$WCWPM3
+    WCWP1 <- Soil@WCWPM1
+    WCWP2 <- Soil@WCWPM2
+    WCWP3 <- Soil@WCWPM3
     
-    WCST1 <- Soil$WCSTM1
-    WCST2 <- Soil$WCSTM2
-    WCST3 <- Soil$WCSTM3
+    WCST1 <- Soil@WCSTM1
+    WCST2 <- Soil@WCSTM2
+    WCST3 <- Soil@WCSTM3
     
-    KSAT1 <- Soil$KSATM1 * PDCF1
-    KSAT2 <- Soil$KSATM2 * PDCF2 #lacking in source code
-    KSAT3 <- Soil$KSATM3 * PDCF3 # * PDCF2 in source code
+    KSAT1 <- Soil@KSATM1 * PDCF1
+    KSAT2 <- Soil@KSATM2 * PDCF2 #lacking in source code
+    KSAT3 <- Soil@KSATM3 * PDCF3 # * PDCF2 in source code
   }
   
   if(SOILSW)
@@ -76,5 +75,4 @@ addSoilProperties.R <- function(Soil, Puddle)
   #now stick back in Soil object, changing class definition adding these
   #or is puddling making this a dynamic thing?
 
-}
 }

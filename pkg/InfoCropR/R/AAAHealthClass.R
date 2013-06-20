@@ -1,5 +1,8 @@
-setClass(Class="Health",
+# Health
+setClass(Class="HealthClass",
+         
          representation = representation(
+            
            PPLFBD = "function",
            PPLFGD = "function",
            SBINFD = "function",
@@ -16,7 +19,9 @@ setClass(Class="Health",
            NODEBR = "function",
            EARCUT  = "function"
   ),
+         
   prototype = prototype(
+     
            PPLFBD = approxfun(c(0, 365), c(0, 0)),
            PPLFGD = approxfun(c(0, 365), c(0, 0)),
            SBINFD = approxfun(c(0, 365), c(0, 0)),
@@ -41,4 +46,4 @@ setClass(Class="Health",
            TRUE
          }
          
-    )
+)
