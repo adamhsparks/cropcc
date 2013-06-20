@@ -5,7 +5,7 @@
 #CAMBIOS: PUEDE RECIBIR VECTORES, Y DEVOLVER UN VECTOR...
 #         FUFR(RICE,PTRANS,WCL[i],CROPFC,WCFC[i],CROPGR,WCWP[i],WCST[i],WSE[i])
 #//////////////////////////////////////////////////////////////
-FUFR <- function(RICE,PTRANS,WCL,CROPFC,WCFC,CROPGR,WCWP,WCST)
+FUFR <- function(RICE, PTRANS, WCL, CROPFC, WCFC, CROPGR, WCWP, WCST)
 {
    P <- AMIN1(0.95, AMAX1(0.1, CROPGR/(CROPGR + PTRANS)))
    WCCR <- WCWP + (1 - P) * (WCFC - WCWP)
@@ -24,7 +24,7 @@ FUFR <- function(RICE,PTRANS,WCL,CROPFC,WCFC,CROPGR,WCWP,WCST)
    
    return(WSE)   
 }
-# WSE <- FUFR(RICE,PTRANS,WCL,CROPFC,WCFC,CROPGR,WCWP,WCST)
+# WSE <- FUFR(RICE, PTRANS, WCL, CROPFC, WCFC, CROPGR, WCWP, WCST)
 # ---------------------------------------------------------
 
 
@@ -86,7 +86,8 @@ FUFR <- function(RICE,PTRANS,WCL,CROPFC,WCFC,CROPGR,WCWP,WCST)
 #    *! ETD     R4  Potential evapotranspiration (mm.d-1)                 O  *
 #    *! PTRANS      Potential transpiration                               O  *
 #    *! PEVAP       Potential evaporation                                 o  *
-SUBR_SUBPET <- function(DINDEXs,climate,control,cropsv,soil,SWBsv,tabFunction,weather, SUBPET) #--------------------  Inputs                
+SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
+                        tabFunction, weather, SUBPET) #--------------------  Inputs                
 #                   ANGOT,RDN,DAYLP,ETRD,ETAE,ETD,PTRANS,PEVAP) #-  Outputs, inside SUBPET
 {
   # PARAMETERS-------
@@ -127,11 +128,11 @@ SUBR_SUBPET <- function(DINDEXs,climate,control,cropsv,soil,SWBsv,tabFunction,we
   WN    <- weather@WN[weather@DINDEX == DINDEXs]
   
   #----------
-  CCTMIN <- AFGEN(CTMINP, DOY)
   CCTMAX <- AFGEN(CTMAXP, DOY)
+  CCTMIN <- AFGEN(CTMINP, DOY)
   
-  TMIN   <- TMMN + CCTMIN
   TMAX   <- TMMX + CCTMAX
+  TMIN   <- TMMN + CCTMIN
   
   WIND   <- INSW(WN - 0.1, 1.5 + REAAND(DOY - 120, 270 - DOY)*1.5, WN)   
   COSTOM <- AFGEN(COFST, CO2)
@@ -223,7 +224,7 @@ SUBR_SUBPET <- function(DINDEXs,climate,control,cropsv,soil,SWBsv,tabFunction,we
   
   return(SUBPET)
 }
-#  SUBPET <- SUBR_SUBPET(DINDEX,climate,control,cropsv,soil,SWBsv,tabFunction,weather, SUBPET)
+#  SUBPET <- SUBR_SUBPET(DINDEX, climate, control, cropsv, soil, SWBsv, tabFunction, weather, SUBPET)
 # ---------------------------------------------------------
 
 
@@ -294,4 +295,68 @@ SUBR_SOIL <- function(soil, soilprop, DINDEXs){
    return(soilprop)
 }
 # soilprop <- SUBR_SOIL(soil, soilprop, DINDEXs)
+# ---------------------------------------------------------
+
+
+# ---------------------------------------------------------
+#   *  SUBROUTINE SUBDD                                                    *
+#   *  Purpose: This subroutine calculates the daily amount of heat units  *
+#   *           for calculation of the phenological development rate and   *
+#   *           early leaf area growth.                                    *
+#   *                                                                      *
+#   *  FORMAL PARAMETERS:(I =input,O =output,C =control,IN =init,T =time)  *
+#   *  name   type meaning                                    units  class *
+#   *  ----   ---- -------                                    -----  ----- *
+#   *  TMAX   R4   Daily maximum temperature                    oC     I   *
+#   *  TMIN   R4   Daily minimum temperature                    oC     I   *
+#   *  TBD    R4   Base temperature for development             oC     I   *
+#   *  TOD    R4   Optimum temperature for development          oC     I   *
+#   *  TMD    R4   Maximum temperature for development          oC     I   *
+#   *  HU     R4   Heat units                                   oC     O   *
+#   *                                                                      *
+#   *  FILE usage : none                                                   *
+#   *----------------------------------------------------------------------*
+SUBR_SUBDD <- function(DINDEXs, tabFunction, variety, weather, SUBDD) #--------------------  Inputs 
+{
+  #---------- tabFunction Data
+  CTMAXP <- tabFunction@CTMAXP
+  CTMINP <- tabFunction@CTMINP
+  
+  #---------- variety Data
+  TPMAXD <- variety@TPMAXD
+  TPOPT  <- variety@TPOPT
+  TVBD   <- variety@TVBD
+  
+  #---------- weather Data
+  DOY   <- weather@DOY[weather@DINDEX == DINDEXs]
+
+  TMMN  <- weather@TMMN[weather@DINDEX == DINDEXs]
+  TMMX  <- weather@TMMX[weather@DINDEX == DINDEXs]
+  
+  #----------
+  CCTMAX <- AFGEN(CTMAXP, DOY)
+  CCTMIN <- AFGEN(CTMINP, DOY)
+  
+  TMAX   <- TMMX + CCTMAX
+  TMIN   <- TMMN + CCTMIN
+  
+  #----------  
+  TM  <- (TMAX + TMIN) / 2
+  TT  <- 0
+  
+  for (I in 1:24){
+    TD  <- TM + 0.5*abs(TMAX - TMIN)*cos(0.2618*(I-14))
+    
+    if ((TD > TVBD) && (TD < TPMAXD)) {
+      if (TD > TPOPT) TD <- TPOPT - (TD - TPOPT)*(TPOPT - TVBD) / (TPMAXD - TPOPT)
+      TT <- TT + (TD - TVBD) / 24
+    }
+  
+  i <- length(SUBDD@HU) + 1  
+  SUBDD@HU[i]  <- TT
+  SUBDD@DINDEX <- DINDEXs
+  
+  return(SUBDD)
+}
+# SUBDD <- SUBR_SUBDD(DINDEXs, tabFunction, variety, weather, SUBDD)
 # ---------------------------------------------------------

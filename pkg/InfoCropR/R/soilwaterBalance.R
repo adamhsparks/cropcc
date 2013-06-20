@@ -1,3 +1,4 @@
+#SWBsv
 soilwaterBalance <- function(i, climatechange, control, crop, cropsv, management, soil,
                              soilprop, SUBPET, SWBsv, tabFunction, weather)
 {
@@ -116,75 +117,75 @@ soilwaterBalance <- function(i, climatechange, control, crop, cropsv, management
 
 #====================================================================================
 #=================================== SOIL WATER BALANCE 1. ALGEBRAIC SEQUENTIAL ===== 
-    AINTC  <- AMIN1(RAINF, 0.25*LAI) #FST-SWB
+    AINTC  <- AMIN1(RAINF, 0.25*LAI)
     
     IRRADD <- INSW(IRSWCH-1, 0, 60*REAAND(DAS-20, 22-DAS)+
                      60*REAAND(DAS-45, 47-DAS)*IRRSEN+
                      60*REAAND(DAS-70, 72-DAS)+
                      60*REAAND(DAS-90, 92-DAS)+
                      60*REAAND(DAS-110, 112-DAS)+
-                     60*REAAND(DAS-130, 132-DAS)) #FST-SWB
+                     60*REAAND(DAS-130, 132-DAS))
 
-    WCL1   <- WL1/TKL1 #FST-SWB
-    WCL2   <- WL2/TKL2 #FST-SWB
-    WCL3   <- WL3/TKL3 #FST-SWB
+    WCL1   <- WL1/TKL1
+    WCL2   <- WL2/TKL2
+    WCL3   <- WL3/TKL3
 
-    AWF1   <- INSW(SWXWAT - 1, (WCL1 - WCWP1)/(WCFC1 - WCWP1), 1) #FST-SWB
-    AWF2   <- INSW(SWXWAT - 1, (WCL2 - WCWP2)/(WCFC2 - WCWP2), 1) #FST-SWB
-    AWF3   <- INSW(SWXWAT - 1, (WCL3 - WCWP3)/(WCFC3 - WCWP3), 1) #FST-SWB
+    AWF1   <- INSW(SWXWAT - 1, (WCL1 - WCWP1)/(WCFC1 - WCWP1), 1)
+    AWF2   <- INSW(SWXWAT - 1, (WCL2 - WCWP2)/(WCFC2 - WCWP2), 1)
+    AWF3   <- INSW(SWXWAT - 1, (WCL3 - WCWP3)/(WCFC3 - WCWP3), 1)
 
 #====================================================================================
 #================================ SOIL WATER BALANCE 2. DIFFERENTIAL INTEGRATED =====
 SWBmod <- function(Time, State, Pars){
   with(as.list(State), {    
     
-    POND      <- AMAX1(0., PONDTP) #FST-SWB
+    POND      <- AMAX1(0., PONDTP)
     
-    IRRIG0 <- AFGEN(IRRTSF, DSTART) + IRRADD   #FST-SWB
-    IRRIG1 <- AFGEN(IRRTL1, DSTART) #FST-SWB
-    IRRIG2 <- AFGEN(IRRTL2, DSTART) #FST-SWB
-    IRRIG3 <- AFGEN(IRRTL3, DSTART) #FST-SWB
+    IRRIG0 <- AFGEN(IRRTSF, DSTART) + IRRADD  
+    IRRIG1 <- AFGEN(IRRTL1, DSTART)
+    IRRIG2 <- AFGEN(IRRTL2, DSTART)
+    IRRIG3 <- AFGEN(IRRTL3, DSTART)
     
-    PNDEVP    <- AMAX1(0, INSW(POND - PEVAP, POND, PEVAP)) #FST-SWB
+    PNDEVP    <- AMAX1(0, INSW(POND - PEVAP, POND, PEVAP))
     
-    WLFL1 <- AMAX1(0, AMIN1(KSAT1, POND))  #FST-SWB
-    WLFL2 <- AMAX1(0, WLFL1 + WL1 + IRRIG1 - TKL1*WCFC1) #FST-SWB
-    WLFL3 <- AMAX1(0, WLFL2 + WL2 + IRRIG2 - TKL2*WCFC2) #FST-SWB
-    WLFL4 <- AMAX1(0, WLFL3 + WL3 + IRRIG3 - TKL3*WCFC3) #FST-SWB
+    WLFL1 <- AMAX1(0, AMIN1(KSAT1, POND)) 
+    WLFL2 <- AMAX1(0, WLFL1 + WL1 + IRRIG1 - TKL1*WCFC1)
+    WLFL3 <- AMAX1(0, WLFL2 + WL2 + IRRIG2 - TKL2*WCFC2)
+    WLFL4 <- AMAX1(0, WLFL3 + WL3 + IRRIG3 - TKL3*WCFC3)
     
-    DRAIN <- AMIN1(KSAT3, WLFL4) #FST-SWB
+    DRAIN <- AMIN1(KSAT3, WLFL4)
     
-    WLFL5 <- INSW((DRAIN - WLFL4), (WLFL4 - DRAIN), 0)   #FST-SWB
-    WLFL6 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL5 -(WCST3 - WCFC3)*TKL3), 0) #FST-SWB
-    WLFL7 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL6 -(WCST2 - WCFC2)*TKL2), 0) #FST-SWB
-    WLFL8 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL7 -(WCST1 - WCFC1)*TKL1), 0) #FST-SWB
+    WLFL5 <- INSW((DRAIN - WLFL4), (WLFL4 - DRAIN), 0)  
+    WLFL6 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL5 -(WCST3 - WCFC3)*TKL3), 0)
+    WLFL7 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL6 -(WCST2 - WCFC2)*TKL2), 0)
+    WLFL8 <- INSW((DRAIN - WLFL4), AMAX1(0, WLFL7 -(WCST1 - WCFC1)*TKL1), 0)
     
     RNOFF  <- AMAX1(0, INSW(BUNDHT - 2, RUNNAT, 0) + POND - AINTC - 
-                      PNDEVP - WLFL1 + WLFL8 - BUNDHT) #FST-SWB
-    RUNNAT <- (RAINF + IRRIG0)* AFGEN(RNSOIL, SLOPE) #FST-SWB
+                      PNDEVP - WLFL1 + WLFL8 - BUNDHT)
+    RUNNAT <- (RAINF + IRRIG0)* AFGEN(RNSOIL, SLOPE)
     
-    WL1RT <- WLFL1 + IRRIG1 + WLFL7 - WLFL2 - WLFL8 - EVSW1 - TRWL1*(1 + WEEDCV) #FST-SWB
-    WL2RT <- WLFL2 + IRRIG2 + WLFL6 - WLFL3 - WLFL7 - EVSW2 - TRWL2*(1 + WEEDCV) #FST-SWB
-    WL3RT <- WLFL3 + IRRIG3 + WLFL5 - WLFL4 - WLFL6 - EVSW3 - TRWL3*(1 + WEEDCV) #FST-SWB
+    WL1RT <- WLFL1 + IRRIG1 + WLFL7 - WLFL2 - WLFL8 - EVSW1 - TRWL1*(1 + WEEDCV)
+    WL2RT <- WLFL2 + IRRIG2 + WLFL6 - WLFL3 - WLFL7 - EVSW2 - TRWL2*(1 + WEEDCV)
+    WL3RT <- WLFL3 + IRRIG3 + WLFL5 - WLFL4 - WLFL6 - EVSW3 - TRWL3*(1 + WEEDCV)
     
-    WL1 <- AMAX1(WCWP1*TKL1, WL1T) #FST-SWB
-    WL2 <- AMAX1(WCWP2*TKL2, WL2T) #FST-SWB
-    WL3 <- AMAX1(WCWP3*TKL3, WL3T) #FST-SWB
+    WL1 <- AMAX1(WCWP1*TKL1, WL1T)
+    WL2 <- AMAX1(WCWP2*TKL2, WL2T)
+    WL3 <- AMAX1(WCWP3*TKL3, WL3T)
     
-    dPONDTP <- RAINF + IRRIG0 - AINTC - PNDEVP - WLFL1 - RNOFF + WLFL8 #FST-SWB
-    dDAPOND <- INSW(POND - 10., - DAPOND, 1.) #FST-SWB
+    dPONDTP <- RAINF + IRRIG0 - AINTC - PNDEVP - WLFL1 - RNOFF + WLFL8
+    dDAPOND <- INSW(POND - 10., - DAPOND, 1.)
     
-    dWL1T   <- WL1RT #FST-SWB
-    dWL2T   <- WL2RT #FST-SWB
-    dWL3T   <- WL3RT #FST-SWB
+    dWL1T   <- WL1RT
+    dWL2T   <- WL2RT
+    dWL3T   <- WL3RT
     
-    return(list(c(dPONDTP, dDAPOND, dWL1T, dWL2T, dWL3T),IRRIG0,IRRIG1,IRRIG2,IRRIG3))
+    return(list(c(dPONDTP, dDAPOND, dWL1T, dWL2T, dWL3T), IRRIG0, IRRIG1, IRRIG2, IRRIG3))
   })
 } 
 
 yini  <- c(PONDTP=PONDTP, DAPOND=DAPOND, WL1T=WL1T, WL2T=WL2T, WL3T=WL3T)
 times <- seq(0,1,1)
-out   <- ode(yini,times,SWBmod, parms=NULL)
+out   <- ode(yini, times, SWBmod, parms=NULL)
 
 #-----------------------------  
   PONDTP <- out[2,2]  
@@ -199,9 +200,9 @@ out   <- ode(yini,times,SWBmod, parms=NULL)
   IRRIG2 <- out[2,9]
   IRRIG3 <- out[2,10]
   
-  WL1 <- AMAX1(WCWP1*TKL1, WL1T) #FST-SWB
-  WL2 <- AMAX1(WCWP2*TKL2, WL2T) #FST-SWB
-  WL3 <- AMAX1(WCWP3*TKL3, WL3T) #FST-SWB
+  WL1 <- AMAX1(WCWP1*TKL1, WL1T)
+  WL2 <- AMAX1(WCWP2*TKL2, WL2T)
+  WL3 <- AMAX1(WCWP3*TKL3, WL3T)
 
 #-----------------------------
   j               <- length(SWBsv@DINDEX) + 1

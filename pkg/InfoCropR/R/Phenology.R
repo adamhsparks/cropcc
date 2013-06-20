@@ -38,7 +38,7 @@
 #     TPOPT <-
 #     TPAV <-
 #     TGBD <-
-#     RDS    <- AMAX1(0.,AMIN1(TPOPT,TPAV)-TGBD)*MAXSTD/TTGF
+#     RDS    <- AMAX1(0.,AMIN1(TPOPT,TPAV)-TGBD)*MAXSTD/TTGF    #ERROR: DRR <- ...
 #     MAXSTD <- AMAX1(AFGEN(DRWT,WSTRES),AFGEN(NDRWT,NSTRES))
 #     
 #   }

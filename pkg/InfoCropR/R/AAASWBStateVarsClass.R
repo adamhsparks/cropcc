@@ -63,9 +63,9 @@ setClass(Class="SWBStateVarsClass",
            WL2    = 10,
            WL3    = 10,
            
-           WL1T   = 64.8,
-           WL2T   = 57.6,
-           WL3T   = 108,
+           WL1T   = 64.8,  #Line 33: WL1I = WCLI1 * TKL1 
+           WL2T   = 57.6,  #Line 34: WL2I = WCLI2 * TKL2
+           WL3T   = 40,    #Line 35: WL3I = WCLI3 * TKL3
            
            DINDEX = 10957
  
