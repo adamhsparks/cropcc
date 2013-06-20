@@ -34,7 +34,7 @@ makeRandomization <- function()
   
   glabel("Select folder to write to:", container=group1)
   a <- gfilebrowse(text="Select folder to write to:", type="selectdir", container=group1)
-  
+  svalue(a) <- getwd()
   group2 <- ggroup(horizontal=TRUE, spacing=10, container=group1)
   #addSpring(group2)
   b <- gbutton("Create randomization", handler = function(h, ...){
@@ -63,8 +63,6 @@ makeRandomization <- function()
       
       write.csv(codes, paste(identification, "Try3randomization.csv", sep=""), row.names=F)
       gmessage(paste("File ", identification, "Try3randomization.csv written to ", getwd(), sep=""), title="Done", icon="info")
-      
-      dispose(w1)
    
     }, container=group2)
 

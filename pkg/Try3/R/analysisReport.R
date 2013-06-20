@@ -1,24 +1,3 @@
-##Function by Achim Zeileis (improving a first clumpsy version written by Jacob van Etten)
-
-.predict.bttree <- function(object, newdata = NULL,
-                            type = c("worth", "rank", "node"), ...) {
-  type <- match.arg(type)
-  
-  ## get nodes
-  nodes <- predict(object$mob, newdata = newdata, type = "node", ...)
-  if(type == "node") return(nodes)
-  
-  ## get worth
-  w <- worth(object)
-  w <- w[as.character(nodes), ]
-  rownames(w) <- NULL
-  if(type == "worth") return(w)
-  
-  ## get order
-  o <- t(apply(-w, 1, rank))
-  return(o)
-}
-
 analysisReport <- function()
 {
   
@@ -49,7 +28,7 @@ analysisReport <- function()
   
   glabel("Select folder to write to:", container=group1)
   a1 <- gfilebrowse(text="Select folder to write to:", type="selectdir", container=group1)
-  
+  svalue(a1) <- getwd()
   group2 <- ggroup(horizontal=TRUE, spacing=10, container=group1, expand=TRUE)
   glabel("File name", container=group2)
   setfilename <- gtext(text=".doc", container=group2, width=2, height=1)
