@@ -149,7 +149,7 @@ createInfosheets <- function(){
     addNewLine(rtf)
     if(!is.null(visible(infoSheetNames))){
     
-      if(svalue(infoSheetNames1) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetNames1)])} 
+      if(svalue(infoSheetNames1) != "None"){addText(rtf, myData[i, svalue(infoSheetNames1)])} 
 
       if(svalue(infoSheetNames2) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
       
@@ -167,7 +167,7 @@ createInfosheets <- function(){
     
     addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
     addNewLine(rtf)
-    itemTable <- t(myData[i, itemsgivenVars])
+    itemTable <- as.matrix(t(myData[i, itemsgivenVars]))
     colnames(itemTable) <- ""
     addTable(rtf, itemTable)
     
