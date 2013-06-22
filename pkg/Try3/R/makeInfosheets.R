@@ -135,53 +135,72 @@ createInfosheets <- function(){
     setwd(svalue(a))
     
     rtf <- RTF(svalue(setfilenameIS), font.size=14)
+    setFontSize(rtf, font.size=14)
     addPng(rtf, system.file("external/Try3-logo.png", package="Try3"), width=3.9, height=1.5)
-    addNewLine(rtf)
+    addParagraph(rtf)
     addHeader(rtf, title="Try3 info sheets")
     addParagraph(rtf, paste("Author:", Sys.info()[["user"]]))
-    addNewLine(rtf)
+    addParagraph(rtf)
     
     addPageBreak(rtf)
     
     i <- 1
     
-    if(!is.null(visible(infoSheetTitletext))){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
+    if(!is.null(visible(infoSheetTitle))){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
     addNewLine(rtf)
     if(!is.null(visible(infoSheetNames))){
     
-      if(svalue(infoSheetNames1) != "None"){addText(rtf, myData[i, svalue(infoSheetNames1)])} 
+      if(svalue(infoSheetNames1) != "None"){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
 
       if(svalue(infoSheetNames2) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
       
       if(svalue(infoSheetNames3) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
+      
+      addNewLine(rtf)
       
       if(svalue(infoSheetPlace1) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
       
       if(svalue(infoSheetPlace2) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
     
     } 
-    addNewLine(rtf)
+    addParagraph(rtf)
     
-    addParagraph(rtf, svalue(infoSheetIntrotext))
-    addNewLine(rtf) 
+    if(!is.null(visible(infoSheetIntro))){
+      
+      addParagraph(rtf, svalue(infoSheetIntrotext))
+      addParagraph(rtf) 
     
-    addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
-    addNewLine(rtf)
-    itemTable <- as.matrix(t(myData[i, itemsgivenVars]))
-    colnames(itemTable) <- ""
-    addTable(rtf, itemTable)
+    }
     
-    addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
-    addNewLine(rtf)
+    if(!is.null(visible(infoSheetItemnames))){
+      
+      addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
+      addParagraph(rtf)
+      itemTable <- cbind(itemsgivenVars, as.matrix(t(myData[i, itemsgivenVars])))
+      colnames(itemTable) <- c("Item", "Name")
+      addTable(rtf, itemTable)
+      addParagraph(rtf) 
     
-    addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext)) 
-    addNewLine(rtf)
+    }
+    
+    if(!is.null(visible(infoSheetRanking))){
+    
+      addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
+      addParagraph(rtf)
+    }
+    
+    if(!is.null(visible(infoSheetPredictedRanking))){
+      
+      addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext)) 
+      addParagraph(rtf)
+    
+    }
     
     addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
-    addNewLine(rtf)
+    addParagraph(rtf)
     
     addParagraph(rtf, svalue(infoSheetTopX)) #topx
-    addNewLine(rtf)
+    addParagraph(rtf)
     
     addParagraph(rtf, svalue(infoSheetConclusiontext)) 
     
