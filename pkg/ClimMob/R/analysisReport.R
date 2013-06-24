@@ -15,8 +15,11 @@ analysisReport <- function()
     
   }
     
-  w5 <- gwindow(title="Try3 - Create report", visible=FALSE, parent=c(0,0)) 
+  w5 <- gwindow(title="ClimMob - Create report", visible=FALSE, parent=c(0,0)) 
   group1 <- ggroup(horizontal=FALSE, spacing= 10, container=w5)
+  
+  ttitle <- glabel("Create report", container=group1)
+  font(ttitle) <- list(size=16)
   
   glabel(paste("Items given:\n", 
                paste(itemsgivenVars, collapse=", "),"\nRanking variables:\n", 
@@ -81,6 +84,7 @@ analysisReport <- function()
       addParagraph(rtf, paste("Table ", nFigure, ". Worth comparison ", question,"\n", collapse="", sep=""))  
       addTable(rtf, table_i, font.size=9, row.names=FALSE, NA.string="-")
       nTable <- nTable + 1
+      addParagraph(rtf)
                    
     }
     

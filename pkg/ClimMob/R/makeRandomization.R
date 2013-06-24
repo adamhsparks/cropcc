@@ -1,8 +1,11 @@
 makeRandomization <- function()
 {
   
-  w1 <- gwindow(title="Try3 - Create randomization", visible=FALSE, parent=c(0,0)) 
+  w1 <- gwindow(title="ClimMob - Create randomization", visible=FALSE, parent=c(0,0)) 
   group1 <- ggroup(horizontal=FALSE, spacing= 10, container=w1)
+  
+  ttitle <- glabel("Make randomization", container=group1)
+  font(ttitle) <- list(size=16)
   
   group7 <- ggroup(horizontal=TRUE, spacing= 20, container=group1)
   glabel("Fill in the form and click on the button.\n A CSV file with the randomization will be written to the selected folder.\n CSV files can be read with Excel or other spreadsheet software.", container=group7)
@@ -61,8 +64,8 @@ makeRandomization <- function()
       
       for(i in 1:nobservers) codes[i,2:4] <- itemnames[sample(vars[i,], 3)]
       
-      write.csv(codes, paste(identification, "Try3randomization.csv", sep=""), row.names=F)
-      gmessage(paste("File ", identification, "Try3randomization.csv written to ", getwd(), sep=""), title="Done", icon="info")
+      write.csv(codes, paste(identification, "ClimMobrandomization.csv", sep=""), row.names=F)
+      gmessage(paste("File ", identification, "ClimMobrandomization.csv written to ", getwd(), sep=""), title="Done", icon="info")
    
     }, container=group2)
 

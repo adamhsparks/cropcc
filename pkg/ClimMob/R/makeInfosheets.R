@@ -1,4 +1,4 @@
-##Function by Achim Zeileis (improving a first clumpsy version written by Jacob van Etten)
+##Function by Achim Zeileis and Jacob van Etten
 
 .predict.bttree <- function(object, newdata = NULL,
                             type = c("worth", "rank", "node"), ...) {
@@ -10,12 +10,13 @@
   
   ## get worth
   w <- worth(object)
-  w <- w[as.character(nodes), ]
-  rownames(w) <- NULL
+  w <- w[as.character(nodes), , drop = FALSE]
+
   if(type == "worth") return(w)
-  
-  ## get order
+
+  ## get rank
   o <- t(apply(-w, 1, rank))
+
   return(o)
 }
 
@@ -35,21 +36,24 @@ createInfosheets <- function(){
     
   }
   
-  w6 <- gwindow(title="Try3 - Create report", visible=FALSE, parent=c(1,1)) 
+  w6 <- gwindow(title="ClimMob - Create info sheets", visible=FALSE, parent=c(1,1)) 
   size(w6) <- c(500,700)
   
   group2 <- ggroup(horizontal=FALSE, spacing=10, container=w6, expand=TRUE, use.scrollwindow = TRUE)
  
+  ttitle <- glabel("Create info sheets", container=group2)
+  font(ttitle) <- list(size=16)
+  
   glabel("The info sheets will be generated from the data and model currently loaded in memory.", container=group2)
   glabel("Select the elements to include and specify any options.", container=group2)
   
-  infoSheetTitle <- gexpandgroup("Info sheet title:", container=group2, horizontal=FALSE)
+  infoSheetTitle <- gexpandgroup("Info sheet title", container=group2, horizontal=FALSE)
   glabel("Type the title:", container=infoSheetTitle)
   infoSheetTitletext <- gtext(text="Thank you for participating!", container=infoSheetTitle, width=2, height=1)
   size(infoSheetTitletext) <- c(250,40)
   visible(infoSheetTitle) <- FALSE
   
-  infoSheetIntro <- gexpandgroup("General intro text:", container=group2, horizontal=FALSE)
+  infoSheetIntro <- gexpandgroup("General intro text", container=group2, horizontal=FALSE)
   glabel("Type the text:", container=infoSheetIntro)
   infoSheetIntrotext <- gtext(text="These are the results of the experiment you contributed to.", container=infoSheetIntro, width=2, height=1)
   size(infoSheetIntrotext) <- c(250,40)
@@ -115,7 +119,7 @@ createInfosheets <- function(){
 
   visible(infoSheetTop) <- FALSE
   
-  infoSheetConclusion <- gexpandgroup("Concluding message:", container=group2, horizontal=FALSE)
+  infoSheetConclusion <- gexpandgroup("Concluding message", container=group2, horizontal=FALSE)
   glabel("Type the title:", container=infoSheetConclusion)
   infoSheetConclusiontext <- gtext(text="For more information, contact us at...", container=infoSheetConclusion, width=2, height=1)
   size(infoSheetConclusiontext) <- c(250,40)
@@ -132,22 +136,34 @@ createInfosheets <- function(){
   addSpring(group3)
 
   b <- gbutton("Create info sheets", handler = function(h, ...){
+    
+    if(!is.na(questionVar)){myData <- .GlobalEnv$myData[.GlobalEnv$myData[,.GlobalEnv$questionVar] == .GlobalEnv$questionsAnalyzed,]}
+    
     setwd(svalue(a))
     
     rtf <- RTF(svalue(setfilenameIS), font.size=14)
     setFontSize(rtf, font.size=14)
-    addPng(rtf, system.file("external/Try3-logo.png", package="Try3"), width=3.9, height=1.5)
+    addPng(rtf, system.file("external/ClimMob-logo.png", package="ClimMob"), width=3.9, height=1.9)
     addParagraph(rtf)
-    addHeader(rtf, title="Try3 info sheets")
+    addHeader(rtf, title="ClimMob info sheets")
     addParagraph(rtf, paste("Author:", Sys.info()[["user"]]))
+    addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
     
     addPageBreak(rtf)
     
-    i <- 1
+    IDs <- unique(as.character(myData[,observeridVar]))
     
+    j <- 1 
+    
+    #for(j in 1:length(IDs)){
+        
+    iall <- which(IDs[j] == myData[,observeridVar])
+    i <- iall[1]
+        
     if(!is.null(visible(infoSheetTitle))){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
     addNewLine(rtf)
+    
     if(!is.null(visible(infoSheetNames))){
     
       if(svalue(infoSheetNames1) != "None"){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
@@ -187,20 +203,51 @@ createInfosheets <- function(){
     
       addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
       addParagraph(rtf)
+      rankingTable <- myData[iall,rankingsVars]
+      rankingTable <- t(apply(rankingTable, 1, function(x) return(itemTable[x,2])))
+      colnames(rankingTable) <- rankingsVars
+      if(length(iall)>1 & !is.na(questionVar)) rankingTable <- cbind(myData[iall,questionVar], rankingTable)
+      addTable(rtf, rankingTable)
+      addParagraph(rtf)
+      
+    }
+    
+    if(!is.null(visible(infoSheetPredictedRanking) | !is.null(visible(infoSheetTop)))){
+      
+      pred <- NULL
+      for(ii in 1:length(iall)){ 
+        
+        rankii <- .predict.bttree(.GlobalEnv$models[[ii]], newdata = myData[iall[ii],], type = "rank")
+        predii <- names(rankii)[order(rankii)]
+        pred <- rbind(pred, predii)
+        
+      }                
+      rownames(pred) <- myData[iall,questionVar]
+    
     }
     
     if(!is.null(visible(infoSheetPredictedRanking))){
       
-      addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext)) 
+      addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext))
+      
+      predGiven <- t(apply(pred, 1, function(x) x[x %in% as.character(t(myData[i, itemsgivenVars]))]))
+      
+      if(is.vector(predGiven)) predGiven <- t(as.matrix(predGiven))
+      
+      addTable(rtf, predGiven, row.names=TRUE)
       addParagraph(rtf)
     
     }
     
-    addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
-    addParagraph(rtf)
+    if(!is.null(visible(infoSheetTop))){
     
-    addParagraph(rtf, svalue(infoSheetTopX)) #topx
-    addParagraph(rtf)
+      addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
+      addParagraph(rtf)
+      
+      #svalue(infoSheetTopX)
+      addParagraph(rtf)
+    
+    }
     
     addParagraph(rtf, svalue(infoSheetConclusiontext)) 
     
