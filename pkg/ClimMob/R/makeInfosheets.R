@@ -137,6 +137,8 @@ createInfosheets <- function(){
 
   b <- gbutton("Create info sheets", handler = function(h, ...){
     
+    pb <- gprogressbar(value=0, container=gwindow())
+    
     if(!is.na(questionVar)){myData <- .GlobalEnv$myData[.GlobalEnv$myData[,.GlobalEnv$questionVar] == .GlobalEnv$questionsAnalyzed,]}
     
     setwd(svalue(a))
@@ -150,108 +152,125 @@ createInfosheets <- function(){
     addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
     
-    addPageBreak(rtf)
     
     IDs <- unique(as.character(myData[,observeridVar]))
+ 
     
-    j <- 1 
-    
-    #for(j in 1:length(IDs)){
-        
-    iall <- which(IDs[j] == myData[,observeridVar])
-    i <- iall[1]
-        
-    if(!is.null(visible(infoSheetTitle))){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
-    addNewLine(rtf)
-    
-    if(!is.null(visible(infoSheetNames))){
-    
-      if(svalue(infoSheetNames1) != "None"){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
-
-      if(svalue(infoSheetNames2) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
+    for(j in 1:length(IDs))
+    {
       
-      if(svalue(infoSheetNames3) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
+      iall <- which(IDs[j] == myData[,observeridVar])
+      i <- iall[1]
       
-      addNewLine(rtf)
+      addPageBreak(rtf)
       
-      if(svalue(infoSheetPlace1) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
-      
-      if(svalue(infoSheetPlace2) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
-    
-    } 
-    addParagraph(rtf)
-    
-    if(!is.null(visible(infoSheetIntro))){
-      
-      addParagraph(rtf, svalue(infoSheetIntrotext))
-      addParagraph(rtf) 
-    
-    }
-    
-    if(!is.null(visible(infoSheetItemnames))){
-      
-      addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
-      addParagraph(rtf)
       itemTable <- cbind(itemsgivenVars, as.matrix(t(myData[i, itemsgivenVars])))
       colnames(itemTable) <- c("Item", "Name")
-      addTable(rtf, itemTable)
-      addParagraph(rtf) 
-    
-    }
-    
-    if(!is.null(visible(infoSheetRanking))){
-    
-      addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
-      addParagraph(rtf)
-      rankingTable <- myData[iall,rankingsVars]
-      rankingTable <- t(apply(rankingTable, 1, function(x) return(itemTable[x,2])))
-      colnames(rankingTable) <- rankingsVars
-      if(length(iall)>1 & !is.na(questionVar)) rankingTable <- cbind(myData[iall,questionVar], rankingTable)
-      addTable(rtf, rankingTable)
+          
+      if(visible(infoSheetTitle)){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
       addParagraph(rtf)
       
-    }
-    
-    if(!is.null(visible(infoSheetPredictedRanking) | !is.null(visible(infoSheetTop)))){
+      if(!is.null(visible(infoSheetNames))){
       
-      pred <- NULL
-      for(ii in 1:length(iall)){ 
+        if(svalue(infoSheetNames1) != "None"){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
+  
+        if(svalue(infoSheetNames2) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
         
-        rankii <- .predict.bttree(.GlobalEnv$models[[ii]], newdata = myData[iall[ii],], type = "rank")
-        predii <- names(rankii)[order(rankii)]
-        pred <- rbind(pred, predii)
+        if(svalue(infoSheetNames3) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
         
-      }                
-      rownames(pred) <- myData[iall,questionVar]
-    
-    }
-    
-    if(!is.null(visible(infoSheetPredictedRanking))){
+        addNewLine(rtf)
+        
+        if(svalue(infoSheetPlace1) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
+        
+        if(svalue(infoSheetPlace2) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
       
-      addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext))
-      
-      predGiven <- t(apply(pred, 1, function(x) x[x %in% as.character(t(myData[i, itemsgivenVars]))]))
-      
-      if(is.vector(predGiven)) predGiven <- t(as.matrix(predGiven))
-      
-      addTable(rtf, predGiven, row.names=TRUE)
-      addParagraph(rtf)
-    
-    }
-    
-    if(!is.null(visible(infoSheetTop))){
-    
-      addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
+      } 
       addParagraph(rtf)
       
-      #svalue(infoSheetTopX)
-      addParagraph(rtf)
-    
+      if(visible(infoSheetIntro)){
+        
+        addParagraph(rtf, svalue(infoSheetIntrotext))
+        addParagraph(rtf) 
+      
+      }
+      
+      if(visible(infoSheetItemnames)){
+        
+        addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
+        addTable(rtf, itemTable)
+        addParagraph(rtf) 
+      
+      }
+      
+      if(visible(infoSheetRanking)){
+      
+        addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
+        rankingTable <- myData[iall,rankingsVars]
+        rankingTable <- t(apply(rankingTable, 1, function(x) return(itemTable[order(x),2])))
+        colnames(rankingTable) <- rankingsVars
+        if(length(iall)>1 & !is.na(questionVar)) rankingTable <- cbind(myData[iall,questionVar], rankingTable)
+        addTable(rtf, rankingTable)
+        addParagraph(rtf)
+        
+      }
+      
+      if(visible(infoSheetPredictedRanking) | visible(infoSheetTop)){
+        
+        pred <- NULL
+        for(ii in 1:length(iall)){ 
+          
+          rankii <- .predict.bttree(.GlobalEnv$models[[ii]], newdata = myData[iall[ii],], type = "rank")
+          predii <- colnames(rankii)[order(rankii)]
+          pred <- rbind(pred, predii)
+          
+        }                
+            
+      }
+      
+      if(visible(infoSheetPredictedRanking)){
+        
+        addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext))
+        
+        predGiven <- t(apply(pred, 1, function(x) x[x %in% as.character(t(myData[i, itemsgivenVars]))]))
+        colnames(predGiven) <- rankingsVars
+        
+        if(!is.na(questionVar)){
+          
+          predGiven <- cbind(myData[iall,questionVar], predGiven)
+          colnames(predGiven)[1] <- "Question"    
+        
+        }
+          
+        addTable(rtf, predGiven)
+        addParagraph(rtf)
+      
+      }
+      
+      if(visible(infoSheetTop)){
+      
+        addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
+        
+        topTable <- pred[,1:svalue(infoSheetTopX),drop=FALSE]
+        colnames(topTable) <- paste(1:svalue(infoSheetTopX), ".", sep="")
+        addTable(rtf, topTable)
+        addParagraph(rtf)
+      
+      }
+      
+      if(visible(infoSheetConclusion)){
+      
+        addParagraph(rtf, svalue(infoSheetConclusiontext)) 
+      
+      } 
+      
+      svalue(pb) <- round(j/length(IDs) * 100)
+      
     }
     
-    addParagraph(rtf, svalue(infoSheetConclusiontext)) 
-    
+
     done(rtf)
+    
+    dispose(pb)
     
     gmessage(paste("File ", svalue(setfilenameIS), " written to ", getwd(), sep=""), title="Done", icon="info")
     
