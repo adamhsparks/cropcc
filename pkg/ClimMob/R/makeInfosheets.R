@@ -137,7 +137,7 @@ createInfosheets <- function(){
 
   b <- gbutton("Create info sheets", handler = function(h, ...){
     
-    pb <- gprogressbar(value=0, container=gwindow())
+    pb <- gprogressbar(value=0, container=w6)
     
     if(!is.na(questionVar)){myData <- .GlobalEnv$myData[.GlobalEnv$myData[,.GlobalEnv$questionVar] == .GlobalEnv$questionsAnalyzed,]}
     

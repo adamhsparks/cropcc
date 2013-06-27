@@ -46,43 +46,32 @@ makeModel <- function()
     return()
     
   }
-  
-
+ 
   w2 <- gwindow(title="ClimMob - Make model", visible=FALSE, parent=c(0,0)) #previous window for size...
-  size(w2) <- c(600,600)
-  group1 <- ggroup(horizontal=FALSE, spacing= 10, container=w2, use.scrollwindow = TRUE)
+  size(w2) <- c(600,720)
+  nb2 <- ggroup(horizontal=FALSE, container=w2, spacing=5)
   
-  ttitle <- glabel("Make model", container=group1)
+  ttitle <- glabel("Make model", container=nb2)
   font(ttitle) <- list(size=16)
-  
-  nb1 <- gtable(items=myData, container=group1, expand=TRUE)
-
-  nb2 <- ggroup(horizontal=FALSE, container=group1)
   
   cn <- as.data.frame(cbind(1:ncol(myData), colnames(myData)))
   colnames(cn) <- c("Column_number", "Variable_name")
   
-  addSpace(nb2,10)
-  glabel("Select the columns with the unique observer IDs:",container=nb2)
-  a0 <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
-  size(a0) <- c(150,100)
+  glabel("Select the column with the unique observer IDs:",container=nb2)
+  a0 <- gcombobox(colnames(myData), container=nb2)
   
-  addSpace(nb2,10)
   glabel("Select the columns with the items given to each observer (original randomization):",container=nb2)
   aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
-  size(aa) <- c(150,100)
+  size(aa) <- c(130,80)
     
-  addSpace(nb2,10)
   glabel("Select the ranking (response) variables:",container=nb2)
   bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
-  size(bb) <- c(150,100)
+  size(bb) <- c(130,80)
   
-  addSpace(nb2,10)
   glabel("Select the explanatory variables:",container=nb2)
   cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(cc) <- c(150,100)
   
-  addSpace(nb2,10)
   glabel("Select variable representing the questions (optional -- only if different aspects were evaluated):", container=nb2)
   dd <- gcombobox(c("None", colnames(myData)), container=nb2)
   addHandlerChanged(dd, function(h, ...) {
@@ -101,11 +90,11 @@ makeModel <- function()
         
     })
   
-  group9 <- ggroup(horizontal=FALSE, container=nb2)
+  group9 <- ggroup(horizontal=FALSE, container=nb2, spacing=0)
   glabel("Select the questions to analyze:", container=group9)
   tt <- "Select variable first"
   ee <- gtable(tt, multiple=TRUE, container=group9)
-  size(ee) <- c(150,100)
+  size(ee) <- c(130,80)
   
   nb3 <- ggroup(horizontal=TRUE, container=nb2)
   addSpring(nb3)

@@ -11,7 +11,7 @@ menuClimMob <- function()
   addSpring(group2)
   
   group3 <- ggroup(horizontal=TRUE, spacing= 0, container=group1)
-  b2 <- gbutton("Merge data sets", handler = function(h, ...){}, container=group3)
+  b2 <- gbutton("Merge data sets", handler = function(h, ...){mergeData()}, container=group3)
   font(b2) <- list(size=12)
   addSpring(group3)
   
@@ -41,6 +41,6 @@ menuClimMob <- function()
   addSpring(group8)
   
   visible(w1) <- TRUE
-  focus(w1) <- TRUE
+  #focus(w1) <- TRUE
 
 }
