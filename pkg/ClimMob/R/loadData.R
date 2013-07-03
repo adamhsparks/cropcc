@@ -1,13 +1,13 @@
 .loadData <- function(myDat)
 {
   
-  rL <- readLines(file(myDat), n=2)
+  rL <- readLines(file(myDat), n=3)
   
   ncomma <- 0
   nsemicolon <- 0
   
-  if(length(strsplit(rL[1], ",")) == length(strsplit(rL[2], ","))) ncomma <- length(strsplit(rL[1], ",")[[1]])
-  if(length(strsplit(rL[1], ";")) == length(strsplit(rL[2], ";"))) nsemicolon <- length(strsplit(rL[2], ";")[[1]])
+  if(length(strsplit(rL[2], ",")) == length(strsplit(rL[3], ","))) ncomma <- length(strsplit(rL[1], ",")[[1]])
+  if(length(strsplit(rL[2], ";")) == length(strsplit(rL[3], ";"))) nsemicolon <- length(strsplit(rL[2], ";")[[1]])
   
   if(1 > (ncomma+nsemicolon)){
     
@@ -17,8 +17,10 @@
     
     delim <- ifelse(ncomma<=nsemicolon, ";", ",")
     
-    if(delim == ","){myData <- read.csv(myDat)}
-    if(delim == ";"){myData <- read.csv2(myDat)}
+    if(length(strsplit(rL[1], delim))) == length(strsplit(rL[2], delim)){s <- 0} else{s <- 1}
+    
+    if(delim == ","){myData <- read.csv(myDat, skip=s)}
+    if(delim == ";"){myData <- read.csv2(myDat, skip=s)}
     
   }
     

@@ -47,6 +47,8 @@ makeModel <- function()
     
   }
  
+  myData <- get("myData")
+  
   w2 <- gwindow(title="ClimMob - Make model", visible=FALSE, parent=c(0,0)) #previous window for size...
   size(w2) <- c(600,720)
   nb2 <- ggroup(horizontal=FALSE, container=w2, spacing=5)
@@ -57,22 +59,27 @@ makeModel <- function()
   cn <- as.data.frame(cbind(1:ncol(myData), colnames(myData)))
   colnames(cn) <- c("Column_number", "Variable_name")
   
-  glabel("Select the column with the unique observer IDs:",container=nb2)
+  g0 <- glabel("Select the column with the unique observer IDs:",container=nb2)
+  font(g0) <- list(size=12)
   a0 <- gcombobox(colnames(myData), container=nb2)
   
-  glabel("Select the columns with the items given to each observer (original randomization):",container=nb2)
+  g1 <- glabel("Select the columns with the items given to each observer (original randomization):",container=nb2)
+  font(g1) <- list(size=12)
   aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(aa) <- c(130,80)
     
-  glabel("Select the ranking (response) variables:",container=nb2)
+  g2 <- glabel("Select the ranking (response) variables:",container=nb2)
+  font(g2) <- list(size=12)
   bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(bb) <- c(130,80)
   
-  glabel("Select the explanatory variables:",container=nb2)
+  g3 <- glabel("Select the explanatory variables:",container=nb2)
+  font(g3) <- list(size=12)
   cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(cc) <- c(150,100)
   
-  glabel("Select variable representing the questions (optional -- only if different aspects were evaluated):", container=nb2)
+  g4 <- glabel("Select variable representing the questions (optional):", container=nb2)
+  font(g4) <- list(size=12)
   dd <- gcombobox(c("None", colnames(myData)), container=nb2)
   addHandlerChanged(dd, function(h, ...) {
     
@@ -86,12 +93,13 @@ makeModel <- function()
       svalue(ee, index=TRUE) <- 0
       tcl(ee$widget, "column", 2, minwidth=480, width=480, stretch=TRUE) #workaround suggested by J. Verzani
       unblockHandler(ee)
-    } else{ ee[] <- "Select variable presenting the questions first"}
+    } else{ ee[] <- "Select variable presenting the questions first (optional)."}
         
     })
   
   group9 <- ggroup(horizontal=FALSE, container=nb2, spacing=0)
-  glabel("Select the questions to analyze:", container=group9)
+  g5 <- glabel("Select the questions to analyze:", container=group9)
+  font(g5) <- list(size=12)
   tt <- "Select variable first"
   ee <- gtable(tt, multiple=TRUE, container=group9)
   size(ee) <- c(130,80)
@@ -119,12 +127,19 @@ makeModel <- function()
     
       galert("Creating model... This can take some time.", parent=c(100,300), delay=4)
       
-      .GlobalEnv$observeridVar <- colnames(myData)[as.integer(svalue(a0))]
-      .GlobalEnv$itemsgivenVars <- colnames(myData)[as.integer(svalue(aa))]
-      .GlobalEnv$rankingsVars <- colnames(myData)[as.integer(svalue(bb))]
-      .GlobalEnv$explanatoryVars <- colnames(myData)[as.integer(svalue(cc))]
-      .GlobalEnv$questionVar <- colnames(myData)[as.integer(svalue(dd))]
-      .GlobalEnv$questionsAnalyzed <- svalue(ee)                                           
+      observeridVar <- colnames(myData)[as.integer(svalue(a0))]
+      itemsgivenVars <- colnames(myData)[as.integer(svalue(aa))]
+      rankingsVars <- colnames(myData)[as.integer(svalue(bb))]
+      explanatoryVars <- colnames(myData)[as.integer(svalue(cc))]
+      questionVar <- colnames(myData)[as.integer(svalue(dd))]
+      questionsAnalyzed <- svalue(ee)                                           
+      
+      assign("observeridVar", observeridVar, envir=.GlobalEnv)
+      assign("itemsgivenVars", itemsgivenVars, envir=.GlobalEnv)
+      assign("rankingsVars", rankingsVars, envir=.GlobalEnv)
+      assign("explanatoryVars", explanatoryVars, envir=.GlobalEnv)
+      assign("questionVar", questionVar, envir=.GlobalEnv)
+      assign("questionsAnalyzed", questionsAnalyzed, envir=.GlobalEnv)
       
       nq <- length(svalue(ee))
       if(nq < 1){nq <- 1}
@@ -148,11 +163,13 @@ makeModel <- function()
                      "\nQuestion (aspect evaluated) variable:\n",
                      paste(questionVar, collapse=", ")
       ), title="Done", icon="info")
+      
+      dispose(w2)
      
     }  
       
   })
-  
+  font(b) <- list(size=12)
   visible(w2) <- TRUE
   
 }

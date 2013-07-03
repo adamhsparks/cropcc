@@ -36,6 +36,15 @@ createInfosheets <- function(){
     
   }
   
+  myData <- get("myData")#
+  observeridVar <- get("observeridVar")#
+  itemsgivenVars <- get("itemsgivenVars")#
+  rankingsVars <- get("rankingsVars")#
+  explanatoryVars <- get("explanatoryVars")
+  questionVar <- get("questionVar")#
+  questionsAnalyzed <- get("questionsAnalyzed")
+  models <- get("models")
+  
   w6 <- gwindow(title="ClimMob - Create info sheets", visible=FALSE, parent=c(1,1)) 
   size(w6) <- c(500,700)
   
@@ -139,7 +148,7 @@ createInfosheets <- function(){
     
     pb <- gprogressbar(value=0, container=w6)
     
-    if(!is.na(questionVar)){myData <- .GlobalEnv$myData[.GlobalEnv$myData[,.GlobalEnv$questionVar] == .GlobalEnv$questionsAnalyzed,]}
+    if(!is.na(questionVar)){myData <- myData[myData[,questionVar] == questionsAnalyzed,]}
     
     setwd(svalue(a))
     
@@ -219,7 +228,7 @@ createInfosheets <- function(){
         pred <- NULL
         for(ii in 1:length(iall)){ 
           
-          rankii <- .predict.bttree(.GlobalEnv$models[[ii]], newdata = myData[iall[ii],], type = "rank")
+          rankii <- .predict.bttree(models[[ii]], newdata = myData[iall[ii],], type = "rank")
           predii <- colnames(rankii)[order(rankii)]
           pred <- rbind(pred, predii)
           
@@ -273,6 +282,8 @@ createInfosheets <- function(){
     dispose(pb)
     
     gmessage(paste("File ", svalue(setfilenameIS), " written to ", getwd(), sep=""), title="Done", icon="info")
+    
+    dispose(w6)
     
   }, container=group3)
   

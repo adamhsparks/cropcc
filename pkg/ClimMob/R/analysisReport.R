@@ -14,37 +14,52 @@ analysisReport <- function()
     return()
     
   }
-    
+  
+  myData <- get("myData")
+  observeridVar <- get("observeridVar")
+  itemsgivenVars <- get("itemsgivenVars")
+  rankingsVars <- get("rankingsVars")
+  explanatoryVars <- get("explanatoryVars")
+  questionVar <- get("questionVar")
+  questionsAnalyzed <- get("questionsAnalyzed")
+  models <- get("models")
+  
   w5 <- gwindow(title="ClimMob - Create report", visible=FALSE, parent=c(0,0)) 
   group1 <- ggroup(horizontal=FALSE, spacing= 10, container=w5)
   
   ttitle <- glabel("Create report", container=group1)
   font(ttitle) <- list(size=16)
   
-  glabel(paste("Items given:\n", 
+  g1 <- glabel(paste("Items given:\n", 
                paste(itemsgivenVars, collapse=", "),"\nRanking variables:\n", 
                paste(rankingsVars, collapse=", "),
                "\nExplanatory variables:\n",
                paste(explanatoryVars, collapse=", "),
                "\nQuestion (aspect evaluated) variable:\n",
                paste(questionVar, collapse=", ")), container=group1)
+  font(g1) <- list(size=12)
   
-  glabel("Select folder to write to:", container=group1)
+  g2 <- glabel("Select folder to write to:", container=group1)
+  font(g2) <- list(size=12)
   a1 <- gfilebrowse(text="Select folder to write to:", type="selectdir", container=group1)
   svalue(a1) <- getwd()
   group2 <- ggroup(horizontal=TRUE, spacing=10, container=group1, expand=TRUE)
-  glabel("File name", container=group2)
+  g3 <- glabel("File name", container=group2)
+  font(g3) <- list(size=12)
   setfilename <- gtext(text=".doc", container=group2, width=2, height=1)
   size(setfilename) <- c(250,20)
-  addHandlerChanged(setfilename, handler=function(h,...) {.GlobalEnv$filenameReport <- svalue(h$obj)})
+  #addHandlerChanged(setfilename, handler=function(h,...) {assign(filenameReport, svalue(h$obj), env=.GlobalEnv)})
   
   group3 <- ggroup(horizontal=TRUE, spacing=10, container=group1, expand=TRUE)
   addSpring(group3)
   b <- gbutton("Create report", container=group3, handler = function(h, ...){
    
     setwd(svalue(a1))
+    n <- length(models)
     
-    rtf <- RTF(filenameReport, font.size=12)
+    #filenameReport <- get("filenameReport")
+    
+    rtf <- RTF(svalue(setfilename), font.size=12)
     addPng(rtf, system.file("external/Try3-logo.png", package="Try3"), width=3.9, height=1.5)
     addNewLine(rtf)
     addHeader(rtf, title="Try3 report")
@@ -62,7 +77,6 @@ analysisReport <- function()
     #No. of unique items
     #Table of unique items
     #Number of missing items
-    n <- length(models)
     
     addParagraph(rtf, "Worth represents the relative score of each item. For each node identified, it sums to 1.")
     if(n>1){figures <- paste("s 1 to ", n, " show", sep="", collapse="")}else{figures <- " 1 shows"}
@@ -80,7 +94,7 @@ analysisReport <- function()
       Node <- rownames(table_i)
       table_i <- round(table_i, digits=3)
       table_i <- data.frame(Node, table_i)
-      if(n>1) {question <- paste("for question", questions[i], collapse=" ")} else{question <-" "}
+      if(n>1) {question <- paste("for question", questionsAnalyzed[i], collapse=" ")} else{question <-" "}
       addParagraph(rtf, paste("Table ", nFigure, ". Worth comparison ", question,"\n", collapse="", sep=""))  
       addTable(rtf, table_i, font.size=9, row.names=FALSE, NA.string="-")
       nTable <- nTable + 1
@@ -94,7 +108,7 @@ analysisReport <- function()
     for(i in 1:n)
     {
       
-      if(n>1) {question <- paste("for question", questions[i], collapse=" ")} else{question <-" "}
+      if(n>1) {question <- paste("for question", questionsAnalyzed[i], collapse=" ")} else{question <-" "}
       addParagraph(rtf, paste("Figure ", nFigure, ". Graphical representation of model results ", question,"\n", collapse="", sep=""))  
       addPlot(rtf, plot.fun=plot, width=6, height=6, res=400, models[[i]])
       nFigure <- nFigure + 1
@@ -114,7 +128,11 @@ analysisReport <- function()
     
     gmessage("Report created.", title="Done", icon="info")
     
+    dispose(w5)
+    
   })
+  
+  font(b) <- list(size=12)
   
   visible(w5) <- TRUE
                  
