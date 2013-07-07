@@ -20,7 +20,7 @@
   return(o)
 }
 
-createInfosheets <- function(){
+.createInfosheets <- function(){
   
   if(!exists("myData", envir=.GlobalEnv)){
     

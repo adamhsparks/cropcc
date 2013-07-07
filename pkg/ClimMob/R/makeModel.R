@@ -37,71 +37,74 @@
   
 }
 
-makeModel <- function()
+.makeModel <- function()
 {
+  
+  la <- get("la")
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeModel.txt", package="ClimMob"), header=FALSE))
+  colnames(tl) <- NULL
   
   if(!exists("myData", envir=.GlobalEnv)){
     
-    gmessage("You should load the data before you can proceed.", title="Error", icon="error")
+    gmessage(tl[1,la], title="Error", icon="error")
     return()
     
   }
  
   myData <- get("myData")
   
-  w2 <- gwindow(title="ClimMob - Make model", visible=FALSE, parent=c(0,0)) #previous window for size...
+  w2 <- gwindow(title=tl[2,la], visible=FALSE, parent=c(0,0)) #previous window for size...
   size(w2) <- c(600,720)
   nb2 <- ggroup(horizontal=FALSE, container=w2, spacing=5)
   
-  ttitle <- glabel("Make model", container=nb2)
+  ttitle <- glabel(tl[3,la], container=nb2)
   font(ttitle) <- list(size=16)
   
   cn <- as.data.frame(cbind(1:ncol(myData), colnames(myData)))
-  colnames(cn) <- c("Column_number", "Variable_name")
+  colnames(cn) <- c(tl[4,la], tl[5,la])
   
-  g0 <- glabel("Select the column with the unique observer IDs:",container=nb2)
+  g0 <- glabel(tl[6,la],container=nb2)
   font(g0) <- list(size=12)
   a0 <- gcombobox(colnames(myData), container=nb2)
   
-  g1 <- glabel("Select the columns with the items given to each observer (original randomization):",container=nb2)
+  g1 <- glabel(tl[7,la],container=nb2)
   font(g1) <- list(size=12)
   aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(aa) <- c(130,80)
     
-  g2 <- glabel("Select the ranking (response) variables:",container=nb2)
+  g2 <- glabel(tl[8,la],container=nb2)
   font(g2) <- list(size=12)
   bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(bb) <- c(130,80)
   
-  g3 <- glabel("Select the explanatory variables:",container=nb2)
+  g3 <- glabel(tl[9,la],container=nb2)
   font(g3) <- list(size=12)
   cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
   size(cc) <- c(150,100)
   
-  g4 <- glabel("Select variable representing the questions (optional):", container=nb2)
+  g4 <- glabel(tl[10,la], container=nb2)
   font(g4) <- list(size=12)
-  dd <- gcombobox(c("None", colnames(myData)), container=nb2)
+  dd <- gcombobox(c(tl[11,la], colnames(myData)), container=nb2)
   addHandlerChanged(dd, function(h, ...) {
     
-    if(svalue(h$obj) != "None")
+    if(svalue(h$obj) != tl[11,la])
     {
       qv <- unique(as.character(myData[,svalue(h$obj)]))
       qv <- cbind(1:length(qv), qv)
-      colnames(qv) <- c("Number", "Question")
+      colnames(qv) <- c(tl[12,la], tl[13,la])
       blockHandler(ee)
       ee[] <- qv
       svalue(ee, index=TRUE) <- 0
       tcl(ee$widget, "column", 2, minwidth=480, width=480, stretch=TRUE) #workaround suggested by J. Verzani
       unblockHandler(ee)
-    } else{ ee[] <- "Select variable presenting the questions first (optional)."}
+    } else{ ee[] <- tl[14,la]}
         
     })
   
   group9 <- ggroup(horizontal=FALSE, container=nb2, spacing=0)
-  g5 <- glabel("Select the questions to analyze:", container=group9)
+  g5 <- glabel(tl[15,la], container=group9)
   font(g5) <- list(size=12)
-  tt <- "Select variable first"
-  ee <- gtable(tt, multiple=TRUE, container=group9)
+  ee <- gtable(tl[16,la], multiple=TRUE, container=group9)
   size(ee) <- c(130,80)
   
   nb3 <- ggroup(horizontal=TRUE, container=nb2)
@@ -154,15 +157,7 @@ makeModel <- function()
         
       }
       
-      gmessage(paste("Model(s) created. \nItems given:\n", 
-                     paste(itemsgivenVars, collapse=", "),
-                     "\nRanking variables:\n", 
-                     paste(rankingsVars, collapse=", "),
-                     "\nExplanatory variables:\n",
-                     paste(explanatoryVars, collapse=", "),
-                     "\nQuestion (aspect evaluated) variable:\n",
-                     paste(questionVar, collapse=", ")
-      ), title="Done", icon="info")
+      gmessage(tl[17,la], title="Done", icon="info")
       
       dispose(w2)
      
