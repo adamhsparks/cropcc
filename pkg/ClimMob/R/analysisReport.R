@@ -80,7 +80,7 @@
     uniqueItems <- unique(unlist(myData[itemsgivenVars]))
     addText(rtf, length(uniqueItems))
     addText(rtf, paste(" ", tl[19,la], " ", sep=""))
-    addTable(rtf, uniqueItems)
+    addTable(rtf, as.matrix(uniqueItems))
     
     lq <- length(models)
     
@@ -94,14 +94,14 @@
       
     }
     addText(rtf, tl[22,la])
-    addText(rtf, tl[23,la])
-    addText(rtf, tl[24,la])
+    addText(rtf, paste(tl[23,la], " ", sep=""))
+    #addText(rtf, missing observations)
+    addText(rtf, paste(" ", tl[24,la], sep=""))
 
     addNewLine(rtf)
     addText(rtf, tl[25,la])
     if(n>1){figures <- paste("s 1 to ", n, " show", sep="", collapse="")}else{figures <- " 1 shows"}
-    addParagraph(rtf, paste("Figure", figures, " the worth values for each node.", collapse="", sep=""))
-    
+    addText(rtf, paste(" Figure", figures, " the worth values for each node.", sep=""))    
     nFigure <- 1
     nTable <- 1
 

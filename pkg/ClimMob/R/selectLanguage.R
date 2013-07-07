@@ -27,8 +27,8 @@
     
     langn <- ifelse(svalue(lang)=="English",1,2)
     .GlobalEnv$la <- langn
-    .menuClimMob()
     dispose(w1)
+    .menuClimMob()
     
   }
   
