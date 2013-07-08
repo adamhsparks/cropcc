@@ -67,17 +67,23 @@
     
   }
   
-  g1 <- gwindow(tl[1,la], visible=FALSE)
+  g1 <- gwindow(tl[12,la], visible=FALSE)
   gg1 <- ggroup(horizontal=FALSE, container=g1)
+  ttitle <- glabel(tl[1,la], container=gg1)
+  font(ttitle) <- list(size=16)
   gg2 <- ggroup(horizontal=TRUE, container=gg1)
-  glabel(tl[2,la], container=gg2)
+  gl1 <- glabel(tl[2,la], container=gg2)
+  font(gl1) <- list(size=12)
   gf1 <- gfilebrowse(text=tl[3,la], filter= list("CSV" = list(patterns = c("*.csv"))), container=gg2)
   gb1 <- gbutton(tl[4,la], container=gg2, handler=lD1)
-  glabel(paste("   ",tl[5,la]), container=gg1)
+  gl2 <- glabel(paste("   ",tl[5,la]), container=gg1)
+  font(gl2) <- list(size=12)
   gg3 <- ggroup(horizontal=TRUE, container=gg1)
-  glabel(tl[6,la], container=gg3)
-  gt1 <- gtext(tl[7,la], container=gg3)
-  size(gt1) <- c(155,10)
+  gl3 <- glabel(tl[6,la], container=gg3)
+  font(gl3) <- list(size=12)
+  gt1 <- gcombobox(tl[7,la], selected=1, container=gg3)
+  svalue(gt1) <- tl[7,la]
+  #size(gt1) <- c(155,10)
   gb2 <- gbutton(tl[4,la], container=gg3, handler=lD2)
   visible(g1) <- TRUE
   

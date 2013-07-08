@@ -65,7 +65,7 @@
   
   g0 <- glabel(tl[6,la],container=nb2)
   font(g0) <- list(size=12)
-  a0 <- gcombobox(colnames(myData), container=nb2)
+  a0 <- gcombobox(colnames(myData), container=nb2, selected=-1)
   
   g1 <- glabel(tl[7,la],container=nb2)
   font(g1) <- list(size=12)
@@ -110,7 +110,7 @@
   nb3 <- ggroup(horizontal=TRUE, container=nb2)
   addSpring(nb3)
   
-  b <- gbutton("Create model", container=nb3, handler = function(h, ...){
+  b <- gbutton(tl[17,la], container=nb3, handler = function(h, ...){
 
     #check if complete
     check0 <- length(svalue(a0)) > 0
@@ -122,15 +122,15 @@
     if(!all(checks))
     {
       
-      incompleteMessage <- paste("Model cannot be created, due to missing inputs:", c("Unique observer IDs missing", "Items given missing.", "Response variable(s) missing.", "Explanatory variable(s) missing.")[!checks], collapse="\n", sep="\n")
+      incompleteMessage <- paste(tl[18,la], paste((tl[19:22,la])[!checks], collapse="\n", sep="\n"), collapse="\n", sep="\n")
       gmessage(incompleteMessage, title="Incomplete input", icon="info")
       
     } 
     else{
     
-      galert("Creating model... This can take some time.", parent=c(100,300), delay=4)
+      galert(tl[23,la], parent=c(100,300), delay=4)
       
-      observeridVar <- colnames(myData)[as.integer(svalue(a0))]
+      observeridVar <- svalue(a0)
       itemsgivenVars <- colnames(myData)[as.integer(svalue(aa))]
       rankingsVars <- colnames(myData)[as.integer(svalue(bb))]
       explanatoryVars <- colnames(myData)[as.integer(svalue(cc))]
@@ -157,7 +157,7 @@
         
       }
       
-      gmessage(tl[17,la], title="Done", icon="info")
+      gmessage(tl[24,la], title="Done", icon="info")
       
       dispose(w2)
      

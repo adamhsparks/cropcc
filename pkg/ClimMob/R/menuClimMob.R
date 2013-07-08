@@ -44,7 +44,11 @@
   font(b7) <- list(size=12)
   addSpring(group8)
   
+  #production version: when closing, empty workspace...
+  addHandlerDestroy(w1, function(h, ...){rm(list = ls());dispose(w1)})
   visible(w1) <- TRUE
   #focus(w1) <- TRUE
+  
+
 
 }

@@ -29,8 +29,8 @@
   
   gl6 <- glabel(tl[6,la], container=g1)
   font(gl6) <- list(size=12)
-  a <- gfilebrowse(text=tl[13,la], type="selectdir", container=g1)
-  svalue(a) <- getwd()
+  d <- gfilebrowse(text=tl[13,la], type="selectdir", container=g1)
+  svalue(d) <- getwd()
   
   group2 <- ggroup(horizontal=TRUE, spacing=5, container=g1)
   gl7 <- glabel(tl[7,la], container=group2)
@@ -41,19 +41,23 @@
   font(gl8) <- list(size=11)
   MSExcel <- gradio(items=c(tl[11,la], tl[12,la]), selected=1, horizontal=TRUE, container=group2)
     
-  b3 <- gbutton(tl[13,la], handler = function(h, ...){
+  gb3 <- gbutton(tl[13,la], handler = function(h, ...){
     
-    x <- .loadData(a)
+    x <- .loadData(svalue(a))
     
-    y <- .loadData(b)
+    y <- .loadData(svalue(b))
     
     myDataMerged <- merge(x, y, all = TRUE)
-    fn <- paste(a, "_", b, tl[14,la])
     
-    
+    aa1 <- strsplit(svalue(a), "/")[[1]]
+    bb1 <- strsplit(svalue(b), "/")[[1]]
+    aa2 <- strsplit(aa1[length(aa1)], "\\.")[[1]][1]
+    bb2 <- strsplit(bb1[length(bb1)], "\\.")[[1]][1]    
+    fn <- paste(aa2, "_", bb2, "_", tl[14,la], ".csv", sep="")
+        
     if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[12,la]){write.csv(myDataMerged, fn, row.names=F, fileEncoding = "ASCII")}
     if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[12,la]){write.csv2(myDataMerged, fn, row.names=F, fileEncoding = "ASCII")}
-    if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[13,la]){
+    if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[11,la]){
       
       fl <- file(fn)
       writeLines("sep=,", con=fl)
@@ -61,7 +65,7 @@
       suppressWarnings(write.table(myDataMerged, fn, append=TRUE, sep=",", dec=".", row.names=FALSE, col.names=TRUE, fileEncoding="ASCII"))
       
     }
-    if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[13,la]){
+    if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[11,la]){
       
       fl <- file(fn)
       writeLines("sep=;", con=fl)
@@ -74,7 +78,7 @@
     
   }, container=g1)
   
-  font(b3) <- list(size=12)
+  font(gb3) <- list(size=12)
   
   visible(w) <- TRUE
   
