@@ -97,6 +97,7 @@
     {
       
       addParagraph(rtf, tl[24,la]) #Table with questions
+      addParagraph(rtf, "\n")
       qA <- as.data.frame(as.matrix(questionsAnalyzed))
       colnames(qA) <- tl[25,la]
       addTable(rtf, qA)
@@ -115,7 +116,7 @@
       Node <- rownames(table_i)
       table_i <- round(table_i, digits=3)
       table_i <- data.frame(Node, table_i)
-      if(i>1){addParagraph(rtf, questionsAnalyzed[i])}
+      if(lq>1){addParagraph(rtf, questionsAnalyzed[i])}
       addParagraph(rtf, "\n")
       addTable(rtf, table_i, font.size=9, row.names=FALSE, NA.string="-")
       addParagraph(rtf, "\n")

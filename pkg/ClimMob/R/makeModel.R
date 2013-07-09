@@ -69,17 +69,17 @@
   
   g1 <- glabel(tl[7,la],container=nb2)
   font(g1) <- list(size=12)
-  aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
+  aa <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2, index=TRUE)
   size(aa) <- c(130,80)
     
   g2 <- glabel(tl[8,la],container=nb2)
   font(g2) <- list(size=12)
-  bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
+  bb <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2, index=TRUE)
   size(bb) <- c(130,80)
   
   g3 <- glabel(tl[9,la],container=nb2)
   font(g3) <- list(size=12)
-  cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2)
+  cc <- gtable(cn, chosencol = 1, multiple=TRUE, container=nb2, index=TRUE)
   size(cc) <- c(150,100)
   
   g4 <- glabel(tl[10,la], container=nb2)
@@ -131,11 +131,11 @@
       galert(tl[23,la], parent=c(100,300), delay=4)
       
       observeridVar <- svalue(a0)
-      itemsgivenVars <- colnames(myData)[as.integer(svalue(aa))]
-      rankingsVars <- colnames(myData)[as.integer(svalue(bb))]
-      explanatoryVars <- colnames(myData)[as.integer(svalue(cc))]
-      questionVar <- colnames(myData)[as.integer(svalue(dd))]
-      questionsAnalyzed <- svalue(ee)                                           
+      itemsgivenVars <- colnames(myData)[as.integer(as.character(svalue(aa)))]
+      rankingsVars <- colnames(myData)[as.integer(as.character(svalue(bb)))]
+      explanatoryVars <- colnames(myData)[as.integer(as.character(svalue(cc)))]
+      questionVar <- svalue(dd)
+      questionsAnalyzed <- unique(as.character(myData[,svalue(dd)]))[as.integer(as.character(svalue(ee)))]                                           
       
       assign("observeridVar", observeridVar, envir=.GlobalEnv)
       assign("itemsgivenVars", itemsgivenVars, envir=.GlobalEnv)

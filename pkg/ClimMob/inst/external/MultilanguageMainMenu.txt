@@ -1,0 +1,8 @@
+ClimMob - Main menu	ClimMob - Menú principal
+Make randomization	Hacer aleatorización
+Merge datasets	Fusionar datos
+Load  data	Cargar datos
+Create model	Crear modelo
+Generate analysis report	Generar informe de análisis
+Generate info sheets	Generar hojas informativas
+Get more info and help	Obtener más información y ayuda

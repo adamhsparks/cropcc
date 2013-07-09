@@ -83,7 +83,6 @@
   font(gl3) <- list(size=12)
   gt1 <- gcombobox(tl[7,la], selected=1, container=gg3)
   svalue(gt1) <- tl[7,la]
-  #size(gt1) <- c(155,10)
   gb2 <- gbutton(tl[4,la], container=gg3, handler=lD2)
   visible(g1) <- TRUE
   

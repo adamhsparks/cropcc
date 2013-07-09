@@ -1,0 +1,12 @@
+Load data	Carga datos
+Choose a dataset	Seleccione un juego de datos:
+BUENO	BUENO
+Load	Carga
+OR	O
+Load example data:	Carga datos de ejemplo:
+ExampleTable.csv	ExampleTable.csv
+Data could not be read.	No se puede leer el archivo.
+Error	Error
+Data loaded.	Datos cargados.
+Done	Acción completada
+ClimMob - Load data	ClimMob - Carga datos

@@ -1,0 +1,24 @@
+You should load the data before you can proceed.	Debe cargar los datos antes de poder hacer esto.
+ClimMob - Make model	ClimMob - Crear modelo
+Make model	Crear modelo
+Column_number	Numero_columna
+Variable_name	Numero_variable
+Select the column with the unique observer IDs:	Seleccione la columna de los IDs de observadores:
+Select the columns with the items given to each observer (original randomization):	Seleccione las columnas que representan los elementos entregados a cada observador (aleatorización original):
+Select the ranking (response) variables:	Variables de categorización (respuesta):
+Select the explanatory variables:	Seleccione las variables explicativas:
+Select variable representing the questions (optional):	Seleccione las variables que representan las preguntas (opcional):
+None	Ninguna
+Number	Número
+Question	Pregunta
+Select variable presenting the questions first (optional).	Seleccione primero la variable representando la preguntas (opcional).
+Select the questions to analyze:	Seleccione las preguntas a analizar:
+Select variable first:	Seleccione una variable antes:
+Create model	Crear modelo
+Model cannot be created, due to missing inputs:	Se se ha podido crear el modelo, porque faltaba información:
+Unique observer IDs missing.	
+Items given missing.	
+Response variable(s) missing.	
+Explanatory variable(s) missing.	
+Creating model... This can take some time.	
+Model created.	El modelo se ha creado.

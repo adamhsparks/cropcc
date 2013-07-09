@@ -16,33 +16,29 @@
   font(gl2) <- list(size=12)
   setid <- gtext(container=group6, height=1, width=2)
   size(setid) <- c(30,20)
-  #addHandlerChanged(setid, handler=function(h,...) {assign("identification", svalue(h$obj))} )
   
   group3 <- ggroup(horizontal=TRUE, spacing=5, container=group1, expand=TRUE)
   gl3 <- glabel(tl[4,la], container=group3)
   font(gl3) <- list(size=12)
   setnobservers <- gtext(container=group3, width=2, height=1)
   size(setnobservers) <- c(50,20)
-  #addHandlerChanged(setnobservers, handler=function(h,...) {assign("nobservers", as.numeric(svalue(h$obj)))} )
   
   group4 <- ggroup(horizontal=TRUE, spacing=5, container=group1, expand=TRUE)
   gl4 <-glabel(tl[5,la], container=group4)
   font(gl4) <- list(size=12)
   setnitems <- gtext(container=group4, width=2, height=1)
   size(setnitems) <- c(30,20)
-  #addHandlerChanged(setnitems, handler=function(h,...) {assign("nitems", as.numeric(svalue(h$obj)), env=)} )
   
   group5 <- ggroup(horizontal=TRUE, spacing=5, container=group1)
   gl5 <- glabel(tl[6,la], container=group5)
   font(gl5) <- list(size=12)
   setitemnames <- gtext(container=group5, width=10, height=20)
   size(setitemnames) <- c(100,200)
-  #addHandlerChanged(setitemnames, handler=function(h,...) {assign("itemnames", unlist(strsplit(svalue(h$obj), "\n")))})
   addHandlerRightclick(setitemnames, handler=function(h, ...) svalue(setitemnames) <- readLines(file("clipboard")))
   
   gl6 <- glabel(tl[7,la], container=group1)
   font(gl6) <- list(size=12)
-  a <- gfilebrowse(text="Select folder to write to:", type="selectdir", container=group1)
+  a <- gfilebrowse(text=tl[7,la], type="selectdir", container=group1)
   svalue(a) <- getwd()
 
   group2 <- ggroup(horizontal=TRUE, spacing=5, container=group1)
@@ -83,7 +79,7 @@
       #Input
       varieties <- 1:nvar
       codes <- matrix(nrow=sum(nobservers), ncol=nitems+1)
-      colnames(codes) <- c("Observer", paste("Item", 1:nitems, sep=""))
+      colnames(codes) <- c(tl[18,la], paste(tl[19,la], 1:nitems, sep=""))
       codes[,1] <- paste(identification, 1:sum(nobservers), sep="")
       
       varcombinations <- t((combn(varieties, 3)))
@@ -120,7 +116,7 @@
                 
       }
             
-      gm1 <- gmessage(paste(tl[17,la], getwd(), fn, sep=""), title="Done", icon="info")
+      gm1 <- gmessage(paste(tl[17,la], getwd(), fn, sep=""), title=tl[20,la], icon="info")
       font(gm1) <- list(size=12)
       
     }, container=group3)
