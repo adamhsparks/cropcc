@@ -36,6 +36,10 @@
     
   }
   
+  la <- get("la")
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeInfoSheets.txt", package="ClimMob"), header=FALSE))
+  colnames(tl) <- NULL
+   
   myData <- get("myData")
   observeridVar <- get("observeridVar")
   itemsgivenVars <- get("itemsgivenVars")
@@ -45,85 +49,85 @@
   questionsAnalyzed <- get("questionsAnalyzed")
   models <- get("models")
   
-  w6 <- gwindow(title="ClimMob - Create info sheets", visible=FALSE, parent=c(1,1)) 
+  w6 <- gwindow(title=tl[1,la], visible=FALSE, parent=c(1,1)) 
   size(w6) <- c(500,700)
   
   group2 <- ggroup(horizontal=FALSE, spacing=10, container=w6, expand=TRUE, use.scrollwindow = TRUE)
  
-  ttitle <- glabel("Create info sheets", container=group2)
+  ttitle <- glabel(tl[2,la], container=group2)
   font(ttitle) <- list(size=16)
 
-  infoSheetTitle <- gexpandgroup("Info sheet title", container=group2, horizontal=FALSE)
+  infoSheetTitle <- gexpandgroup(tl[3,la], container=group2, horizontal=FALSE)
   font(infoSheetTitle) <- list(size=12)
-  glabel("Type the title:", container=infoSheetTitle)
-  infoSheetTitletext <- gtext(text="Thank you for participating!", container=infoSheetTitle, width=2, height=1)
+  glabel(tl[4,la], container=infoSheetTitle)
+  infoSheetTitletext <- gtext(text=tl[5,la], container=infoSheetTitle, width=2, height=1)
   size(infoSheetTitletext) <- c(250,40)
   visible(infoSheetTitle) <- FALSE
   
-  infoSheetIntro <- gexpandgroup("General intro text", container=group2, horizontal=FALSE)
+  infoSheetIntro <- gexpandgroup(tl[6,la], container=group2, horizontal=FALSE)
   font(infoSheetIntro) <- list(size=12)
-  glabel("Type the text:", container=infoSheetIntro)
-  infoSheetIntrotext <- gtext(text="These are the results of the experiment you contributed to.", container=infoSheetIntro, width=2, height=1)
+  glabel(tl[9,la], container=infoSheetIntro)
+  infoSheetIntrotext <- gtext(text=tl[7,la], container=infoSheetIntro, width=2, height=1)
   size(infoSheetIntrotext) <- c(250,40)
   visible(infoSheetIntro) <- FALSE
   
-  infoSheetNames <- gexpandgroup("Participant name and place", container=group2, horizontal=FALSE, expand=TRUE)
+  infoSheetNames <- gexpandgroup(tl[8,la], container=group2, horizontal=FALSE, expand=TRUE)
   
-  glabel("Select the column in your data for the first name element (Madam/Sir):", container=infoSheetNames)
+  glabel(tl[10,la], container=infoSheetNames)
   group6 <- ggroup(horizontal=TRUE, container= infoSheetNames)
-  infoSheetNames1 <- gcombobox(c("None", colnames(myData)), selected = 1, editable = FALSE, container=group6)
+  infoSheetNames1 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group6)
   addSpring(group6)
   
-  glabel("Select the column in your data for the second name element (given name):", container=infoSheetNames)
+  glabel(tl[12,la], container=infoSheetNames)
   group4 <- ggroup(horizontal=TRUE, container= infoSheetNames)
-  infoSheetNames2 <- gcombobox(c("None", colnames(myData)), selected = 1, editable = FALSE, container=group4)
+  infoSheetNames2 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group4)
   addSpring(group4)
   
-  glabel("Select the column in your data for the third name element (family name):", container=infoSheetNames)
+  glabel(tl[13,la], container=infoSheetNames)
   group5 <- ggroup(horizontal=TRUE, container= infoSheetNames)
-  infoSheetNames3 <- gcombobox(c("None", colnames(myData)), selected = 1, editable = FALSE, container=group5)
+  infoSheetNames3 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group5)
   addSpring(group5)
   
-  glabel("Select the column in your data for the first place element (village):", container=infoSheetNames)
+  glabel(tl[14,la], container=infoSheetNames)
   group7 <- ggroup(horizontal=TRUE, container= infoSheetNames)
-  infoSheetPlace1 <- gcombobox(c("None", colnames(myData)), selected = 1, editable = FALSE, container=group7)
+  infoSheetPlace1 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group7)
   addSpring(group7)
   
-  glabel("Select the column in your data for the second place element (district):", container=infoSheetNames)
+  glabel(tl[15,la], container=infoSheetNames)
   group8 <- ggroup(horizontal=TRUE, container= infoSheetNames)
-  infoSheetPlace2 <- gcombobox(c("None", colnames(myData)), selected = 1, editable = FALSE, container=group8)
+  infoSheetPlace2 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group8)
   addSpring(group8)
   
   visible(infoSheetNames) <- FALSE
   
-  infoSheetItemnames <- gexpandgroup("Item names", container=group2, horizontal=FALSE, expand=TRUE)
+  infoSheetItemnames <- gexpandgroup(tl[16,la], container=group2, horizontal=FALSE, expand=TRUE)
   font(infoSheetItemnames) <- list(size=12)
-  glabel("Type the intro text for this element:", container=infoSheetItemnames)
-  infoSheetItemnamesIntrotext <- gtext("You received the following items to rank:", container=infoSheetItemnames)
+  glabel(tl[17,la], container=infoSheetItemnames)
+  infoSheetItemnamesIntrotext <- gtext(tl[18,la], container=infoSheetItemnames)
   size(infoSheetItemnamesIntrotext) <- c(250,40)
   visible(infoSheetItemnames) <- FALSE
   
-  infoSheetRanking <- gexpandgroup("Ranking", container=group2, horizontal=FALSE, expand=TRUE)
+  infoSheetRanking <- gexpandgroup(tl[19,la], container=group2, horizontal=FALSE, expand=TRUE)
   font(infoSheetRanking) <- list(size=12)
-  glabel("Type the intro text for this element:", container=infoSheetRanking)
-  infoSheetRankingIntrotext <- gtext("You ranked these items in the following order:", container=infoSheetRanking)
+  glabel(tl[20,la], container=infoSheetRanking)
+  infoSheetRankingIntrotext <- gtext(tl[21], container=infoSheetRanking)
   size(infoSheetRankingIntrotext) <- c(250,40)
   visible(infoSheetRanking) <- FALSE
   
-  infoSheetPredictedRanking <- gexpandgroup("Predicted ranking", container=group2, horizontal=FALSE, expand=TRUE)
+  infoSheetPredictedRanking <- gexpandgroup(tl[22,la], container=group2, horizontal=FALSE, expand=TRUE)
   font(infoSheetPredictedRanking) <- list(size=12)
-  glabel("Type the intro text for this element:", container=infoSheetPredictedRanking)
-  infoSheetPredictedRankingIntrotext <- gtext("The group of participants similar to you ranked these same items in the following order:", container=infoSheetPredictedRanking)
+  glabel(tl[23,la], container=infoSheetPredictedRanking)
+  infoSheetPredictedRankingIntrotext <- gtext(tl[24,la], container=infoSheetPredictedRanking)
   size(infoSheetPredictedRankingIntrotext) <- c(250,40)
   visible(infoSheetPredictedRanking) <- FALSE
   
-  infoSheetTop <- gexpandgroup("Top items", container=group2, horizontal=FALSE, expand=TRUE)
+  infoSheetTop <- gexpandgroup(tl[25,la], container=group2, horizontal=FALSE, expand=TRUE)
   font(infoSheetTop) <- list(size=12)
-  glabel("Type the intro text for this element:", container=infoSheetTop)
-  infoSheetTopIntrotext <- gtext("The group of participants similar to you ranked as the best out of all items:", container=infoSheetTop)
+  glabel(tl[26,la], container=infoSheetTop)
+  infoSheetTopIntrotext <- gtext(tl[27,la], container=infoSheetTop)
   size(infoSheetTopIntrotext) <- c(250,40)
 
-  glabel("Number of highest ranking items to be shown:", container=infoSheetTop)
+  glabel(tl[28,la], container=infoSheetTop)
   group3 <- ggroup(horizontal=TRUE, container= infoSheetTop)
   infoSheetTopX <- gcombobox(1:10, selected = 3, editable = FALSE, container=group3)
   addSpring(group3)
@@ -131,21 +135,21 @@
 
   visible(infoSheetTop) <- FALSE
   
-  infoSheetConclusion <- gexpandgroup("Concluding message", container=group2, horizontal=FALSE)
+  infoSheetConclusion <- gexpandgroup(tl[29,la], container=group2, horizontal=FALSE)
   font(infoSheetConclusion) <- list(size=12)
-  glabel("Type the title:", container=infoSheetConclusion)
-  infoSheetConclusiontext <- gtext(text="For more information, contact us at...", container=infoSheetConclusion, width=2, height=1)
+  glabel(tl[30,la], container=infoSheetConclusion)
+  infoSheetConclusiontext <- gtext(text=tl[31,la], container=infoSheetConclusion, width=2, height=1)
   size(infoSheetConclusiontext) <- c(250,40)
   visible(infoSheetConclusion) <- FALSE
     
-  gl1 <- glabel("File name:", container=group2)
+  gl1 <- glabel(tl[32,la], container=group2)
   font(gl1) <- list(size=12)
   setfilenameIS <- gtext(text=".doc", container=group2, width=2, height=1)
   size(setfilenameIS) <- c(250,20)
     
-  gl2 <- glabel("Select folder to write to:", container=group2)
+  gl2 <- glabel(tl[33,la], container=group2)
   font(gl2) <- list(size=12)
-  a <- gfilebrowse(text="Select folder to write to:", type="selectdir", container=group2)
+  a <- gfilebrowse(text=tl[33,la], type="selectdir", container=group2)
   svalue(a) <- getwd()
   group3 <- ggroup(horizontal=TRUE, spacing=10, container=group2, expand=TRUE)
   addSpring(group3)
@@ -170,9 +174,9 @@
   addHandlerChanged(infoSheetTop, handler=function(h, ...){assign("isTop", flip(ne$isTop), envir=ne)})
   addHandlerChanged(infoSheetConclusion, handler=function(h, ...){assign("isConclusion", flip(ne$isConclusion), envir=ne)})
  
-  b <- gbutton("Create info sheets", handler = function(h, ...){
+  b <- gbutton(tl[34,la], handler = function(h, ...){
     
-    pbar <- gprogressbar(value=10, container=gwindow(title="Writing..."))
+    pbar <- gprogressbar(value=10, container=gwindow(title=tl[35,la]))
     
     if(!is.na(questionVar)){myData <- myData[myData[,questionVar] %in% questionsAnalyzed,]}
     
@@ -182,8 +186,8 @@
     setFontSize(rtf, font.size=14)
     addPng(rtf, system.file("external/ClimMob-logo.png", package="ClimMob"), width=3.9, height=1.9)
     addParagraph(rtf)
-    addHeader(rtf, title="ClimMob info sheets")
-    addParagraph(rtf, paste("Author:", Sys.info()[["user"]]))
+    addHeader(rtf, title=tl[36,la])
+    addParagraph(rtf, paste(tl[37,la], Sys.info()[["user"]]))
     addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
     
@@ -201,7 +205,7 @@
       addPageBreak(rtf)
       
       itemTable <- cbind(itemsgivenVars, as.matrix(t(myData[i, itemsgivenVars])))
-      colnames(itemTable) <- c("Item", "Name")
+      colnames(itemTable) <- c(tl[38,la], tl[39,la])
           
       if(ne$isTitle){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
      
@@ -209,17 +213,17 @@
       
       if(ne$isNames){
       
-        if(svalue(infoSheetNames1) != "None"){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
+        if(svalue(infoSheetNames1) != tl[11,la]){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
   
-        if(svalue(infoSheetNames2) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
+        if(svalue(infoSheetNames2) != tl[11,la]){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
         
-        if(svalue(infoSheetNames3) != "None"){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
+        if(svalue(infoSheetNames3) != tl[11,la]){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
         
         addParagraph(rtf, "\n")
         
-        if(svalue(infoSheetPlace1) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
+        if(svalue(infoSheetPlace1) != tl[11,la]){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
         
-        if(svalue(infoSheetPlace2) != "None"){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
+        if(svalue(infoSheetPlace2) != tl[11,la]){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
       
       } 
       addParagraph(rtf)
@@ -313,7 +317,7 @@
 
     done(rtf)
     dispose(pbar)
-    gmessage(paste("Info sheets written to ", getwd(), sep=""), title="Done", icon="info")
+    gmessage(paste(tl[40,la], getwd(), sep=""), title=tl[41,la], icon="info")
     dispose(w6)
     
   }, container=group3)
