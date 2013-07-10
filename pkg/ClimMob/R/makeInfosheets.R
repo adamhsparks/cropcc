@@ -176,7 +176,9 @@
  
   b <- gbutton(tl[34,la], handler = function(h, ...){
     
-    pbar <- gprogressbar(value=10, container=gwindow(title=tl[35,la]))
+    gw7 <- gwindow(tl[35,la])
+    pbar <- gprogressbar(value=10, container=gw7)
+    size(gw7) <- c(200,20)
     
     if(!is.na(questionVar)){myData <- myData[myData[,questionVar] %in% questionsAnalyzed,]}
     

@@ -1,41 +1,41 @@
-ClimMob - Create info sheets	ClimMob - Create info sheets
-Create info sheets	Create info sheets
-Info sheet title	Info sheet title
-Type the title:	Type the title:
-Thank you for participating!	Thank you for participating!
-General intro text	General intro text
-These are the results of the experiment you contributed to.	These are the results of the experiment you contributed to.
-Participant name and place	Participant name and place
-Type the text:	Type the text:
-Select the column in your data for the first name element (Madam/Sir):	Select the column in your data for the first name element (Madam/Sir):
-None	None
-Select the column in your data for the second name element (given name):	Select the column in your data for the second name element (given name):
-Select the column in your data for the third name element (family name):	Select the column in your data for the third name element (family name):
-Select the column in your data for the first place element (village):	Select the column in your data for the first place element (village):
-Select the column in your data for the second place element (district):	Select the column in your data for the second place element (district):
-Item names	Item names
-Type the intro text for this element:	Type the intro text for this element:
-You received the following items to rank:	You received the following items to rank:
-Ranking	Ranking
-Type the intro text for this element:	Type the intro text for this element:
-You ranked these items in the following order:	You ranked these items in the following order:
-Predicted ranking	Predicted ranking
-Type the intro text for this element:	Type the intro text for this element:
-The group of participants similar to you ranked these same items in the following order:	The group of participants similar to you ranked these same items in the following order:
-Top items	Top items
-Type the intro text for this element:	Type the intro text for this element:
-The group of participants similar to you ranked as the best out of all items:	The group of participants similar to you ranked as the best out of all items:
-Number of highest ranking items to be shown:	Number of highest ranking items to be shown:
-Concluding message	Concluding message
-Type the title:	Type the title:
-For more information, contact us at…	For more information, contact us at…
-File name:	File name:
-Select folder to write to:	Select folder to write to:
-Create info sheets	Create info sheets
-Writing...	Writing...
-ClimMob info sheets	ClimMob info sheets
-Author:	Author:
-Item	Item
-Name	Name
-Info sheets written to 	Info sheets written to 
-Done	Done
+ClimMob - Create info sheets	ClimMob - Crear hojas informativas
+Create info sheets	Crear hojas informativas
+Info sheet title	Título de la hoja informativa
+Type the title:	Escribe el título:
+Thank you for participating!	¡Gracias por su participación!
+General intro text	Introducción general
+These are the results of the experiment you contributed to.	A continuación se presentan los resultados de la investigación en que usted ha participado.
+Participant name and place	Nombre y domicilio del participante
+Type the text:	Escribe el texto:
+Title (Mr/Mrs/Etc.):	Título (Señora/Señor):
+None	Ninguna
+Given name:	Nombre(s):
+Family name:	Apellido(s):
+Village:	Aldea:
+Municipality:	Municipio:
+Item names	Nombres de los objetos
+Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+You received the following items to rank:	Uste recibió los siguientes objetos para clasificar:
+Ranking	Clasificación
+Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+You ranked these items in the following order:	Usted clasificó estos objetos en el orden que sigue:
+Predicted ranking	Clasificación predicha
+Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+The group of participants similar to you ranked these same items in the following order:	El grupo de participantes similares a usted clasificaron estos objetos en este orden:
+Top items	Objetos mejor valorados 
+Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+The group of participants similar to you ranked as the best out of all items:	El grupo de participantes similares a usted clasificaron estos objetos como los mejores:
+Number of highest ranking items to be shown:	Número de los objetos mejor valorados que se enseña:
+Concluding message	Comentario final
+Type the text:	Escribe el texto:
+For more information, contact us at…	Para más información, nos puede contactar…
+File name:	Nombre de archivo:
+Select folder to write to:	Seleccione una carpeta para grabar:
+Create info sheets	Crear hojas informativas
+Writing...	Escribiendo…
+ClimMob info sheets	ClimMob - Hojas informativas
+Author:	Autor:
+Item	Objeto
+Name	Nombre
+Info sheets written to 	Hojas informativas grabadas en
+Done	Acción completada

@@ -16,9 +16,9 @@ Select the questions to analyze:	Seleccione las preguntas a analizar:
 Select variable first:	Seleccione una variable antes:
 Create model	Crear modelo
 Model cannot be created, due to missing inputs:	Se se ha podido crear el modelo, porque faltaba información:
-Unique observer IDs missing.	
-Items given missing.	
-Response variable(s) missing.	
-Explanatory variable(s) missing.	
-Creating model... This can take some time.	
+Unique observer IDs missing.	Faltan los IDs de los observadores.
+Items given missing.	Faltan los objetos.
+Response variable(s) missing.	Faltan las variables de respuesta.
+Explanatory variable(s) missing.	Faltan las variables explicativas
+Creating model... This can take some time.	Creando el modelo… Puede tomar algo de tiempo.
 Model created.	El modelo se ha creado.
