@@ -58,14 +58,14 @@
   font(ttitle) <- list(size=16)
 
   infoSheetTitle <- gexpandgroup(tl[3,la], container=group2, horizontal=FALSE)
-  font(infoSheetTitle) <- list(size=12)
+  font(infoSheetTitle) <- 16
   glabel(tl[4,la], container=infoSheetTitle)
   infoSheetTitletext <- gtext(text=tl[5,la], container=infoSheetTitle, width=2, height=1)
   size(infoSheetTitletext) <- c(250,40)
   visible(infoSheetTitle) <- FALSE
   
   infoSheetIntro <- gexpandgroup(tl[6,la], container=group2, horizontal=FALSE)
-  font(infoSheetIntro) <- list(size=12)
+  font(infoSheetIntro) <- 12
   glabel(tl[9,la], container=infoSheetIntro)
   infoSheetIntrotext <- gtext(text=tl[7,la], container=infoSheetIntro, width=2, height=1)
   size(infoSheetIntrotext) <- c(250,40)

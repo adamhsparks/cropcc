@@ -99,7 +99,7 @@
       
       if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[13,la]){write.csv(codes, fn, row.names=F, fileEncoding = "ASCII")}
       if(svalue(decsep) == tl[10,la] & svalue(MSExcel) == tl[13,la]){write.csv2(codes, fn, row.names=F, fileEncoding = "ASCII")}
-      if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[14,la]){
+      if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[12,la]){
         
         fl <- file(fn)
         writeLines("sep=,", con=fl)
@@ -107,7 +107,7 @@
         suppressWarnings(write.table(codes, fn, append=TRUE, sep=",", dec=".", row.names=FALSE, col.names=TRUE, fileEncoding="ASCII"))
                
       }
-      if(svalue(decsep) == tl[10,la] & svalue(MSExcel) == tl[14,la]){
+      if(svalue(decsep) == tl[10,la] & svalue(MSExcel) == tl[12,la]){
         
         fl <- file(fn)
         writeLines("sep=;", con=fl)
@@ -116,7 +116,7 @@
                 
       }
             
-      gm1 <- gmessage(paste(tl[17,la], getwd(), fn, sep=""), title=tl[20,la], icon="info")
+      gm1 <- gmessage(paste(tl[17,la], getwd(), "/", fn, sep=""), title=tl[20,la], icon="info")
       font(gm1) <- list(size=12)
       
     }, container=group3)
