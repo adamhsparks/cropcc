@@ -251,7 +251,7 @@
         rankingTable <- myData[iall,rankingsVars]
         rankingTable <- t(apply(rankingTable, 1, function(x) return(itemTable[order(x),2])))
         colnames(rankingTable) <- rankingsVars
-        if(length(iall)>1 & !is.na(questionVar)) rankingTable <- cbind(myData[iall,questionVar], rankingTable)
+        if(length(iall)>1 & !is.na(questionVar)) rankingTable <- cbind(as.character(myData[iall,questionVar]), rankingTable)
         colnames(rankingTable)[1] <- questionVar
         addTable(rtf, rankingTable)
         addParagraph(rtf, "\n")

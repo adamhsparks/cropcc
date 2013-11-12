@@ -53,16 +53,16 @@
     bb1 <- strsplit(svalue(b), "/")[[1]]
     aa2 <- strsplit(aa1[length(aa1)], "\\.")[[1]][1]
     bb2 <- strsplit(bb1[length(bb1)], "\\.")[[1]][1]    
-    fn <- paste(aa2, "_", bb2, "_", tl[14,la], ".csv", sep="")
+    fn <- paste(svalue(d), "/", aa2, "_", bb2, "_", tl[14,la], ".csv", sep="")
         
-    if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[12,la]){write.csv(myDataMerged, fn, row.names=F, fileEncoding = "ASCII")}
-    if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[12,la]){write.csv2(myDataMerged, fn, row.names=F, fileEncoding = "ASCII")}
+    if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[12,la]){write.csv(myDataMerged, fn, row.names=F)}
+    if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[12,la]){write.csv2(myDataMerged, fn, row.names=F)}
     if(svalue(decsep) == tl[8,la] & svalue(MSExcel) == tl[11,la]){
       
       fl <- file(fn)
       writeLines("sep=,", con=fl)
       close(fl)
-      suppressWarnings(write.table(myDataMerged, fn, append=TRUE, sep=",", dec=".", row.names=FALSE, col.names=TRUE, fileEncoding="ASCII"))
+      suppressWarnings(write.table(myDataMerged, fn, append=TRUE, sep=",", dec=".", row.names=FALSE, col.names=TRUE))
       
     }
     if(svalue(decsep) == tl[9,la] & svalue(MSExcel) == tl[11,la]){
@@ -70,9 +70,20 @@
       fl <- file(fn)
       writeLines("sep=;", con=fl)
       close(fl)
-      suppressWarnings(write.table(myDataMerged, fn, append=TRUE, sep=";", dec=",", row.names=FALSE, col.names=TRUE, fileEncoding="ASCII"))
+      suppressWarnings(write.table(myDataMerged, fn, append=TRUE, sep=";", dec=",", row.names=FALSE, col.names=TRUE))
       
     }
+    
+    if(exists("myDataMerged")) {
+      
+      gmessage(paste(tl[16,la], fn), title=tl[15,la], icon="info")
+      
+    } else {
+      
+      gmessage(tl[17,la], title=tl[18,la], icon="error")
+      
+    }
+    
     
     dispose(w)
     

@@ -32,7 +32,7 @@
   
   myData$pc <- pc
   
-  v_tree <- bttree(formula(paste("pc", "~", paste(explanatory, collapse="+"))), data = myData, minsplit = 15, type="logit")
+  v_tree <- bttree(formula(paste("pc", "~", paste(explanatory, collapse="+"))), data = myData, minsplit = 6, type="logit")
   return(v_tree)
   
 }
