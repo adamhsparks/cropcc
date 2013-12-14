@@ -2,7 +2,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeRandomization.txt", package="ClimMob"), header=FALSE))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeRandomization.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
   colnames(tl) <- NULL
   
   w1 <- gwindow(title=tl[1,la], visible=FALSE, parent=c(0,0)) 

@@ -2,7 +2,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageReadData.txt", package="ClimMob"), header=FALSE))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageReadData.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
   colnames(tl) <- NULL
   f1 <- file(myDat)
   rL <- readLines(f1, n=3)

@@ -2,7 +2,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageMainMenu.txt", package="ClimMob"), header=FALSE))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMainMenu.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
   colnames(tl) <- NULL
   
   w1 <- gwindow(title=tl[1,la], visible=FALSE, width=300, height=500, parent=c(0,0)) 

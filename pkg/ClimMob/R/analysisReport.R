@@ -2,7 +2,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageAnalysisReport.txt", package="ClimMob"), header=FALSE))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageAnalysisReport.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
   colnames(tl) <- NULL
     
   if(!exists("myData", envir=.GlobalEnv)){

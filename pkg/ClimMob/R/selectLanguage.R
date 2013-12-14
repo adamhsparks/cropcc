@@ -1,7 +1,7 @@
 .selectLanguage <- function()
 {
   
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageSelectLanguage.txt", package="ClimMob"), header=FALSE))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageSelectLanguage.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
   colnames(tl) <- NULL
     
   w1 <- gwindow(visible=FALSE, title=paste(tl[1,]))
