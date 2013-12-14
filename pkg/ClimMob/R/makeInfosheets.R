@@ -60,21 +60,21 @@
   font(ttitle) <- list(size=16)
 
   infoSheetTitle <- gexpandgroup(tl[3,la], container=group2, horizontal=FALSE)
-  font(infoSheetTitle) <- 16
+  font(infoSheetTitle) <- list(size=12)
   glabel(tl[4,la], container=infoSheetTitle)
   infoSheetTitletext <- gtext(text=tl[5,la], container=infoSheetTitle, width=2, height=1)
   size(infoSheetTitletext) <- c(250,40)
   visible(infoSheetTitle) <- FALSE
   
   infoSheetIntro <- gexpandgroup(tl[6,la], container=group2, horizontal=FALSE)
-  font(infoSheetIntro) <- 12
+  font(infoSheetIntro) <- list(size=12)
   glabel(tl[9,la], container=infoSheetIntro)
   infoSheetIntrotext <- gtext(text=tl[7,la], container=infoSheetIntro, width=2, height=1)
   size(infoSheetIntrotext) <- c(250,40)
   visible(infoSheetIntro) <- FALSE
   
   infoSheetNames <- gexpandgroup(tl[8,la], container=group2, horizontal=FALSE, expand=TRUE)
-  
+  font(infoSheetNames) <- list(size=12)
   glabel(tl[10,la], container=infoSheetNames)
   group6 <- ggroup(horizontal=TRUE, container= infoSheetNames)
   infoSheetNames1 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group6)
