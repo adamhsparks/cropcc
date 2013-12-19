@@ -2,9 +2,8 @@ Package: InfoCropR
 Type: Package
 Title: simulate crop growth
 Version: 1.0
-Date: 2012-07-02
-Suggests: raster, stats
-Requires: deSolve
+Date: 2013-07-02
+Depends: deSolve, methods
 Author: Francisco Alvarez, Jacob van Etten and Pramod K. Aggarwal, based on code and documentation by P.K Aggarwal, N. Kalra, S. Chander and H. Pathak
 Maintainer: Jacob van Etten <jacobvanetten@yahoo.com>
 Description: modular crop simulation model, based on InfoCrop
