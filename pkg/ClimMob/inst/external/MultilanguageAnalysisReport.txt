@@ -1,4 +1,4 @@
-You should load the data and create a model first.	Debe cargar datos y crear un model antes.
+You should load the data and create a model first.	Debe cargar datos y crear un modelo antes.
 You should create a model first.	Debe crear un modelo antes.
 ClimMob - Create report	ClimMob - Crear informe
 Create report	Crear informe

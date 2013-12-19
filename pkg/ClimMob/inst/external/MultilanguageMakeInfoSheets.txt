@@ -39,3 +39,5 @@ Item	Objeto
 Name	Nombre
 Info sheets written to 	Hojas informativas grabadas en
 Done	Acción completada
+You should load the data and create a model first.	Debe cargar datos y crear un modelo antes.
+You should create a model first.	Debe crear un modelo antes.

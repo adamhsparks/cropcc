@@ -22,25 +22,24 @@
 
 .createInfosheets <- function(){
   
-  #error messages should also become multi-language
+  
+  la <- get("la")
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeInfoSheets.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
+  colnames(tl) <- NULL
   
   if(!exists("myData", envir=.GlobalEnv)){
     
-    gmessage("You should load the data and create a model first.", title="Error", icon="error")
+    gmessage(tl[42,la], title="Error", icon="error")
     return()
     
   }
   
   if(!exists("rankingsVars", envir=.GlobalEnv)){
     
-    gmessage("You should create a model first.", title="Error", icon="error")
+    gmessage(tl[43,la], title="Error", icon="error")
     return()
     
   }
-  
-  la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeInfoSheets.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
-  colnames(tl) <- NULL
    
   myData <- get("myData")
   observeridVar <- get("observeridVar")
