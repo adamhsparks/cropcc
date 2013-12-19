@@ -5,7 +5,7 @@ setClass(Class="VarietyClass",
  
            DAYSEN = "numeric",
            DLSTG1 = "numeric", 
-           DLSTG1 = "numeric",
+           DLSTG2 = "numeric",
            GNOCF  = "numeric",
            KDFMAX = "numeric",
            NMAXGR = "numeric",
