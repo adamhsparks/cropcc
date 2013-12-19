@@ -1,28 +1,29 @@
 #SWBsv
-soilwaterBalance <- function(i, climatechange, control, crop, cropsv, management, soil,
-                             soilprop, SUBPET, SWBsv, tabFunction, weather)
+soilwaterBalance <- function(DINDEXs, control, cropsv, 
+                             EDTSsv, management, soil, soilD,
+                             srSUBPET, tabFunction, weather, SWBsv)
 {
 
 #====================================================================================
 #============================================================ READ OBJECTS DATA ===== : {VarsQuantity/VarsType}   
-# ------------------------------------- Climate data : {Some/Unique}
-  CCRAIN <- climate@CCRAIN
-  DSTART <- climate@DSTART
-  RAINF  <- climate@RAINF
-  RDAS   <- climate@RDAS
 
-# ------------------------------------- Control data : {All/Unique}
-  for(j in 1:length(slotNames(control))) assign(slotNames(control)[j], slot(control, slotNames(control)[j]))
+# ------------------------------------- Control Data : {Some/Unique, Last}
+  INPOND <- control@INPOND
+  IRRSEN <- control@IRRSEN
+  TKL3   <- control@TKL3[length(control@TKL3)]
+  SWXWAT <- control@SWXWAT[length(control@SWXWAT)]
+  WL1I   <- control@WL1I[length(control@WL1I)]
+  WL2I   <- control@WL2I[length(control@WL2I)]
+  WL3I   <- control@WL3I[length(control@WL3I)]
   
-# ------------------------------------- Crop State Variable data : {Some/Last}
+# ------------------------------------- Crop State Variable Data : {Some/Last}
   LAI    <- cropsv@LAI[length(cropsv@LAI)]
+
+  ETDAY  <- cropsv@ETDAY[length(cropsv@ETDAY)]
 
   EVSW1  <- cropsv@EVSW1[length(cropsv@EVSW1)]
   EVSW2  <- cropsv@EVSW2[length(cropsv@EVSW2)]
   EVSW3  <- cropsv@EVSW3[length(cropsv@EVSW3)]
-
-  FLDLOS <- cropsv@FLDLOS[length(cropsv@FLDLOS)]
-  TRRM   <- cropsv@TRRM[length(cropsv@TRRM)]
 
   TRWL1  <- cropsv@TRWL1[length(cropsv@TRWL1)]
   TRWL2  <- cropsv@TRWL2[length(cropsv@TRWL2)]
@@ -30,54 +31,22 @@ soilwaterBalance <- function(i, climatechange, control, crop, cropsv, management
 
   WEEDCV <- cropsv@WEEDCV[length(cropsv@WEEDCV)]
 
-  WSE1   <- cropsv@WSE1[length(cropsv@WSE1)]
-  WSE2   <- cropsv@WSE2[length(cropsv@WSE2)]
-  WSE3   <- cropsv@WSE3[length(cropsv@WSE3)]
-
-  ZRT1   <- cropsv@ZRT1[length(cropsv@ZRT1)]
-  ZRT2   <- cropsv@ZRT2[length(cropsv@ZRT2)]
-  ZRT3   <- cropsv@ZRT3[length(cropsv@ZRT3)]
-
-  EZRT   <- cropsv@EZRT[length(cropsv@EZRT)]
+#-------------------------------------- EDTSsv Data : {Some/Last}
+  DSTART <- EDTSsv@DSTART[length(EDTSsv@DSTART)]
+  RAINF  <- EDTSsv@RAINF[length(EDTSsv@RAINF)]
   
-# ------------------------------------- Management data : {Some/Unique}
-  DAS    <- management@DAS
-  BUNDHT <- management@BUNDHT
-  PUDLE  <- management@PUDLE
-  IRSWCH <- management@IRSWCH
-  SEEDAG <- management@SEEDAG
-  SWCWAT <- management@SWCWAT
-  NEWAGE <- management@NEWAGE
+# ------------------------------------- Management Data : {Some/Unique}
+  BUNDHT <- management@BUNDHT[length(management@BUNDHT)]
+  DAS    <- management@DAS[length(management@DAS)]
+  IRSWCH <- management@IRSWCH[length(management@IRSWCH)]
   
-# ------------------------------------- Soil data : {Some/Last}
+# ------------------------------------- soil Data : {Some/Last}
   KSAT1  <- soil@KSAT1[length(soil@KSAT1)]
-  KSAT2  <- soil@KSAT2[length(soil@KSAT2)]
   KSAT3  <- soil@KSAT3[length(soil@KSAT3)]
-
-  PDCF1  <- soil@PDCF1[length(soil@KSAT1)]
-  PDCF2  <- soil@PDCF2[length(soil@KSAT1)]
-  PDCF3  <- soil@PDCF3[length(soil@KSAT1)]
-
-  SAND1  <- soil@SAND1[length(soil@SAND1)]
-  SAND2  <- soil@SAND2[length(soil@SAND2)]
-  SAND3  <- soil@SAND3[length(soil@SAND3)]
-
-  SLOPE  <- soil@SLOPE[length(soil@SLOPE)]
-  SOILSW <- soil@SOILSW[length(soil@SOILSW)]
-
-  TKL1   <- soil@TKL1[length(soil@TKL1)]
-  TKL2   <- soil@TKL2[length(soil@TKL2)]
-  TKL3   <- soil@TKL3[length(soil@TKL3)]
-
-  TKL3M  <- soil@TKL3M[length(soil@TKL3M)]
 
   WCFC1  <- soil@WCFC1[length(soil@WCFC1)]
   WCFC2  <- soil@WCFC2[length(soil@WCFC2)]
   WCFC3  <- soil@WCFC3[length(soil@WCFC3)]
-
-  WCFCM1 <- soil@WCFCM1[length(soil@WCFCM1)]
-  WCFCM2 <- soil@WCFCM2[length(soil@WCFCM2)]
-  WCFCM3 <- soil@WCFCM3[length(soil@WCFCM3)]
 
   WCST1  <- soil@WCST1[length(soil@WCST1)]
   WCST2  <- soil@WCST2[length(soil@WCST2)]
@@ -87,37 +56,40 @@ soilwaterBalance <- function(i, climatechange, control, crop, cropsv, management
   WCWP2  <- soil@WCWP2[length(soil@WCWP2)]
   WCWP3  <- soil@WCWP3[length(soil@WCWP3)]
 
-  WCWPM1 <- soil@WCWPM1[length(soil@WCWPM1)]
-  WCWPM2 <- soil@WCWPM2[length(soil@WCWPM2)]
-  WCWPM3 <- soil@WCWPM3[length(soil@WCWPM3)]
+# ------------------------------------- soilD Data : {Some/Unique}
+  SLOPE  <- soilD@SLOPE
   
-# ------------------------------------- SUBPET data : {Some/Last}
-  PEVAP <- SUBPET@PEVAP[length(SUBPET@PEVAP)]
+  TKL1   <- soilD@TKL1
+  TKL2   <- soilD@TKL2
 
-#--------------------------------------  SoilProperties Data : {Some/Last}
-  WCWPC1 <- soilprop@WCWPC1[length(soilprop@WCWPC1)]
-  WCWPC2 <- soilprop@WCWPC2[length(soilprop@WCWPC2)]
-  WCWPC3 <- soilprop@WCWPC3[length(soilprop@WCWPC3)]
+# ------------------------------------- srSUBPET Data : {Some/Last}
+  PEVAP <- srSUBPET@PEVAP[length(srSUBPET@PEVAP)]
   
-# ------------------------------------- SoilWaterBalance State Variable data : {All/Last}
+# ------------------------------------- SoilWaterBalance State Variable Data : {All/Last}
+  SWBsv@PONDTP[1] <- INPOND
+
+  SWBsv@WL1T[1] <- WL1I
+  SWBsv@WL2T[1] <- WL2I
+  SWBsv@WL3T[1] <- WL3I
+
   SWBsvList <- .dataObjectExtract(SWBsv,"last")
   for(j in 1:length(SWBsvList)) assign(names(SWBsvList)[j], SWBsvList[j])
 
-# ------------------------------------- Fetch Tabular Functions : {Some/Unique}
+# ------------------------------------- tabFunction Data : {Some/Unique}
    IRRTSF <- tabFunction@IRRTSF
    IRRTL1 <- tabFunction@IRRTL1
    IRRTL2 <- tabFunction@IRRTL2
    IRRTL3 <- tabFunction@IRRTL3
    RNSOIL <- tabFunction@RNSOIL
    
-# ------------------------------------- Weather data : {All/One-i}
-  weatherList <- .dataObjectExtract(weather, i+1)
+# ------------------------------------- Weather Data : {All/One-DINDEXs}
+  weatherList <- .dataObjectExtract(weather, DINDEXs + 1)
   for(j in 1:length(weatherList)) assign(names(weatherList)[j], weatherList[j])  
   
 
 #====================================================================================
 #=================================== SOIL WATER BALANCE 1. ALGEBRAIC SEQUENTIAL ===== 
-    AINTC  <- AMIN1(RAINF, 0.25*LAI)
+    AINTC  <- AMIN1(RAINF, 0.25*LAI)                                 #== amount of rainfall intercepted by the canopy
     
     IRRADD <- INSW(IRSWCH-1, 0, 60*REAAND(DAS-20, 22-DAS)+
                      60*REAAND(DAS-45, 47-DAS)*IRRSEN+
@@ -162,7 +134,7 @@ SWBmod <- function(Time, State, Pars){
     
     RNOFF  <- AMAX1(0, INSW(BUNDHT - 2, RUNNAT, 0) + POND - AINTC - 
                       PNDEVP - WLFL1 + WLFL8 - BUNDHT)
-    RUNNAT <- (RAINF + IRRIG0)* AFGEN(RNSOIL, SLOPE)
+    RUNNAT <- (RAINF + IRRIG0)* AFGEN(RNSOIL, SLOPE)                                      #== runoff
     
     WL1RT <- WLFL1 + IRRIG1 + WLFL7 - WLFL2 - WLFL8 - EVSW1 - TRWL1*(1 + WEEDCV)
     WL2RT <- WLFL2 + IRRIG2 + WLFL6 - WLFL3 - WLFL7 - EVSW2 - TRWL2*(1 + WEEDCV)
@@ -172,18 +144,21 @@ SWBmod <- function(Time, State, Pars){
     WL2 <- AMAX1(WCWP2*TKL2, WL2T)
     WL3 <- AMAX1(WCWP3*TKL3, WL3T)
     
-    dPONDTP <- RAINF + IRRIG0 - AINTC - PNDEVP - WLFL1 - RNOFF + WLFL8
-    dDAPOND <- INSW(POND - 10., - DAPOND, 1.)
+    dPONDTP <- RAINF + IRRIG0 - AINTC - PNDEVP - WLFL1 - RNOFF + WLFL8   #______ODE No. 1
+    dDAPOND <- INSW(POND - 10., - DAPOND, 1.)                            #______ODE No. 2
     
-    dWL1T   <- WL1RT
-    dWL2T   <- WL2RT
-    dWL3T   <- WL3RT
+    dWL1T   <- WL1RT                                                     #______ODE No. 3
+    dWL2T   <- WL2RT                                                     #______ODE No. 4
+    dWL3T   <- WL3RT                                                     #______ODE No. 5
     
-    return(list(c(dPONDTP, dDAPOND, dWL1T, dWL2T, dWL3T), IRRIG0, IRRIG1, IRRIG2, IRRIG3))
+    return(list(c(dPONDTP, dDAPOND, dWL1T, dWL2T, dWL3T),   #______Number of derivatives returned: 5
+                IRRIG0, IRRIG1, IRRIG2, IRRIG3, POND, 
+                WLFL1, WLFL2, WLFL3, WLFL4, WLFL5, WLFL6, WLFL7, WLFL8,
+                PNDEVP, RNOFF, DRAIN, WL1RT, WL2RT, WL3RT))
   })
-} 
+}
 
-yini  <- c(PONDTP=PONDTP, DAPOND=DAPOND, WL1T=WL1T, WL2T=WL2T, WL3T=WL3T)
+yini  <- c(PONDTP=PONDTP, DAPOND=DAPOND, WL1T=WL1T, WL2T=WL2T, WL3T=WL3T) #______Number of initial conditions: 5
 times <- seq(0,1,1)
 out   <- ode(yini, times, SWBmod, parms=NULL)
 
@@ -199,21 +174,50 @@ out   <- ode(yini, times, SWBmod, parms=NULL)
   IRRIG1 <- out[2,8]
   IRRIG2 <- out[2,9]
   IRRIG3 <- out[2,10]
+
+  POND   <- out[2,11]
+  WLFL1  <- out[2,12]
+  WLFL2  <- out[2,13]
+  WLFL3  <- out[2,14]
+  WLFL4  <- out[2,15]
+  WLFL5  <- out[2,16]
+  WLFL6  <- out[2,17]
+  WLFL7  <- out[2,18]
+  WLFL8  <- out[2,19]
+  PNDEVP <- out[2,20]
+  RNOFF  <- out[2,21]
+  DRAIN  <- out[2,22]
+  WL1RT  <- out[2,23]
+  WL2RT  <- out[2,24]
+  WL3RT  <- out[2,25]
   
   WL1 <- AMAX1(WCWP1*TKL1, WL1T)
   WL2 <- AMAX1(WCWP2*TKL2, WL2T)
   WL3 <- AMAX1(WCWP3*TKL3, WL3T)
 
+#------------------ *** Water balance check
+  WCUM   <- WL1 + WL2 + WL3            #FJAV: Defined, Line 488: WCUM = WL1+WL2+WL3, but NOT used anywhere in FST
+  WATREQ <- ETDAY + RNOFF + DRAIN
+  WATSUM <- WATREQ                     #FJAV: Defined, Line 495: WATSUM = INTGRL(ZERO,WATREQ), but NOT used anywhere in FST
+
+  #WATDEF <- ZRT1*(WCFC1 - WCL1) + ZRT2*(WCFC2 - WCL2) + ZRT3*(WCFC3 - WCL3)
+                                       #FJAV: DEfined, Line 497: WATDEF = ZRT1*(WCFC1-WCL1)+ZRT2*(WCFC2-WCL2)+ZRT3*(WCFC3-WCL3), but NOT used anywhere in FST
+
+
 #-----------------------------
-  j               <- length(SWBsv@DINDEX) + 1
-  SWBsv@DINDEX[j] <- i
+  j <- length(SWBsv@DINDEX) + 1
+  SWBsv@DINDEX[j] <- DINDEXs
   
   SWBsv@AWF1[j]   <- AWF1
   SWBsv@AWF2[j]   <- AWF2
   SWBsv@AWF3[j]   <- AWF3
   
   SWBsv@DAPOND[j] <- DAPOND
+  SWBsv@DRAIN[j]  <- DRAIN
+  SWBsv@PNDEVP[j] <- PNDEVP
+  SWBsv@POND[j]   <- POND
   SWBsv@PONDTP[j] <- PONDTP
+  SWBsv@RNOFF[j]  <- RNOFF
   
   SWBsv@WL1[j]    <- WL1
   SWBsv@WL2[j]    <- WL2
@@ -222,6 +226,15 @@ out   <- ode(yini, times, SWBmod, parms=NULL)
   SWBsv@WL1T[j]   <- WL1T
   SWBsv@WL2T[j]   <- WL2T
   SWBsv@WL3T[j]   <- WL3T
+
+  SWBsv@WLFL1[j]   <- WLFL1
+  SWBsv@WLFL2[j]   <- WLFL2
+  SWBsv@WLFL3[j]   <- WLFL3
+  SWBsv@WLFL4[j]   <- WLFL4
+  SWBsv@WLFL5[j]   <- WLFL5
+  SWBsv@WLFL6[j]   <- WLFL6
+  SWBsv@WLFL7[j]   <- WLFL7
+  SWBsv@WLFL8[j]   <- WLFL8
   
   SWBsv@IRRIG0[j] <- IRRIG0
   SWBsv@IRRIG1[j] <- IRRIG1
@@ -238,3 +251,5 @@ out   <- ode(yini, times, SWBmod, parms=NULL)
 
   return(SWBsv)
 }
+#  SWBsv <- soilwaterBalance(DINDEXs,control,cropsv,EDTSsv,management,soil,soilD,srSUBPET,tabFunction,weather,SWBsv)
+# ---------------------------------------------------------

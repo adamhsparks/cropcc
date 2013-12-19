@@ -1,3 +1,4 @@
+# weather
 readWeatherData <- function(path)
 {
   
@@ -38,5 +39,4 @@ readWeatherData <- function(path)
 }
 
 # ------------------------------------------------------  RUN:
-#datos <- readWeatherData("D:\\Weather\\")
-#datos                    
+#datos <- readWeatherData("D:\\Weather\\")                   

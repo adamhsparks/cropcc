@@ -1,7 +1,10 @@
-# Weather
+# Weather [readWeatherData]
+#-------------
 setClass(Class="WeatherClass",
          
          representation = representation(
+           
+           DINDEX = "numeric",
            
            LAT    = "numeric",  
            YEAR   = "integer",
@@ -11,8 +14,7 @@ setClass(Class="WeatherClass",
            TMMX   = "numeric",
            VP     = "numeric",
            WN     = "numeric",
-           RAIN   = "numeric",
-           DINDEX = "numeric"
+           RAIN   = "numeric"            #== water added as rain, precipitation
          ),
          
          prototype = prototype(

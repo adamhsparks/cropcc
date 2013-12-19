@@ -61,7 +61,7 @@ setMethod(f=".dataObjectExtract", signature(object="WeatherClass", DINDEXs="nume
 #                            WCWPC1=WCWPC1, WCWPC2=WCWPC2, WCWPC3=WCWPC3)
 #             return(name_list)
 #           })
-# # soilpropList <- .dataObjectExtract(soilprop,DINDEXs)
+# # soilpropList <- .dataObjectExtract(srSOIL,DINDEXs)
 
 # #---------------------------------------------------------------------------
 # setMethod(f=".dataObjectExtract", signature(object="SubPETClass", DINDEXs="numeric"),
@@ -92,12 +92,18 @@ setMethod(f=".dataObjectExtract", signature(object="SWBStateVarsClass", DINDEXs=
             AWF3  <- object@AWF3[object@DINDEX == DINDEXs]
             
             DAPOND <- object@DAPOND[object@DINDEX == DINDEXs]
+            DRAIN  <- object@DRAIN[object@DINDEX == DINDEXs]
             
+            IRRIG0  <- object@IRRIG0[object@DINDEX == DINDEXs]
             IRRIG1  <- object@IRRIG1[object@DINDEX == DINDEXs]
             IRRIG2  <- object@IRRIG2[object@DINDEX == DINDEXs]
             IRRIG3  <- object@IRRIG3[object@DINDEX == DINDEXs]
             
+            PNDEVP  <- object@PNDEVP[object@DINDEX == DINDEXs]
+            POND    <- object@POND[object@DINDEX == DINDEXs]
             PONDTP  <- object@PONDTP[object@DINDEX == DINDEXs]
+            
+            RNOFF  <- object@RNOFF[object@DINDEX == DINDEXs]
             
             WCL1  <- object@WCL1[object@DINDEX == DINDEXs]
             WCL2  <- object@WCL2[object@DINDEX == DINDEXs]
@@ -115,14 +121,27 @@ setMethod(f=".dataObjectExtract", signature(object="SWBStateVarsClass", DINDEXs=
             WL2T  <- object@WL2T[object@DINDEX == DINDEXs]
             WL3T  <- object@WL3T[object@DINDEX == DINDEXs]
             
-            name_list <- c(AWF1  =AWF1,   AWF2  =AWF2,   AWF3  =AWF3,
-                           DAPOND=DAPOND,
+            WLFL1  <- object@WLFL1[object@DINDEX == DINDEXs]
+            WLFL2  <- object@WLFL2[object@DINDEX == DINDEXs]
+            WLFL3  <- object@WLFL3[object@DINDEX == DINDEXs]
+            WLFL4  <- object@WLFL4[object@DINDEX == DINDEXs]
+            WLFL5  <- object@WLFL5[object@DINDEX == DINDEXs]
+            WLFL6  <- object@WLFL6[object@DINDEX == DINDEXs]
+            WLFL7  <- object@WLFL7[object@DINDEX == DINDEXs]
+            WLFL8  <- object@WLFL8[object@DINDEX == DINDEXs]
+            
+            name_list <- c(AWF1=AWF1, AWF2=AWF2, AWF3=AWF3,
+                           DAPOND=DAPOND, DRAIN=DRAIN, IRRIG0=IRRIG0,
                            IRRIG1=IRRIG1, IRRIG2=IRRIG2, IRRIG3=IRRIG3,
-                           PONDTP=PONDTP,
-                           WCL1  =WCL1,   WCL2  =WCL2,   WCL3  =WCL3,
-                           WL1RT =WL1RT,  WL2RT =WL2RT,  WL3RT =WL3RT, 
-                           WL1   =WL1,    WL2   =WL2,    WL3   =WL3,
-                           WL1T  =WL1T,   WL2T  =WL2T,   WL3T  =WL3T)
+                           PNDEVP=PNDEVP, POND=POND, PONDTP=PONDTP,
+                           RNOFF=RNOFF,
+                           WCL1=WCL1, WCL2=WCL2, WCL3=WCL3,
+                           WL1RT=WL1RT, WL2RT=WL2RT, WL3RT=WL3RT, 
+                           WL1=WL1, WL2=WL2, WL3=WL3,
+                           WL1T=WL1T, WL2T=WL2T, WL3T=WL3T,
+                           WLFL1=WLFL1, WLFL2=WLFL2, WLFL3=WLFL3,
+                           WLFL4=WLFL4, WLFL5=WLFL5, WLFL6=WLFL6,
+                           WLFL7=WLFL7, WLFL8=WLFL8)
             return(name_list)
           }
 )
@@ -133,41 +152,60 @@ setMethod(f=".dataObjectExtract", signature(object="SWBStateVarsClass", DINDEXs=
           function(object, DINDEXs){
             
             AWF1  <- object@AWF1[length(object@AWF1)]
-            AWF2  <- object@AWF2[length(object@AWF1)]
-            AWF3  <- object@AWF3[length(object@AWF1)]
+            AWF2  <- object@AWF2[length(object@AWF2)]
+            AWF3  <- object@AWF3[length(object@AWF3)]
             
-            DAPOND <- object@DAPOND[length(object@AWF1)]
+            DAPOND <- object@DAPOND[length(object@DAPOND)]
+            DRAIN  <- object@DRAIN[length(object@DRAIN)]
             
-            IRRIG1  <- object@IRRIG1[length(object@AWF1)]
-            IRRIG2  <- object@IRRIG2[length(object@AWF1)]
-            IRRIG3  <- object@IRRIG3[length(object@AWF1)]
+            IRRIG0  <- object@IRRIG0[length(object@IRRIG0)]
+            IRRIG1  <- object@IRRIG1[length(object@IRRIG1)]
+            IRRIG2  <- object@IRRIG2[length(object@IRRIG2)]
+            IRRIG3  <- object@IRRIG3[length(object@IRRIG3)]
             
-            PONDTP  <- object@PONDTP[length(object@AWF1)]
+            PNDEVP  <- object@PNDEVP[length(object@PNDEVP)]
+            POND    <- object@POND[length(object@POND)]
+            PONDTP  <- object@PONDTP[length(object@PONDTP)]
             
-            WCL1  <- object@WCL1[length(object@AWF1)]
-            WCL2  <- object@WCL2[length(object@AWF1)]
-            WCL3  <- object@WCL3[length(object@AWF1)]
+            RNOFF  <- object@RNOFF[length(object@RNOFF)]
             
-            WL1RT  <- object@WL1RT[length(object@AWF1)]
-            WL2RT  <- object@WL2RT[length(object@AWF1)]
-            WL3RT  <- object@WL3RT[length(object@AWF1)]
+            WCL1  <- object@WCL1[length(object@WCL1)]
+            WCL2  <- object@WCL2[length(object@WCL2)]
+            WCL3  <- object@WCL3[length(object@WCL3)]
             
-            WL1  <- object@WL1[length(object@AWF1)]
-            WL2  <- object@WL2[length(object@AWF1)]
-            WL3  <- object@WL3[length(object@AWF1)]
+            WL1RT  <- object@WL1RT[length(object@WL1RT)]
+            WL2RT  <- object@WL2RT[length(object@WL2RT)]
+            WL3RT  <- object@WL3RT[length(object@WL3RT)]
             
-            WL1T  <- object@WL1T[length(object@AWF1)]
-            WL2T  <- object@WL2T[length(object@AWF1)]
-            WL3T  <- object@WL3T[length(object@AWF1)]
+            WL1  <- object@WL1[length(object@WL1)]
+            WL2  <- object@WL2[length(object@WL2)]
+            WL3  <- object@WL3[length(object@WL3)]
             
-            name_list <- c(AWF1  =AWF1,   AWF2  =AWF2,   AWF3  =AWF3,
-                           DAPOND=DAPOND,
+            WL1T  <- object@WL1T[length(object@WL1T)]
+            WL2T  <- object@WL2T[length(object@WL2T)]
+            WL3T  <- object@WL3T[length(object@WL3T)]
+            
+            WLFL1  <- object@WLFL1[length(object@WLFL1)]
+            WLFL2  <- object@WLFL2[length(object@WLFL2)]
+            WLFL3  <- object@WLFL3[length(object@WLFL3)]
+            WLFL4  <- object@WLFL4[length(object@WLFL4)]
+            WLFL5  <- object@WLFL5[length(object@WLFL5)]
+            WLFL6  <- object@WLFL6[length(object@WLFL6)]
+            WLFL7  <- object@WLFL7[length(object@WLFL7)]
+            WLFL8  <- object@WLFL8[length(object@WLFL8)]
+            
+            name_list <- c(AWF1=AWF1, AWF2=AWF2, AWF3=AWF3,
+                           DAPOND=DAPOND, DRAIN=DRAIN, IRRIG0=IRRIG0,
                            IRRIG1=IRRIG1, IRRIG2=IRRIG2, IRRIG3=IRRIG3,
-                           PONDTP=PONDTP,
-                           WCL1  =WCL1,   WCL2  =WCL2,   WCL3  =WCL3,
-                           WL1RT =WL1RT,  WL2RT =WL2RT,  WL3RT =WL3RT,  
-                           WL1   =WL1,    WL2   =WL2,    WL3   =WL3,
-                           WL1T  =WL1T,   WL2T  =WL2T,   WL3T  =WL3T)
+                           PNDEVP=PNDEVP, POND=POND, PONDTP=PONDTP,
+                           RNOFF=RNOFF,
+                           WCL1=WCL1, WCL2=WCL2, WCL3=WCL3,
+                           WL1RT=WL1RT, WL2RT=WL2RT, WL3RT=WL3RT, 
+                           WL1=WL1, WL2=WL2, WL3=WL3,
+                           WL1T=WL1T, WL2T=WL2T, WL3T=WL3T,
+                           WLFL1=WLFL1, WLFL2=WLFL2, WLFL3=WLFL3,
+                           WLFL4=WLFL4, WLFL5=WLFL5, WLFL6=WLFL6,
+                           WLFL7=WLFL7, WLFL8=WLFL8)
             return(name_list)
           }
 )

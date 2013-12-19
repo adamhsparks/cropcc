@@ -1,110 +1,100 @@
-# management
+# management [transplantingDate3, germination2, sowingDate] 
+#-------------
 setClass(Class="ManagementClass",
          
          representation = representation(
-            
+           
+           DINDEX = "numeric",
+           
            #SOWING DATE
-           DAS    = "numeric",
-           PUDLE  = "numeric",
-           WCLSOW = "numeric", #??Commented
-           NPLH   = "numeric",
-           NH     = "numeric", 
-           SEEDAG = "numeric",
-           SOWDEP = "numeric",
-           SPROUT = "numeric",
-           SWSWCH = "logical", #SWSWCH is TRUE for fixed sowing date and is FALSE for soil moisture dependence.
-           STTIME = "numeric",
+           DAS    = "numeric", #--- var
+           NH     = "numeric", #---------- par
+           NPLH   = "numeric", #---------- par
+           PUDLE  = "numeric", #---------- par
+           SEEDAG = "numeric", #---------- par
+           #xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   SOW0   = "numeric", #SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
+           SOW6   = "numeric", #--- var
+           SOWDEP = "numeric", #---------- par           #== sowing depth
+           SPROUT = "numeric", #---------- par
+           STTIME = "numeric", #--- var ----------: TIMER
+           SWSWCH = "numeric", #---------- par         #SWSWCH is 1 for fixed sowing date and is 0 for soil moisture dependence.
+                                                       #FJAV: Without evaluation and not change value
+           WCLSOW = "numeric", #--- var
+           
+           #GERMINATION
+           SOWFXD = "numeric", #--- var ----------: TIMER
+           
+           #EMERGENCE SWITCH
+           ESW    = "numeric", #--- var
+           ESWI   = "numeric", #--- var
+           
+           #ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
+           RAINSW = "numeric", #---------- par
            
            #IRRIGATION
-#           IRRTSF = "function", #----- in AAAtabularFunctionsClass.R -----
-#           IRRTL1 = "function", #----- in AAAtabularFunctionsClass.R -----
-#           IRRTL2 = "function", #----- in AAAtabularFunctionsClass.R -----
-#           IRRTL3 = "function", #----- in AAAtabularFunctionsClass.R -----
-           BUNDHT = "numeric",
-           IRSWCH = "numeric",
-           IRRAMT = "numeric",
-           SWCWAT = "numeric",
-           NEWAGE = "numeric",
+           BUNDHT = "numeric", #---------- par           #== water in excess height
+           IRSWCH = "numeric", #---------- par
+           #IRRAMT = "numeric", #---------- par
+           SWCWAT = "numeric", #---------- par
+           NEWAGE = "numeric", #--- var
            
            #FERTILISATION
-           UREAP1 = "function", #----- in AAAtabularFunctionsClass.R -----
-           UREAP2 = "function", #----- in AAAtabularFunctionsClass.R -----
-           UREAP3 = "function", #----- in AAAtabularFunctionsClass.R -----
-           NH4AP1 = "function", #----- in AAAtabularFunctionsClass.R -----
-           NH4AP2 = "function", #----- in AAAtabularFunctionsClass.R -----
-           NH4AP3 = "function", #----- in AAAtabularFunctionsClass.R -----
-           NOAP1  = "function", #----- in AAAtabularFunctionsClass.R -----
-           NOAP2  = "function", #----- in AAAtabularFunctionsClass.R -----
-           NOAP3  = "function", #----- in AAAtabularFunctionsClass.R -----
-           SWCNIT = "numeric",
-           NTSWCH = "numeric",
+           SWCNIT = "numeric", #---------- par
+           NTSWCH = "numeric", #---------- par
            
            #ORGANIC MATTER
-           OM1DAT = "function", #----- in AAAtabularFunctionsClass.R -----
-           OM2DAT = "function", #----- in AAAtabularFunctionsClass.R -----
-           OM3DAT = "function", #----- in AAAtabularFunctionsClass.R -----
-           LASTRT = "numeric",
-           CNOM1  = "numeric",
-           CNOM2  = "numeric",
-           CNOM3  = "numeric",
-           CNMODF = "function",  #----- in AAAtabularFunctionsClass.R -----
-           EBULTN = "function",  #----- in AAAtabularFunctionsClass.R -----
-           TCOEFF = "numeric",
-           CNBACT = "numeric"
+           LASTRT = "numeric", #---------- par
+           CNOM1  = "numeric", #---------- par
+           CNOM2  = "numeric", #---------- par
+           CNOM3  = "numeric", #---------- par
+           TCOEFF = "numeric", #---------- par           #== time coefficient for CO2 emission release
+           CNBACT = "numeric"  #---------- par           #== C:N ratio of the bacteria
          ),
          
         prototype = prototype(
+          
+          DINDEX = 10957,
            
           #SOWING DATE
           DAS    = 0,
-          PUDLE  = 0,
-          WCLSOW = 0.20,
+          PUDLE  = 0,       # ** PUDLE IS 0 FOR UPLAND AND 1.0 FOR LOWLAND
+          WCLSOW = 0,                  #FJAV: Defined in Line 1127: *PARAM WCLSOW =0.20, BUT are commented.
           NPLH   = 3, 
           NH     = 33,
           SEEDAG = 0,
           SOWDEP = 30,
           SPROUT = 10,
-          SWSWCH = FALSE,
+          SWSWCH = 1,          
           STTIME = 319,
+          SOW6   = 0,
+          
+          #GERMINATION
+          SOWFXD = 0,
+          
+          #EMERGENCE SWITCH
+          ESW    = 0,
+          ESWI   = 0,
+          
+          #ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
+          RAINSW = 0,
           
           #IRRIGATION
-#          IRRTSF = approxfun(c(0, 19, 20, 21, 45, 46, 47, 70, 71, 72, 90, 91, 92, 110, 111, 112, 365), 
-#                             c(0,  0,  0,  0,  0, 50,  0 , 0, 50,  0,  0, 50,  0,   0,  50,   0,   0)),
-#          IRRTL1 = approxfun(c(0, 365),c(0,0)),
-#          IRRTL2 = approxfun(c(0, 365),c(0,0)),
-#          IRRTL3 = approxfun(c(0, 365),c(0,0)),
           BUNDHT = 100,
           IRSWCH = 1,
-          IRRAMT = 20,
+          #IRRAMT = 20,                 #FJAV: Defined, Line 1141: PARAM IRSWCH =1. ;IRRAMT =20., but NOT-USED in FST anywhere
           SWCWAT = 0,
           NEWAGE = 0,
           
           #FERTILISATION
-          UREAP1 = approxfun(c( 0, 1, 20, 21, 22, 34, 35, 36, 59, 60, 61, 365),
-                             c(60, 0,  0,  0, 60,  0,  0,  0,  0,  0,  0,   0)),
-          UREAP2 = approxfun(c(0, 365),c(0,0)),
-          UREAP3 = approxfun(c(0, 365),c(0,0)),
-          NH4AP1 = approxfun(c(0, 365),c(0,0)),
-          NH4AP2 = approxfun(c(0, 365),c(0,0)),
-          NH4AP3 = approxfun(c(0, 365),c(0,0)),
-          NOAP1  = approxfun(c(0, 365),c(0,0)),
-          NOAP2  = approxfun(c(0, 365),c(0,0)),
-          NOAP3  = approxfun(c(0, 365),c(0,0)),
           SWCNIT = 0,
           NTSWCH = 0,
           
           
           #ORGANIC MATTER
-          OM1DAT = approxfun(c(0, 365),c(0,0)),
-          OM2DAT = approxfun(c(0, 365),c(0,0)),
-          OM3DAT = approxfun(c(0, 365),c(0,0)),
           LASTRT = 100,
           CNOM1  = 25, 
           CNOM2  = 14, 
           CNOM3  = 40,
-          CNMODF = approxfun(c(0, 5, 100000), c(0.5, 1, 1)),
-          EBULTN = approxfun(c(-10, 0,  10,  20, 30,   50, 100, 5000),
-                             c(  0, 0, 0.4, 0.3, 0.2, 0.1,   0,    0)),
           TCOEFF = 10,
           CNBACT = 0.1
         ),

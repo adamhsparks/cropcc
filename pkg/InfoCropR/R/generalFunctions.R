@@ -5,20 +5,20 @@
 AFGEN <- function(vector_data, number)
 {
    n <- length(vector_data)
-   pair<-seq(2,n,2)
-   odd<-seq(1,n,2)
-   AFGEN <- approx(vector_data[odd],vector_data[pair],number)$y
-   return(AFGEN)   
+   pair<-seq(2, n, 2)
+   odd<-seq(1, n, 2)
+   A <- approx(vector_data[odd], vector_data[pair], number)$y
+   return(A)   
 }
 # ---------------------------------------------------------
 
 # ---------------------------------------------------------
 # Function INSW: Evaluate the condition of negativity in X
 #                and assigns the value y1, or y2 otherwise.
-INSW <- function(x,y1,y2)
+INSW <- function(x, y1, y2)
 {
-   ifelse(x<0,INSW<-y1,INSW<-y2)
-   return(INSW)
+   I <- ifelse(x<0, y1, y2)
+   return(I)
 }
 # ---------------------------------------------------------
 
@@ -26,8 +26,8 @@ INSW <- function(x,y1,y2)
 # Function LIMIT: Y equals X, but limited between xl and xh.
 LIMIT <- function(xl, xh, x)
 {
-   ifelse(x<=xl,LIMIT<-xl,ifelse(x>=xh,LIMIT<-xh,LIMIT<-x))
-   return(LIMIT)
+   L <- ifelse(x<=xl, xl, ifelse(x>=xh, xh, x))
+   return(L)
 }
 # ---------------------------------------------------------
 
@@ -35,39 +35,27 @@ LIMIT <- function(xl, xh, x)
 # Function NOTNUL: Y equals x, if x is not null, or 1 otherwise.
 NOTNUL <- function(x)
 {
-   ifelse(x!=0,NOTNUL<-x,NOTNUL<-1)
-   return(NOTNUL)
+   N <- ifelse(x!=0, x, 1)
+   return(N)
 }
 # ---------------------------------------------------------
 
 # ---------------------------------------------------------
 # Function REAAND: Returns 1 if both input values are positive,
 #                  or 0 otherwise.
-REAAND <- function(x1,x2)
+REAAND <- function(x1, x2)
 {
-   ifelse((x1>0 & x2>0),REAAND<-1,REAAND<-0)
-   return(REAAND)
+   R <- ifelse((x1>0 & x2>0), 1, 0)
+   return(R)
 }
 # ---------------------------------------------------------
-
-# # ---------------------------------------------------------
-# # Function INTGRL: Approximation of the integral function, 
-# #                  by finite difference in a single step.
-# #                  yi: Initial value of the function,
-# #                  yr: Rate of change of the function (dy/dx)
-# INTGRL <- function(yi,yr)
-# {
-#    INTGRL <- yi+yr
-#    return(INTGRL)
-# }
-# # ---------------------------------------------------------
 
 # ---------------------------------------------------------
 # Function AMAX1: Returns the maximum value between the arguments.
 AMAX1 <- function(...)
 {
-   AMAX1 <- pmax(...)
-   return(AMAX1)
+   A <- max(...)
+   return(A)
 }
 # ---------------------------------------------------------
 
@@ -75,7 +63,22 @@ AMAX1 <- function(...)
 # Fucntion AMIN1: Returns the minimum value between the arguments.
 AMIN1 <- function(...)
 {
-   AMIN1 <- pmin(...)
-   return(AMIN1)
+   A <- min(...)
+   return(A)
 }
 # ---------------------------------------------------------
+
+# ---------------------------------------------------------
+# Function PLOT_TABFUN: Plot Tabular Functions 
+# vector_data: {x1,y1, x2,y2, x3,y3,..., xn,yn}
+PLOT_TABFUN <- function(vector_data, name)
+{
+  n <- length(vector_data)
+  pair<-seq(2, n, 2)
+  odd<-seq(1, n, 2)
+  plot(vector_data[odd], vector_data[pair], type="b", main=name, xlab="x", ylab="y")
+  return(vector_data)
+}
+# ------ UREAP1 = c(0,60, 1,0, 20,0, 21,60, 22,0, 34,0, 35,0, 36,0, 59,0, 60,0, 61,0, 365,0)
+# ------ PLOT_TABFUN(UREAP1,"UREAP1")
+# --------------------------------------------------------

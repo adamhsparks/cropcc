@@ -1,30 +1,101 @@
 # ---------------------------------------------------------
 # Function FUFR: To compute factors accounting for water stress effect on 
 #               water uptake.
-#//////////////////////////////////////////////////////////////
-#CAMBIOS: PUEDE RECIBIR VECTORES, Y DEVOLVER UN VECTOR...
-#         FUFR(RICE,PTRANS,WCL[i],CROPFC,WCFC[i],CROPGR,WCWP[i],WCST[i],WSE[i])
-#//////////////////////////////////////////////////////////////
-FUFR <- function(RICE, PTRANS, WCL, CROPFC, WCFC, CROPGR, WCWP, WCST)
+#==================
+# srFUFR
+SUBR_FUFR <- function(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
 {
+  #-------------------- crop Data
+  CROPFC <- crop@CROPFC
+  CROPGR <- crop@CROPGR
+  RICE   <- crop@RICE
+  
+  #-------------------- soil Data
+  WCFC1 <- soil@WCFC1[length(soil@WCFC1)]
+  WCFC2 <- soil@WCFC2[length(soil@WCFC2)]
+  WCFC3 <- soil@WCFC3[length(soil@WCFC3)]
+  
+  WCST1 <- soil@WCST1[length(soil@WCST1)]
+  WCST2 <- soil@WCST2[length(soil@WCST2)]
+  WCST3 <- soil@WCST3[length(soil@WCST3)]
+  
+  WCWP1 <- soil@WCWP1[length(soil@WCWP1)]
+  WCWP2 <- soil@WCWP2[length(soil@WCWP2)]
+  WCWP3 <- soil@WCWP3[length(soil@WCWP3)]
+  
+  #-------------------- srSUBPET Data
+  PTRANS <- srSUBPET@PTRANS[length(srSUBPET@PTRANS)]    #*********************
+  
+  #-------------------- SWBsv Data
+  WCL1 <- SWBsv@WCL1[length(SWBsv@WCL1)]
+  WCL2 <- SWBsv@WCL2[length(SWBsv@WCL2)]
+  WCL3 <- SWBsv@WCL3[length(SWBsv@WCL3)]
+  
+  #================
    P <- AMIN1(0.95, AMAX1(0.1, CROPGR/(CROPGR + PTRANS)))
-   WCCR <- WCWP + (1 - P) * (WCFC - WCWP)
-   WCWET <- CROPFC * WCST
-   if((WCL > WCWET) & (RICE > 0)) FR <- 1
-   if((WCL > WCWET) & (RICE <= 0)) {
-      FR <- (WCST - WCL)/(WCST - WCWET + 0.000001)
+  
+   WCCR1 <- WCWP1 + (1 - P) * (WCFC1 - WCWP1)           #== critical soil moisture factor
+   WCCR2 <- WCWP2 + (1 - P) * (WCFC2 - WCWP2)           #== critical soil moisture factor
+   WCCR3 <- WCWP3 + (1 - P) * (WCFC3 - WCWP3)           #== critical soil moisture factor
+  
+   WCWET1 <- CROPFC * WCST1
+   WCWET2 <- CROPFC * WCST2
+   WCWET3 <- CROPFC * WCST3
+  
+   if((WCL1 > WCWET1) && (RICE > 0)) FR1 <- 1
+   if((WCL2 > WCWET2) && (RICE > 0)) FR2 <- 1
+   if((WCL3 > WCWET3) && (RICE > 0)) FR3 <- 1
+  
+  #----- to 1
+   if((WCL1 > WCWET1) && (RICE <= 0)) {
+      FR1 <- (WCST1 - WCL1)/(WCST1 - WCWET1 + 0.000001)
    } else {
-      if(WCL > WCCR){
-         FR <- 1
+      if(WCL1 > WCCR1){
+         FR1 <- 1
       } else {
-         FR <- (WCL - WCWP)/(WCCR - WCWP + 0.000001)
+         FR1 <- (WCL1 - WCWP1)/(WCCR1 - WCWP1 + 0.000001)
       }
    }
-   WSE <- AMIN1(1, AMAX1(0, FR))
+  
+  #----- to 2
+  if((WCL2 > WCWET2) && (RICE <= 0)) {
+    FR2 <- (WCST2 - WCL2)/(WCST2 - WCWET2 + 0.000001)
+  } else {
+    if(WCL2 > WCCR2){
+      FR2 <- 1
+    } else {
+      FR2 <- (WCL2 - WCWP2)/(WCCR2 - WCWP2 + 0.000001)
+    }
+  }
+  
+  #----- to 3
+  if((WCL3 > WCWET3) && (RICE <= 0)) {
+    FR3 <- (WCST3 - WCL3)/(WCST3 - WCWET3 + 0.000001)
+  } else {
+    if(WCL3 > WCCR3){
+      FR3 <- 1
+    } else {
+      FR3 <- (WCL3 - WCWP3)/(WCCR3 - WCWP3 + 0.000001)
+    }
+  }
+  
+   WSE1 <- AMIN1(1, AMAX1(0, FR1))
+   WSE2 <- AMIN1(1, AMAX1(0, FR2))
+   WSE3 <- AMIN1(1, AMAX1(0, FR3))
+  
+  #================
+  j <- length(srFUFR@DINDEX) + 1
+  srFUFR@DINDEX[j] <- DINDEXs
+  
+  srFUFR@WSE1[j]   <- WSE1
+  srFUFR@WSE2[j]   <- WSE2
+  srFUFR@WSE3[j]   <- WSE3
    
-   return(WSE)   
+  #----------------
+   return(srFUFR)   
 }
-# WSE <- FUFR(RICE, PTRANS, WCL, CROPFC, WCFC, CROPGR, WCWP, WCST)
+#==================
+# srFUFR <- SUBR_FUFR(DINDEXs,crop,soil,srSUBPET,SWBsv,srFUFR)
 # ---------------------------------------------------------
 
 
@@ -86,9 +157,11 @@ FUFR <- function(RICE, PTRANS, WCL, CROPFC, WCFC, CROPGR, WCWP, WCST)
 #    *! ETD     R4  Potential evapotranspiration (mm.d-1)                 O  *
 #    *! PTRANS      Potential transpiration                               O  *
 #    *! PEVAP       Potential evaporation                                 o  *
-SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
-                        tabFunction, weather, SUBPET) #--------------------  Inputs                
-#                   ANGOT,RDN,DAYLP,ETRD,ETAE,ETD,PTRANS,PEVAP) #-  Outputs, inside SUBPET
+#==================
+# srSUBPET
+SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, EDTSsv, soil,
+                        SWBsv, tabFunction, weather, srSUBPET) #--------------------  Inputs, except srSUBPET                
+#                   ANGOT,RDN,DAYLP,ETRD,ETAE,ETD,PTRANS,PEVAP) #-  Outputs: inside srSUBPET
 {
   # PARAMETERS-------
   LHVAP   = 2454.E3 
@@ -105,6 +178,14 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
   #---------- cropsv Data
   LAI    <- cropsv@LAI[length(cropsv@LAI)]
   
+  #---------- EDTSsv Data  
+  TMAX   <- EDTSsv@TMAX[length(EDTSsv@TMAX)]
+  TMIN   <- EDTSsv@TMIN[length(EDTSsv@TMIN)]
+  TPAV   <- EDTSsv@TPAV[length(EDTSsv@TPAV)]
+  VPA    <- EDTSsv@VPA[length(EDTSsv@VPA)]
+  VPSMIN <- EDTSsv@VPSMIN[length(EDTSsv@VPSMIN)]
+  WIND   <- EDTSsv@WIND[length(EDTSsv@WIND)]
+  
   #---------- soil Data
   WCFC1  <- soil@WCFC1[length(soil@WCFC1)]
   WCST1  <- soil@WCST1[length(soil@WCST1)]
@@ -114,33 +195,19 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
   
   #---------- tabFunction Data
   COFST  <- tabFunction@COFST
-  CTMAXP <- tabFunction@CTMAXP
-  CTMINP <- tabFunction@CTMINP
   SOILAB <- tabFunction@SOILAB
   
   #---------- weather Data
   DOY   <- weather@DOY[weather@DINDEX == DINDEXs]
   LAT   <- weather@LAT                              #weather@LAT[weather@DINDEX == DINDEXs]
   RDD   <- weather@RDD[weather@DINDEX == DINDEXs]
-  TMMN  <- weather@TMMN[weather@DINDEX == DINDEXs]
-  TMMX  <- weather@TMMX[weather@DINDEX == DINDEXs]
-  VP    <- weather@VP[weather@DINDEX == DINDEXs]
-  WN    <- weather@WN[weather@DINDEX == DINDEXs]
   
-  #----------
-  CCTMAX <- AFGEN(CTMAXP, DOY)
-  CCTMIN <- AFGEN(CTMINP, DOY)
-  
-  TMAX   <- TMMX + CCTMAX
-  TMIN   <- TMMN + CCTMIN
-  
-  WIND   <- INSW(WN - 0.1, 1.5 + REAAND(DOY - 120, 270 - DOY)*1.5, WN)   
+  #================   
   COSTOM <- AFGEN(COFST, CO2)
   SALBDO <- AFGEN(SOILAB, WCFC1)*(1 - 0.5*WCL1 / WCST1)
   ALBEDO <- INSW(LAI - 0.02, SALBDO, 0.23 - (0.23 - SALBDO)*exp(-0.75*LAI))
   
   #---------- 
-  TPAV   <- 0.5*(TMAX + TMIN)
   PTFAC  <- INSW(TMIN - 13, 1.25, 0.4)
   
   DEC   <- -asin(sin(23.45 * DEGTRAD) * cos(2*pi*(DOY+10)/365))
@@ -187,10 +254,8 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
   RDN    <- (1 - ALBEDO)*RDD + RDLI - RDLO
  
   VPSMAX <- 0.6108 * exp(17.27*TMAX/(TMAX + 237.3))
-  VPSMIN <- 0.6108 * exp(17.27*TMIN/(TMIN + 237.3))
   
   VPS    <- (VPSMAX + VPSMIN)/2.
-  VPA    <- AMIN1(VPSMIN, INSW(VP - 0.2, VPSMIN, VP))
   
   VPSL   <- 238.102*17.32491*VPS/(TPAV + 238.102)**2
   VPD    <- AMAX1(0, VPS - VPA)
@@ -203,44 +268,42 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, soil, SWBsv,
   } else {
     ETAE <- PTFAC*ETRD} # *!     Priestley and Taylor reference evapotranspiration
 
-  ETD    <- ETRD + ETAE
+  ETD    <- ETRD + ETAE                     #FJAV: Defined, Line 1476: ETD = ETRD+ETAE, but NOT-Used anymore in FST
   PTRANS <- ETRD*(1 - exp(-0.5*LAI)) + ETAE*(AMIN1(2.0, LAI))
   # *!    Soil evaporation with soil background
   PEVAP  <- exp(-0.5*LAI)*(ETRD + ETAE)
   
-  #----------
-  j  <- length(SUBPET@DINDEX) + 1
+  #================
+  j  <- length(srSUBPET@DINDEX) + 1
   
-  SUBPET@DINDEX[j] <- DINDEXs
+  srSUBPET@DINDEX[j] <- DINDEXs
   
-  SUBPET@ANGOT[j]  <- ANGOT
-  SUBPET@DAYLP[j]  <- DAYLP
-  SUBPET@ETAE[j]   <- ETAE
-  SUBPET@ETD[j]    <- ETD
-  SUBPET@ETRD[j]   <- ETRD
-  SUBPET@PEVAP[j]  <- PEVAP
-  SUBPET@PTRANS[j] <- PTRANS
-  SUBPET@RDN[j]    <- RDN
+  srSUBPET@ANGOT[j]  <- ANGOT
+  srSUBPET@DAYLP[j]  <- DAYLP
+  srSUBPET@PEVAP[j]  <- PEVAP
+  srSUBPET@PTRANS[j] <- PTRANS
   
-  return(SUBPET)
+  #----------------
+  return(srSUBPET)
 }
-#  SUBPET <- SUBR_SUBPET(DINDEX, climate, control, cropsv, soil, SWBsv, tabFunction, weather, SUBPET)
+#==================
+#  srSUBPET <- SUBR_SUBPET(DINDEXs,climate,control,cropsv,EDTSsv,soil,SWBsv,tabFunction,weather,srSUBPET)
 # ---------------------------------------------------------
 
 
 # ---------------------------------------------------------
 # SUBROUTINE SOIL(SAND,   BDC,WCFCC,WCWPC,WCSTC,WCAD,KSATC)
 # IMPLICIT REAL(A-Z)
-
-# RETURN
-# END
-SUBR_SOIL <- function(soil, soilprop, DINDEXs){
-  #----------
-  j <- length(soil@DINDEX)
-  SAND1 <- soil@SAND1[j]
-  SAND2 <- soil@SAND2[j]
-  SAND3 <- soil@SAND3[j]
-  #----------
+#==================
+# srSOIL
+SUBR_SOIL <- function(DINDEXs, soilD, srSOIL)
+  {
+   #---------- soilD Data
+   SAND1 <- soilD@SAND1
+   SAND2 <- soilD@SAND2
+   SAND3 <- soilD@SAND3
+   
+   #===============
    BDC1   <- 1.1 + .0045 * SAND1
    BDC2   <- 1.1 + .0045 * SAND2
    BDC3   <- 1.1 + .0045 * SAND3
@@ -262,39 +325,40 @@ SUBR_SOIL <- function(soil, soilprop, DINDEXs){
    WCAD3  <- AMAX1(0.04, -0.0178 + WCWPC3 * 0.6556)
    
    KSATC1 <- SAND1 * 3
-   KSATC2 <- SAND2 * 3
    KSATC3 <- SAND3 * 3
-
-   j      <- length(soilprop@DINDEX) + 1
-   soilprop@DINDEX[j] <- DINDEXs
+      
+   #===============
+   j <- length(srSOIL@DINDEX) + 1
+   srSOIL@DINDEX[j] <- DINDEXs
    
-   soilprop@BDC1[j]   <- BDC1
-   soilprop@BDC2[j]   <- BDC2
-   soilprop@BDC3[j]   <- BDC3
+   srSOIL@BDC1[j]   <- BDC1
+   srSOIL@BDC2[j]   <- BDC2
+   srSOIL@BDC3[j]   <- BDC3
    
-   soilprop@WCSTC1[j] <- WCSTC1
-   soilprop@WCSTC2[j] <- WCSTC2
-   soilprop@WCSTC3[j] <- WCSTC3
+   srSOIL@WCSTC1[j] <- WCSTC1
+   srSOIL@WCSTC2[j] <- WCSTC2
+   srSOIL@WCSTC3[j] <- WCSTC3
    
-   soilprop@WCFCC1[j] <- WCFCC1
-   soilprop@WCFCC2[j] <- WCFCC2
-   soilprop@WCFCC3[j] <- WCFCC3
+   srSOIL@WCFCC1[j] <- WCFCC1
+   srSOIL@WCFCC2[j] <- WCFCC2
+   srSOIL@WCFCC3[j] <- WCFCC3
    
-   soilprop@WCWPC1[j] <- WCWPC1
-   soilprop@WCWPC2[j] <- WCWPC2
-   soilprop@WCWPC3[j] <- WCWPC3
+   srSOIL@WCWPC1[j] <- WCWPC1
+   srSOIL@WCWPC2[j] <- WCWPC2
+   srSOIL@WCWPC3[j] <- WCWPC3
    
-   soilprop@WCAD1[j]  <- WCAD1
-   soilprop@WCAD2[j]  <- WCAD2
-   soilprop@WCAD3[j]  <- WCAD3
+   srSOIL@WCAD1[j]  <- WCAD1
+   srSOIL@WCAD2[j]  <- WCAD2
+   srSOIL@WCAD3[j]  <- WCAD3
    
-   soilprop@KSATC1[j] <- KSATC1
-   soilprop@KSATC2[j] <- KSATC2
-   soilprop@KSATC3[j] <- KSATC3
+   srSOIL@KSATC1[j] <- KSATC1
+   srSOIL@KSATC3[j] <- KSATC3
    
-   return(soilprop)
+   #---------------
+   return(srSOIL)
 }
-# soilprop <- SUBR_SOIL(soil, soilprop, DINDEXs)
+#==================
+# srSOIL <- SUBR_SOIL(DINDEXs,soilD,srSOIL)
 # ---------------------------------------------------------
 
 
@@ -316,47 +380,145 @@ SUBR_SOIL <- function(soil, soilprop, DINDEXs){
 #   *                                                                      *
 #   *  FILE usage : none                                                   *
 #   *----------------------------------------------------------------------*
-SUBR_SUBDD <- function(DINDEXs, tabFunction, variety, weather, SUBDD) #--------------------  Inputs 
+#==================
+# srSUBDD
+SUBR_SUBDD <- function(DINDEXs, crop, EDTSsv, srSUBDD)
 {
-  #---------- tabFunction Data
-  CTMAXP <- tabFunction@CTMAXP
-  CTMINP <- tabFunction@CTMINP
+  #---------- crop Data
+  TPMAXD <- crop@TPMAXD
+  TPOPT  <- crop@TPOPT
+  TVBD   <- crop@TVBD
   
-  #---------- variety Data
-  TPMAXD <- variety@TPMAXD
-  TPOPT  <- variety@TPOPT
-  TVBD   <- variety@TVBD
+  #---------- EDTSsv Data  
+  TMAX   <- EDTSsv@TMAX[length(EDTSsv@TMAX)]
+  TMIN   <- EDTSsv@TMIN[length(EDTSsv@TMIN)]
   
-  #---------- weather Data
-  DOY   <- weather@DOY[weather@DINDEX == DINDEXs]
-
-  TMMN  <- weather@TMMN[weather@DINDEX == DINDEXs]
-  TMMX  <- weather@TMMX[weather@DINDEX == DINDEXs]
-  
-  #----------
-  CCTMAX <- AFGEN(CTMAXP, DOY)
-  CCTMIN <- AFGEN(CTMINP, DOY)
-  
-  TMAX   <- TMMX + CCTMAX
-  TMIN   <- TMMN + CCTMIN
-  
-  #----------  
+  #================  
   TM  <- (TMAX + TMIN) / 2
   TT  <- 0
   
   for (I in 1:24){
-    TD  <- TM + 0.5*abs(TMAX - TMIN)*cos(0.2618*(I-14))
-    
+    TD  <- TM + 0.5*abs(TMAX - TMIN)*cos(0.2618*(I-14)) 
     if ((TD > TVBD) && (TD < TPMAXD)) {
       if (TD > TPOPT) TD <- TPOPT - (TD - TPOPT)*(TPOPT - TVBD) / (TPMAXD - TPOPT)
       TT <- TT + (TD - TVBD) / 24
     }
+  }
   
-  i <- length(SUBDD@HU) + 1  
-  SUBDD@HU[i]  <- TT
-  SUBDD@DINDEX <- DINDEXs
+  #================
+  j <- length(srSUBDD@HU) + 1  
+  srSUBDD@HU[j]     <- TT
+  srSUBDD@DINDEX[j] <- DINDEXs
   
-  return(SUBDD)
+  #----------------
+  return(srSUBDD)
 }
-# SUBDD <- SUBR_SUBDD(DINDEXs, tabFunction, variety, weather, SUBDD)
+#==================
+# srSUBDD <- SUBR_SUBDD(DINDEXs,crop,EDTSsv,srSUBDD)
 # ---------------------------------------------------------
+
+
+# srGLA
+# *----------------------------------------------------------------------*
+# *  Purpose: This subroutine computes daily increase of leaf area index *
+# *           (ha leaf/ ha ground/ d)                                    *
+# * ---------------------------------------------------------------------*
+#==================
+SUBR_GLA <- function(DINDEXs, control, cropsv, GRsv, management, 
+                     phenology, stress, srGLA)
+{
+  #---------- control Data
+  DELT <- control@DELT
+  LAII <- control@LAII[length(control@LAII)]
+  
+  #---------- cropsv Data
+  LAI    <- cropsv@LAI[length(cropsv@LAI)]
+  RGRL   <- cropsv@RGRL[length(cropsv@RGRL)]
+  SLA    <- cropsv@SLA[length(cropsv@SLA)]
+  
+  #---------- GRsv Data
+  RWLVG <- GRsv@RWLVG[length(GRsv@RWLVG)]
+  
+  #---------- management Data
+  ESW  <- management@ESW[length(management@ESW)]
+  ESWI <- management@ESWI[length(management@ESWI)]
+  
+  #---------- phenology Data
+  DS    <- phenology@DS[length(phenology@DS)]
+  HUVG <- phenology@HUVG[length(phenology@HUVG)]
+  
+  #---------- stress Data
+  WSTRES <- stress@WSTRES[length(stress@WSTRES)]
+  
+  #================
+  #*---- Growth during maturation stage:
+    GLAI <- AMAX1(0, SLA*RWLVG)
+  
+  #*---- Growth during juvenile stage:
+    if ((DS < 0.2) && (LAI < 0.75)) GLAI <- AMAX1(0, LAII*( exp(RGRL*HUVG))*WSTRES)
+    if (RGRL <= 0) GLAI <- 0
+  
+  #*---- Growth at day of seedling emergence:
+    if (ESW == 1) GLAI <- AMAX1(0, LAII/DELT)
+  
+  #*---- Growth before seedling emergence:
+    if (ESWI == 0) GLAI <- 0
+  
+  #================
+  j <- length(srGLA@DINDEX) + 1
+  srGLA@DINDEX[j] <- DINDEXs
+  
+  srGLA@GLAI[j] <- GLAI
+  
+  #----------------
+  return(srGLA)
+}
+#==================
+# srGLA <- SUBR_GLA(DINDEXs,control,cropsv,GRsv,management,phenology,stress,srGLA)
+
+
+# *----------------------------------------------------------------------*
+# *FUNCTION WSRT                                                         *
+# *Purpose: To decide whether root extension growth continues or ceases  *
+# *         (value either 0 or 1)                                        *
+# *----------------------------------------------------------------------*
+# srWSRT
+SUBR_WSRT <- function(DINDEXs, control, root, soil, soilD, SWBsv, srWSRT)
+{
+  #---------- control Data
+  TKL3   <- control@TKL3[length(control@TKL3)]
+  
+  #---------- root Data
+  ZRT <- root@ZRT[length(root@ZRT)]
+  
+  #---------- soil Data
+  WCWP1  <- soil@WCWP1[length(soil@WCWP1)]
+  WCWP2  <- soil@WCWP2[length(soil@WCWP2)]
+  WCWP3  <- soil@WCWP3[length(soil@WCWP3)]
+  
+  #---------- soilD Data
+  TKL1 <- soilD@TKL1
+  TKL2 <- soilD@TKL2
+  
+  #---------- SWBsv Data
+  WCL1 <- SWBsv@WCL1[length(SWBsv@WCL1)]
+  WCL2 <- SWBsv@WCL2[length(SWBsv@WCL2)]
+  WCL3 <- SWBsv@WCL3[length(SWBsv@WCL3)]
+  
+  #================
+  WSERT <- 1
+  
+  if ((ZRT < TKL1) && (WCL1 < WCWP1)) WSERT <- 0
+  if ((ZRT > TKL1) && (ZRT < (TKL1+TKL2)) && (WCL2 < WCWP2)) WSERT <- 0
+  if ((ZRT > (TKL1 + TKL2)) && (ZRT < (TKL1+TKL2+TKL3)) && (WCL3 < WCWP3)) WSERT <- 0
+  
+  #================
+  j <- length(srWSRT@DINDEX) + 1
+  srWSRT@DINDEX[j] <- DINDEXs
+  srWSRT@WSERT[j]  <- WSERT
+  
+  #----------------
+  return(srWSRT)
+}
+#==================
+# srWSRT <- SUBR_WSRT(DINDEXs,control,root,soil,soilD,SWBsv,srWSRT)
