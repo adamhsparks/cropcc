@@ -33,5 +33,3 @@ transplantingDate3 <- function(control, soil, SWBsv, management)
   #----------------
   return(management)
 }
-#==================
-# management <- transplantingDate3(control,soil,SWBsv,management)
