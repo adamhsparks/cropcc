@@ -4,7 +4,7 @@
 \alias{.dataObjectExtract,SWBStateVarsClass,character-method}
 \alias{.dataObjectExtract,SWBStateVarsClass,numeric-method}
 \alias{.dataObjectExtract,WeatherClass,numeric-method}
-\title{ ~~ Methods for Function \code{.dataObjectExtract}  ~~}
+\title{ Methods for Function \code{.dataObjectExtract}}
 \description{
  ~~ Methods for function \code{.dataObjectExtract}  ~~
 }

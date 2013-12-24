@@ -1,5 +1,5 @@
 # ---------------------------------------------------------
-# Function FUFR: To compute factors accounting for water stress effect on 
+# Function FUFR: To compute factors accounting for water stress effect on  
 #               water uptake.
 #==================
 # srFUFR

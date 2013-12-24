@@ -18,6 +18,9 @@ germination2 <- function(phenology, DINDEXs, management)
   #---------------- EMERGENCE SWITCH
   #----------------------------------------------
   TIME   <- DINDEXs #---------------- FJAV: ???????????
+  
+  #JvE: Need to look at this because DINDEXs does not start at 1 !!!
+  
   #----------------------------------------------
   ESW  <- REAAND(TIME - EMERG + 0.5, EMERG - TIME + 0.5)
   ESWI <- ESW                          #Line 117: ESWI = INTGRL(ZERO,ESW)
