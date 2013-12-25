@@ -1,4 +1,4 @@
-# control
+# TODO JvE: LAII = LAI[1] etc.
 initialConditions_runControl <- function(DINDEXs, crop, cropsv, management, pestD,
                                          phenology, soilD, tabFunction, 
                                          weather, control)
@@ -75,7 +75,7 @@ initialConditions_runControl <- function(DINDEXs, crop, cropsv, management, pest
   WLVI <- SEEDRT* AFGEN(FCSDEP, SOWDEP)*FRLVWT*RGMPST
   WRTI <- SEEDRT - WLVI
   
-  LAII <- WLVI*SLAVAR *AFGEN(SLACF, DSI)
+  LAII <- WLVI*SLAVAR *AFGEN(SLACF, DSI) #JvE: Needs to be included in cropsv construction, because LAII = LAI[1]
   
   NRTI <- WRTI* AFGEN(NMAXLT, DSI)*GREENF*0.5
   NLVI <- WLVI* AFGEN(NMAXLT, DSI)*GREENF
@@ -133,5 +133,3 @@ initialConditions_runControl <- function(DINDEXs, crop, cropsv, management, pest
   #----------------
   return(control)
 }
-#==================
-# control <- initialConditions_runControl(DINDEXs,crop,cropsv,management,pestD,phenology,soilD,tabFunction,weather,control)

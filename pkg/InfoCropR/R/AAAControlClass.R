@@ -5,12 +5,14 @@ setClass(Class="ControlClass",
          representation = representation(
  
            #------------------ SIMULATION CONTROLS
+           STTIME = "numeric",
            AEZ    = "numeric",  #------------FJAV: Declarated in Line 1206, but Without use in FST
+           
+           #All of the following should simply be the first value of each object (phenology, cropsv, etc.)
            
            DSI    = "numeric",                 #== Initial value of Development stage (DS)
            
            ETSWCH = "numeric",
-           FWCANE = "numeric",                 #== a variety-specific factor to convert the stem weight to economic yield
            GRSWCH = "numeric",  #------------FJAV: Declarated in Line 1205, but Without use in FST
            IDSLR  = "numeric",
            INPOND = "numeric",                 #== initail state of surface ponding of water
@@ -61,12 +63,12 @@ setClass(Class="ControlClass",
          prototype = prototype( 
  
            #------------------ SIMULATION CONTROLS
+           STTIME = 319,
            AEZ    = 1,
            
            DSI    = 0,
            
-           ETSWCH = 0,  #------------FJAV: Ninguna asignación cambia su valor en FST, asignado en Line 1204, pero es un conmutador! (?)
-           FWCANE = 1,
+           ETSWCH = 0,  #------------FJAV: Ninguna asignaci?n cambia su valor en FST, asignado en Line 1204, pero es un conmutador! (?)
            GRSWCH = 0,
            IDSLR  = 1,
            INPOND = 0,

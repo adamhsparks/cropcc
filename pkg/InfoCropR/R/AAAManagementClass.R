@@ -1,3 +1,5 @@
+#TODO JvE: Germination and emergence should be moved to cropsv, perhaps all variables!
+
 setClass(Class="ManagementClass",
          
          representation = representation(
@@ -5,28 +7,24 @@ setClass(Class="ManagementClass",
            DINDEX = "numeric",
            
            #SOWING DATE
-           DAS    = "numeric", #--- var
-           NH     = "numeric", #---------- par
-           NPLH   = "numeric", #---------- par
-           PUDLE  = "numeric", #---------- par
-           SEEDAG = "numeric", #---------- par
-           #xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   SOW0   = "numeric", #SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
-           SOW6   = "numeric", #--- var
-           SOWDEP = "numeric", #---------- par           #== sowing depth
-           SPROUT = "numeric", #---------- par
-           STTIME = "numeric", #--- var ----------: TIMER
-           SWSWCH = "numeric", #---------- par         #SWSWCH is 1 for fixed sowing date and is 0 for soil moisture dependence.
+           DAS    = "numeric", #variable
+           NH     = "numeric", #parameter
+           NPLH   = "numeric", #parameter
+           PUDLE  = "numeric", #parameter
+           SEEDAG = "numeric", #parameter
+           #SOW0   = "numeric", #SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
+           SOW6   = "numeric", #variable
+           SOWDEP = "numeric", #parameter        #== sowing depth
+           SOWFXD = "numeric", #parameter
+           SPROUT = "numeric", #parameter
+           SWSWCH = "numeric", #parameter         #SWSWCH is 1 for fixed sowing date and is 0 for soil moisture dependence.
                                                        #FJAV: Without evaluation and not change value
-           WCLSOW = "numeric", #--- var
+           WCLSOW = "numeric", #variable
            
-           #JvE: Germination and emergence should be moved to cropsv
-           
-           #GERMINATION
-           SOWFXD = "numeric", #--- var ----------: TIMER
            
            #EMERGENCE SWITCH
-           ESW    = "numeric", #--- var 
-           ESWI   = "numeric", #--- var
+           ESW    = "numeric", #variable 
+           ESWI   = "numeric", #variable
            
            #ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
            RAINSW = "numeric", #---------- par
@@ -65,11 +63,10 @@ setClass(Class="ManagementClass",
           SOWDEP = 30,
           SPROUT = 10,
           SWSWCH = 1,          
-          STTIME = 319,
           SOW6   = 0,
           
           #GERMINATION
-          SOWFXD = 0,
+          SOWFXD = 319,
           
           #EMERGENCE SWITCH
           ESW    = 0,

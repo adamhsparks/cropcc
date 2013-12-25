@@ -1,5 +1,3 @@
-# crop [--] = parameters
-#-------------
 setClass(Class="CropClass",
          
          representation = representation(
@@ -8,33 +6,34 @@ setClass(Class="CropClass",
            
            #VARIETY
            DAYSEN = "numeric", #daylength sensitivity
+           #FWCANE = "numeric", #a variety-specific factor to convert the stem weight to economic yield
            GNOCF  = "numeric",
            KDFMAX = "numeric", #extinction coefficient of leaves at flowering stage
            NMAXGR = "numeric",
-           POTGWT = "numeric", #== potential weight
-           RGRPOT = "numeric", #== USER -SPECIFIED INPUT
+           POTGWT = "numeric", #potential weight
+           RGRPOT = "numeric", #USER -SPECIFIED INPUT
            RUEMAX = "numeric", #radiation use efficiency
-           SLAVAR = "numeric", #== cultivar-specific leaf area
+           SLAVAR = "numeric", #cultivar-specific leaf area
            TGBD   = "numeric", #base temperature from anthesis to maturity
-           TGMBD  = "numeric", #== base temperature for sowing to seedling emergence
+           TGMBD  = "numeric", #base temperature for sowing to seedling emergence
            TPMAXD = "numeric", #maximum temperature (also TMAX in text?)
            TPOPT  = "numeric", #optimal temperature (also TOPT in text?)
-           TTGERM = "numeric", #== thermal time for sowing to seedling emergence
+           TTGERM = "numeric", #thermal time for sowing to seedling emergence
            TTGF   = "numeric", #thermal time from anthesis to maturity
-           TTVG   = "numeric", #== thermal heat units for emergence to anthesis, OR, thermal time to anthesis
+           TTVG   = "numeric", #thermal heat units for emergence to anthesis, OR, thermal time to anthesis
            TVBD   = "numeric", #base temperature for emergence to anthesis (TBASE in text?)
-           VARFLD = "numeric", #== varietal sensitivity to flooding
-           VARNFX = "numeric", #== variety coefficient for N fixation capability
+           VARFLD = "numeric", #varietal sensitivity to flooding
+           VARNFX = "numeric", #variety coefficient for N fixation capability
            VRSTMN = "numeric", #sensistivity to low temperature of storage organs
            VRSTMX = "numeric", #sensitivity to high temperature of storage organs
-           ZRTPOT = "numeric", #== root extension growth rate
-
+           ZRTPOT = "numeric", #root extension growth rate
+                      
            #PHENOLOGY
-           DLSTG1 = "numeric", #== A photosensitive period within development stage
-           DLSTG2 = "numeric", #== A photosensitive period within development stage         
+           DLSTG1 = "numeric", #A photosensitive period within development stage
+           DLSTG2 = "numeric", #A photosensitive period within development stage         
            
            #SOURCE-SINK BALANCE
-           DSGFIL = "numeric", #== crop-specific development stage
+           DSGFIL = "numeric", #crop-specific development stage
            
            GNSTG1 = "numeric",
            GNSTG2 = "numeric",
@@ -130,6 +129,7 @@ setClass(Class="CropClass",
            POTGWT = 42,
            ZRTPOT = 20,
            NMAXGR = 0.02,
+           #FWCANE = 1,
            DAYSEN = 1,
            
            #PHENOLOGY

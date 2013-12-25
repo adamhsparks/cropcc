@@ -1,8 +1,7 @@
-#management
-sowingDate <- function(DINDEXs, soil, SWBsv, management)
+sowingDate <- function(DINDEXs, control, soil, SWBsv, management)
 {
   #------------------ management data
-  SOWFXD <- management@STTIME #JvE: This statement was a bit lost among the germination code, but should be here. Start time, however, should not be part of management, but of "control" (timer)
+  SOWFXD <- management@SOWFXD #JvE: This statement was a bit lost among the germination code, but should be here. Start time, however, should not be part of management, but of "control" (timer)
   SWSWCH <- management@SWSWCH
   
   #------------------ soil data

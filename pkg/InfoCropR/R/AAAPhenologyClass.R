@@ -11,7 +11,7 @@ setClass(Class="PhenologyClass",
             GFD    = "numeric",
             GNLOSS = "numeric",
             GNO    = "numeric",
-            HUVG   = "numeric", #== Daily increment in heat units [°C/day] = thermal time
+            HUVG   = "numeric", #== Daily increment in heat units [?C/day] = thermal time
             RDSA   = "numeric",
             SINKLT = "numeric"
                         
@@ -22,7 +22,7 @@ setClass(Class="PhenologyClass",
             DINDEX = 10957,
             
             ANTHD  = 0,
-            DS     = 0,
+            DS     = 0, #JvE: No DSI needed!
             GFD    = 0,
             GNLOSS = 0,
             GNO    = 0,
