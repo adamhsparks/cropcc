@@ -7,7 +7,7 @@ germination <- function(phenology, management)
   if(management@ESW[j] > 0.5) 
   {  
     management@ESW[j+1] <- 1
-    management@ESWI[j+1] <- 1 #ESWI should be eliminated later; is an auxiliary variable in FST
+    management@ESWI[j+1] <- 1 #ESWI should be eliminated later; it is just an auxiliary variable in FST
     return(management)
   }
   else 
@@ -15,11 +15,10 @@ germination <- function(phenology, management)
     DS <- phenology@RDSA[j]
     
     #---------------- GERMINATION
-    GERMIX <- DS
-    ESW <- as.integer(GERMIX > 0.1)
+    GERM <- max(0, DS - 0.1)
+    ESW <- as.integer(GERM > 0)
     
     #---------------- EMERGENCE SWITCH
-    
     management@ESW[j+1]    <- ESW 
     management@ESWI[j+1]   <- ESW 
     

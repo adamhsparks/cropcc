@@ -1,5 +1,3 @@
-# management [transplantingDate3, germination2, sowingDate] 
-#-------------
 setClass(Class="ManagementClass",
          
          representation = representation(
@@ -21,11 +19,13 @@ setClass(Class="ManagementClass",
                                                        #FJAV: Without evaluation and not change value
            WCLSOW = "numeric", #--- var
            
+           #JvE: Germination and emergence should be moved to cropsv
+           
            #GERMINATION
            SOWFXD = "numeric", #--- var ----------: TIMER
            
            #EMERGENCE SWITCH
-           ESW    = "numeric", #--- var
+           ESW    = "numeric", #--- var 
            ESWI   = "numeric", #--- var
            
            #ADDITION FOR RAINFALL DEPENDENT TRANSPLANTING DATE
