@@ -1,5 +1,5 @@
-\name{numberstorageOrgans2}
-\alias{numberstorageOrgans2}
+\name{numberstorageOrgans}
+\alias{numberstorageOrgans}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Number of storage organs
@@ -8,7 +8,7 @@ Number of storage organs
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-numberstorageOrgans2(crop, cropsv, EDTSsv, management, stress, tabFunction, phenology)
+numberstorageOrgans(crop, cropsv, EDTSsv, management, stress, tabFunction, phenology)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

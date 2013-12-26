@@ -159,7 +159,7 @@ SUBR_FUFR <- function(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
 #    *! PEVAP       Potential evaporation                                 o  *
 #==================
 # srSUBPET
-SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, EDTSsv, soil,
+SUBR_SUBPET <- function(TIME, climate, control, cropsv, EDTSsv, soil,
                         SWBsv, tabFunction, weather, srSUBPET) #--------------------  Inputs, except srSUBPET                
 #                   ANGOT,RDN,DAYLP,ETRD,ETAE,ETD,PTRANS,PEVAP) #-  Outputs: inside srSUBPET
 {
@@ -198,9 +198,9 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, EDTSsv, soil,
   SOILAB <- tabFunction@SOILAB
   
   #---------- weather Data
-  DOY   <- weather@DOY[weather@DINDEX == DINDEXs]
+  DOY   <- weather@DOY[TIME]
   LAT   <- weather@LAT                              #weather@LAT[weather@DINDEX == DINDEXs]
-  RDD   <- weather@RDD[weather@DINDEX == DINDEXs]
+  RDD   <- weather@RDD[TIME]
   
   #================   
   COSTOM <- AFGEN(COFST, CO2)
@@ -274,9 +274,7 @@ SUBR_SUBPET <- function(DINDEXs, climate, control, cropsv, EDTSsv, soil,
   PEVAP  <- exp(-0.5*LAI)*(ETRD + ETAE)
   
   #================
-  j  <- length(srSUBPET@DINDEX) + 1
-  
-  srSUBPET@DINDEX[j] <- DINDEXs
+  j  <- length(srSUBPET@ANGOT) + 1
   
   srSUBPET@ANGOT[j]  <- ANGOT
   srSUBPET@DAYLP[j]  <- DAYLP

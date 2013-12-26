@@ -8,11 +8,11 @@ Potential evapotranspiration subroutine
 Calculates potential evapotranspiration
 }
 \usage{
-SUBR_SUBPET(DINDEXs, climate, control, cropsv, EDTSsv, soil, SWBsv, tabFunction, weather, srSUBPET)
+SUBR_SUBPET(TIME, climate, control, cropsv, EDTSsv, soil, SWBsv, tabFunction, weather, srSUBPET)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
+  \item{TIME}{
 %%     ~~Describe \code{DINDEXs} here~~
 }
   \item{climate}{

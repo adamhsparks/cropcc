@@ -1,5 +1,5 @@
 # phenology
-numberstorageOrgans2 <- function(crop, cropsv, EDTSsv, management,
+numberstorageOrgans <- function(crop, cropsv, EDTSsv, management,
                                 stress, tabFunction, phenology)
 {
   #---------- crop Data
