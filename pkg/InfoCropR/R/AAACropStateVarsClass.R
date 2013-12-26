@@ -1,6 +1,3 @@
-# cropsv [fillingrateStorageOrgans8, growthandRadiation7, lossLAIforPests6, effecctStresCG5, 
-#         leafGrowth4, transplantingShock3, cropDamage2, evapoTranspiration] 
-#-------------
 setClass(Class="CropStateVarsClass",
          
          representation = representation(
@@ -56,7 +53,7 @@ setClass(Class="CropStateVarsClass",
           #LEAF GROWTH AND SENESCENCE
           DLV    = "numeric",           #== rate of dead leaf weight
           DST    = "numeric",           #== rate of dead stem weight
-          LAI    = "numeric",           #== leaf lamina area, OR, leaf area index
+          LAI    = "numeric",           #== leaf area index
           RLAI   = "numeric",           #== net leaf area growth rate
           
           #Loss in LAI due to pests

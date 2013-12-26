@@ -4,7 +4,7 @@ growthRates <- function(DINDEXs, control, crop, cropsv, management,
   {
   
   #---------- control Data
-  FWCANE <- control@FWCANE
+  #FWCANE <- control@FWCANE
   WLVI   <- control@WLVI[length(control@WLVI)]
   WRTI   <- control@WRTI[length(control@WRTI)]
   WSTI   <- control@WSTI
@@ -58,12 +58,12 @@ growthRates <- function(DINDEXs, control, crop, cropsv, management,
   LLVST <- tabFunction@LLVST
   
   #================
-  CFPART <- AMAX1(AFGEN(LLVN, NSTRES), AFGEN(LLVST, WSTRES)) #== stress incerase in root allocation
-  FRT    <- AFGEN(FRTTB, DS)*CFPART                          #== dry matter allocated first to roots
-  FSH    <- 1 - FRT                                          #== allocation of dry matter to ground shoot
-  FLV    <- AFGEN(FLVTB, DS)                                 #== allocation of dry matter to leaves
-  FST    <- AFGEN(FSTTB, DS)                                 #== allocation of dry matter to stems
-  FSO    <- 1 - (FLV + FST)                                  #== allocation of dry matter to storage organs
+  CFPART <- AMAX1(AFGEN(LLVN, NSTRES), AFGEN(LLVST, WSTRES)) #stress incerase in root allocation
+  FRT    <- AFGEN(FRTTB, DS)*CFPART                          #dry matter allocated first to roots
+  FSH    <- 1 - FRT                                          #allocation of dry matter to ground shoot
+  FLV    <- AFGEN(FLVTB, DS)                                 #allocation of dry matter to leaves
+  FST    <- AFGEN(FSTTB, DS)                                 #allocation of dry matter to stems
+  FSO    <- 1 - (FLV + FST)                                  #allocation of dry matter to storage organs
   
   #----------------
   GrowthRmod <- function(Time, State, Pars) {
@@ -78,7 +78,7 @@ growthRates <- function(DINDEXs, control, crop, cropsv, management,
         AMIN1(WIR, LSTR + SUCKST + WIR*(1 - PLTR))  #______ODE No. 6
       
       WLEAF <- WLVG + WLVD
-      WSTEM <- (WST + WIR)*FWCANE
+      WSTEM <- (WST + WIR) #*FWCANE
       TDM   <- WLEAF + WSTEM + WSTD + WSO / ENERGY
       RWLVG <- GCROP*FSH*FLV - AMIN1(WLVG, DLV + SUCKLV + WLVG*(1 - PLTR))  
       RWST  <- GCROP*FSH*FST*(1 - AFGEN(FSTRT, DS)) - 
@@ -131,5 +131,3 @@ growthRates <- function(DINDEXs, control, crop, cropsv, management,
   #----------------
   return(GRsv)
 }
-#==================
-# GRsv <- growthRates(DINDEXs,control,crop,cropsv,management,phenology,root,stress,tabFunction,GRsv)

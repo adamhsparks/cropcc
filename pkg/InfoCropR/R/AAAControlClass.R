@@ -1,5 +1,3 @@
-#control [initialConditions_runControl: (*)] 
-#-------------
 setClass(Class="ControlClass",
          
          representation = representation(
@@ -15,7 +13,7 @@ setClass(Class="ControlClass",
            ETSWCH = "numeric",
            GRSWCH = "numeric",  #------------FJAV: Declarated in Line 1205, but Without use in FST
            IDSLR  = "numeric",
-           INPOND = "numeric",                 #== initail state of surface ponding of water
+           INPOND = "numeric",                 #== initial state of surface ponding of water
            LAII   = "numeric", # (*)           #== Initial leaf area index
            NLVI   = "numeric", # (*)           #== initial leaves rate of change in N-content
            
@@ -25,8 +23,8 @@ setClass(Class="ControlClass",
            
            NRTI   = "numeric", # (*)           #== initial root rate of change in N-content
            
-           SOC1KG = "numeric", # (*)
-           SOC2KG = "numeric", # (*)
+           SOC1KG = "numeric", # (*) #First value of SOCNT1
+           SOC2KG = "numeric", # (*) #First value of SOCNT2
            SOC3KG = "numeric", # (*)
            
            SOILSW = "numeric",
