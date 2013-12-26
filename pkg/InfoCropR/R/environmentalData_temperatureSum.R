@@ -1,5 +1,5 @@
 # EDTSsv
-environmentalData_temperatureSum <- function(DINDEXs, control, crop, 
+environmentalData_temperatureSum <- function(TIME, control, crop, 
                                              management, srSUBPET, 
                                              SWBsv, tabFunction, weather, 
                                              EDTSsv)
@@ -33,13 +33,13 @@ environmentalData_temperatureSum <- function(DINDEXs, control, crop,
   TTGMEX <- tabFunction@TTGMEX
   
   #---------- weather Data
-  DOY   <- weather@DOY[weather@DINDEX == DINDEXs]
-  RAIN  <- weather@RAIN[weather@DINDEX == DINDEXs]
-  RDD   <- weather@RDD[weather@DINDEX == DINDEXs]
-  TMMN  <- weather@TMMN[weather@DINDEX == DINDEXs]
-  TMMX  <- weather@TMMX[weather@DINDEX == DINDEXs]
-  VP    <- weather@VP[weather@DINDEX == DINDEXs]
-  WN    <- weather@WN[weather@DINDEX == DINDEXs]
+  DOY   <- weather@DOY[TIME]
+  RAIN  <- weather@RAIN[TIME]
+  RDD   <- weather@RDD[TIME]
+  TMMN  <- weather@TMMN[TIME]
+  TMMX  <- weather@TMMX[TIME]
+  VP    <- weather@VP[TIME]
+  WN    <- weather@WN[TIME]
     
   #---------- EDTSsv Data
   EDTSsv@TPS[1] <- TPSI
@@ -78,8 +78,8 @@ environmentalData_temperatureSum <- function(DINDEXs, control, crop,
   DSTART <- RDAS   #Line 92: DSTART = INTGRL(ZERO, RDAS)
   
   #================
-  j <- length(EDTSsv@DINDEX) + 1
-  EDTSsv@DINDEX[j] <- DINDEXs
+  j <- length(EDTSsv@DSTART) + 1
+
   
   EDTSsv@DSTART[j] <- DSTART
   EDTSsv@DTR[j]    <- DTR
@@ -99,5 +99,3 @@ environmentalData_temperatureSum <- function(DINDEXs, control, crop,
   #----------------
   return(EDTSsv)
 }
-#------------------------------------------------------------
-# EDTSsv <- environmentalData_temperatureSum(DINDEXs,control,crop,management,srSUBPET,SWBsv,tabFunction,weather,EDTSsv)

@@ -1,5 +1,5 @@
 # cropsv
-fillingrateStorageOrgans8 <- function(crop, EDTSsv, GRsv, phenology, cropsv)
+fillingrateStorageOrgans <- function(crop, EDTSsv, GRsv, phenology, cropsv)
 {
   #---------- crop Data
   DSGFIL <- crop@DSGFIL

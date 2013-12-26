@@ -1,5 +1,5 @@
-\name{leafGrowth4}
-\alias{leafGrowth4}
+\name{leafGrowth}
+\alias{leafGrowth}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Leaf growth
@@ -8,7 +8,7 @@ Leaf growth
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-leafGrowth4(CNsv, control, crop, EDTSsv, GRsv, management, phenology, srGLA, stress, tabFunction, cropsv)
+leafGrowth(CNsv, control, crop, EDTSsv, GRsv, management, phenology, srGLA, stress, tabFunction, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

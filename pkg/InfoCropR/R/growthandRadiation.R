@@ -1,5 +1,5 @@
 # cropsv 
-growthandRadiation7 <- function(climate, CNsv, control, crop, EDTSsv, 
+growthandRadiation <- function(climate, CNsv, control, crop, EDTSsv, 
                                 GRsv, management, phenology, stress, 
                                 tabFunction, cropsv)
 {

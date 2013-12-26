@@ -1,5 +1,5 @@
 # soil
-puddling2 <- function(management, soilD, tabFunction, soil)
+puddling <- function(management, soilD, tabFunction, soil)
 {
   #---------- management Data
   DAS    <- management@DAS[length(management@DAS)]

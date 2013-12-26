@@ -1,5 +1,5 @@
-\name{lossLAIforPests6}
-\alias{lossLAIforPests6}
+\name{lossLAIforPests}
+\alias{lossLAIforPests}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Leaf area loss due to pests

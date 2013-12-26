@@ -1,5 +1,5 @@
 # TODO JvE: LAII = LAI[1] etc.
-initialConditions_runControl <- function(DINDEXs, crop, cropsv, management, pestD,
+initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
                                          phenology, soilD, tabFunction, 
                                          weather, control)
 {
@@ -56,8 +56,8 @@ initialConditions_runControl <- function(DINDEXs, crop, cropsv, management, pest
   SLACF  <- tabFunction@SLACF
   
   #---------- weather Data
-  TMMN  <- weather@TMMN[weather@DINDEX == DINDEXs]
-  TMMX  <- weather@TMMX[weather@DINDEX == DINDEXs]
+  TMMN  <- weather@TMMN[TIME]
+  TMMX  <- weather@TMMX[TIME]
   
   #================
   TPSI <- 0.5*(TMMX + TMMN)

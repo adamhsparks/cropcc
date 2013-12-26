@@ -1,5 +1,5 @@
-\name{cropDamage2}
-\alias{cropDamage2}
+\name{cropDamage}
+\alias{cropDamage}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Determine crop damage
@@ -8,7 +8,7 @@ Determine crop damage
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-cropDamage2(CNsv, crop, GRsv, management, pestD, tabFunction, cropsv)
+cropDamage(CNsv, crop, GRsv, management, pestD, tabFunction, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

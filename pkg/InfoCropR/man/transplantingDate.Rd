@@ -1,5 +1,5 @@
-\name{transplantingDate3}
-\alias{transplantingDate3}
+\name{transplantingDate}
+\alias{transplantingDate}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Transplanting date
@@ -8,7 +8,7 @@ Transplanting date
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-transplantingDate3(control, soil, SWBsv, management)
+transplantingDate(control, soil, SWBsv, management)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

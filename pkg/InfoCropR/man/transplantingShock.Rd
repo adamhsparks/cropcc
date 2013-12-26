@@ -1,5 +1,5 @@
-\name{transplantingShock3}
-\alias{transplantingShock3}
+\name{transplantingShock}
+\alias{transplantingShock}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Transplanting shock
@@ -8,7 +8,7 @@ Transplanting shock
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-transplantingShock3(crop, management, phenology, cropsv)
+transplantingShock(crop, management, phenology, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

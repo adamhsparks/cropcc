@@ -1,5 +1,5 @@
-\name{growthandRadiation7}
-\alias{growthandRadiation7}
+\name{growthandRadiation}
+\alias{growthandRadiation}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Growth and radiation
@@ -8,7 +8,7 @@ Growth and radiation
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-growthandRadiation7(climate, CNsv, control, crop, EDTSsv, GRsv, management, phenology, stress, tabFunction, cropsv)
+growthandRadiation(climate, CNsv, control, crop, EDTSsv, GRsv, management, phenology, stress, tabFunction, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

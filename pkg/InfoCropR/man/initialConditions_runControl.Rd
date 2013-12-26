@@ -8,11 +8,11 @@ Initial conditions run control
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-initialConditions_runControl(DINDEXs, crop, cropsv, management, pestD, phenology, soilD, tabFunction, weather, control)
+initialConditions_runControl(TIME, crop, cropsv, management, pestD, phenology, soilD, tabFunction, weather, control)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
+  \item{TIME}{
 %%     ~~Describe \code{DINDEXs} here~~
 }
   \item{crop}{

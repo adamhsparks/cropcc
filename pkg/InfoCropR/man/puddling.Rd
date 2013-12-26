@@ -1,5 +1,5 @@
-\name{puddling2}
-\alias{puddling2}
+\name{puddling}
+\alias{puddling}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Puddling
@@ -8,7 +8,7 @@ Puddling
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-puddling2(management, soilD, tabFunction, soil)
+puddling(management, soilD, tabFunction, soil)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

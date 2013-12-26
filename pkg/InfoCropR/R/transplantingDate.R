@@ -1,5 +1,5 @@
 #management
-transplantingDate3 <- function(control, soil, SWBsv, management)
+transplantingDate <- function(control, soil, SWBsv, management)
 {
   #---------- control Data
   XTIN <- control@XTIN

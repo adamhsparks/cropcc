@@ -1,5 +1,5 @@
 # cropsv 
-lossLAIforPests6 <- function(control, crop, EDTSsv, GRsv, management, 
+lossLAIforPests <- function(control, crop, EDTSsv, GRsv, management, 
                              pestD, phenology, stress, tabFunction, cropsv)
 {
   #---------- control Data

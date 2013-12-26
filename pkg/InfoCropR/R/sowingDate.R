@@ -1,4 +1,4 @@
-sowingDate <- function(DINDEXs, control, soil, SWBsv, management)
+sowingDate <- function(TIME, control, soil, SWBsv, management)
 {
   #------------------ management data
   SOWFXD <- management@SOWFXD #JvE: This statement was a bit lost among the germination code, but should be here. Start time, however, should not be part of management, but of "control" (timer)
@@ -15,17 +15,13 @@ sowingDate <- function(DINDEXs, control, soil, SWBsv, management)
   SOW0   <- INSW(WCL1 - WCLSOW, 0, 1)
   SOW1   <- SOW0                       #Line 100: SOW1 = INTGRL(ZERO, SOW0)
   SOW5   <- INSW(SOW1 - 1, 0, 1)
-  
-  #----------------------------------------------
-  TIME   <- DINDEXs #---------------- FJAV: ???????????
-  #----------------------------------------------
-  
+
   SOW6   <- INSW(SWSWCH - 1, SOW5, INSW(SOWFXD - TIME - 1, 1, 0))
   DAS    <- SOW6                       #Line 103: DAS = INTGRL(ZERO, SOW6)
   
   #================
-  j <- length(management@DINDEX) + 1
-  management@DINDEX[j] <- DINDEXs
+  j <- length(management@SOW6) + 1
+
   
   management@SOW6[j]   <- SOW6
   management@DAS[j]    <- DAS

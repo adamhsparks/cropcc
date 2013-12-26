@@ -1,5 +1,5 @@
 # cropsv
-transplantingShock3 <- function(crop, management, phenology, cropsv)
+transplantingShock <- function(crop, management, phenology, cropsv)
 {
   #---------- crop Data
   NPLSB <- crop@NPLSB

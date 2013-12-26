@@ -1,5 +1,5 @@
 # cropsv 
-cropDamage2 <- function(CNsv, crop, GRsv, management, 
+cropDamage <- function(CNsv, crop, GRsv, management, 
                         pestD, tabFunction, cropsv)
 {
   #---------- CNsv Data

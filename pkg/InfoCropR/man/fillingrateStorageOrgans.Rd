@@ -1,5 +1,5 @@
-\name{fillingrateStorageOrgans8}
-\alias{fillingrateStorageOrgans8}
+\name{fillingrateStorageOrgans}
+\alias{fillingrateStorageOrgans}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Filling rate storage organs
@@ -8,7 +8,7 @@ Filling rate storage organs
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-fillingrateStorageOrgans8(crop, EDTSsv, GRsv, phenology, cropsv)
+fillingrateStorageOrgans(crop, EDTSsv, GRsv, phenology, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
