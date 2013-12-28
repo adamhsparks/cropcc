@@ -8,12 +8,15 @@ Sowing date
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-sowingDate(DINDEXs, soil, SWBsv, management)
+sowingDate(TIME, control, soil, SWBsv, management)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
+  \item{TIME}{
 %%     ~~Describe \code{DINDEXs} here~~
+}
+  \item{control}{
+%%     ~~Describe \code{soil} here~~
 }
   \item{soil}{
 %%     ~~Describe \code{soil} here~~

@@ -8,7 +8,7 @@ Leaf area loss due to pests
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-lossLAIforPests6(control, crop, EDTSsv, GRsv, management, pestD, phenology, stress, tabFunction, cropsv)
+lossLAIforPests(control, crop, EDTSsv, GRsv, management, pestD, phenology, stress, tabFunction, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

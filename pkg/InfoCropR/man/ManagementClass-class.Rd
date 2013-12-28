@@ -22,7 +22,6 @@ Objects can be created by calls of the form \code{new("ManagementClass", ...)}.
     \item{\code{SOW6}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{SOWDEP}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{SPROUT}:}{Object of class \code{"numeric"} ~~ }
-    \item{\code{STTIME}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{SWSWCH}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{WCLSOW}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{SOWFXD}:}{Object of class \code{"numeric"} ~~ }

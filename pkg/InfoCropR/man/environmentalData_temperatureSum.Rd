@@ -8,11 +8,11 @@ Process weather data
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-environmentalData_temperatureSum(DINDEXs, control, crop, management, srSUBPET, SWBsv, tabFunction, weather, EDTSsv)
+environmentalData_temperatureSum(TIME, control, crop, management, srSUBPET, SWBsv, tabFunction, weather, EDTSsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
+  \item{TIME}{
 %%     ~~Describe \code{DINDEXs} here~~
 }
   \item{control}{

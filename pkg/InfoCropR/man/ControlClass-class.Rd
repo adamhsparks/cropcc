@@ -14,6 +14,7 @@ Objects can be created by calls of the form \code{new("ControlClass", ...)}.
 \section{Slots}{
   \describe{
     \item{\code{AEZ}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{STTIME}:}{Object of class \code{"numeric"} ~~ }    
     \item{\code{DSI}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ETSWCH}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{GRSWCH}:}{Object of class \code{"numeric"} ~~ }
