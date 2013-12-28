@@ -8,13 +8,10 @@ Growth rates
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-growthRates(DINDEXs, control, crop, cropsv, management, phenology, root, stress, tabFunction, GRsv)
+growthRates(control, crop, cropsv, management, phenology, root, stress, tabFunction, GRsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }

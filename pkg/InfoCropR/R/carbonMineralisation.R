@@ -1,5 +1,4 @@
-# carbonMine
-carbonMineralisation <- function(DINDEXs, carbonInmo, co2Emission, control, EDTSsv,
+carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
                                  fertilisation, management, methane, nitrogenEmi, 
                                  root, SNBsv, soilD, stress, tabFunction, carbonMine)
 { 
@@ -162,8 +161,7 @@ carbonMineralisation <- function(DINDEXs, carbonInmo, co2Emission, control, EDTS
   CDOC3 <- DOC3
   
   #================
-  j <- length(carbonMine@DINDEX) + 1
-  carbonMine@DINDEX[j] <- DINDEXs
+  j <- length(carbonMine@CA1DEC) + 1
   
   carbonMine@CA1DEC[j] <- CA1DEC
   carbonMine@CA2DEC[j] <- CA2DEC
@@ -194,5 +192,3 @@ carbonMineralisation <- function(DINDEXs, carbonInmo, co2Emission, control, EDTS
   #----------------
   return(carbonMine)
 }
-#==================
-# carbonMine <- carbonMineralisation(DINDEXs,carbonInmo,co2Emission,control,EDTSsv,fertilisation,management,methane,nitrogenEmi,root,SNBsv,soilD,stress,tabFunction,carbonMine)

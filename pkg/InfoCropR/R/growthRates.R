@@ -1,5 +1,5 @@
 # GRsv
-growthRates <- function(DINDEXs, control, crop, cropsv, management,
+growthRates <- function(control, crop, cropsv, management,
                         phenology, root, stress, tabFunction, GRsv)
   {
   
@@ -111,8 +111,7 @@ growthRates <- function(DINDEXs, control, crop, cropsv, management,
   WSTEM <- out[2,14]
   
   #================
-  j <- length(GRsv@DINDEX) + 1
-  GRsv@DINDEX[j] <- DINDEXs
+  j <- length(GRsv@LSTR) + 1
   
   GRsv@LSTR[j]   <- LSTR
   GRsv@RWLVG[j]  <- RWLVG

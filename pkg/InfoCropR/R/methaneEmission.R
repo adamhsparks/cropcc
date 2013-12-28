@@ -1,5 +1,5 @@
 # methane 
-methaneEmission <- function(DINDEXs, carbonMine, crop, GRsv, SWBsv,
+methaneEmission <- function(carbonMine, crop, GRsv, SWBsv,
                             tabFunction, methane)
 {
   #----------- carbonMine Data
@@ -45,8 +45,7 @@ methaneEmission <- function(DINDEXs, carbonMine, crop, GRsv, SWBsv,
   CH4SUM <- CHEMIT                   # Line 885: CH4SUM = INTGRL(ZERO, CHEMIT)
   
   #================
-  j <- length(methane@DINDEX) + 1
-  methane@DINDEX[j] <- DINDEXs
+  j <- length(methane@CH4PR1) + 1
   
   methane@CH4PR1[j] <- CH4PR1
   methane@CH4PR2[j] <- CH4PR2
@@ -59,5 +58,3 @@ methaneEmission <- function(DINDEXs, carbonMine, crop, GRsv, SWBsv,
   #----------------
   return(methane)
 }
-#==================
-# methane <- methaneEmission(DINDEXs,carbonMine,crop,GRsv,SWBsv,tabFunction,methane)
