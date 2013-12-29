@@ -1,5 +1,4 @@
-# carbonInmo
-carbonInmobilisation <- function(DINDEXs, carbonMine, nitrogenD, 
+carbonInmobilisation <- function(carbonMine, nitrogenD, 
                                  nitrogenEmi, stress, carbonInmo)
 {
   #---------- carbonMine Data
@@ -24,8 +23,7 @@ carbonInmobilisation <- function(DINDEXs, carbonMine, nitrogenD,
   CIMMO3 <- CDOC3*ASOLC*TFAC*MBFAC* AMIN1(MFAC, PHFAC)
   
   #================
-  j <- length(carbonInmo@DINDEX) + 1
-  carbonInmo@DINDEX[j] <- DINDEXs
+  j <- length(carbonInmo@CIMMO1) + 1
   
   carbonInmo@CIMMO1[j] <- CIMMO1
   carbonInmo@CIMMO2[j] <- CIMMO2
@@ -34,5 +32,3 @@ carbonInmobilisation <- function(DINDEXs, carbonMine, nitrogenD,
   #----------------
   return(carbonInmo)
 }
-#==================
-# carbonInmo <- carbonInmobilisation(DINDEXs, carbonMine, nitrogenD, nitrogenEmi, stress, carbonInmo)

@@ -1,5 +1,4 @@
-# root
-rhizodeposition <- function(DINDEXs, GRsv, phenology, root)
+rhizodeposition <- function(GRsv, phenology, root)
 {
 #---------- Root exudates: LINEAR AT ABOUT 0.6 MG C /(G ROOT)/D UPTO FLOWERING
 #                          AFTER WHICH 1.6 MG C /(G ROOT)/D
@@ -17,14 +16,11 @@ rhizodeposition <- function(DINDEXs, GRsv, phenology, root)
   RTDETH <- WRT*0.02
   
   #================
-  j <- length(root@DINDEX) + 1
-  root@DINDEX[j] <- DINDEXs
-  
+  j <- length(root@RTDETH) + 1
+    
   root@RTDETH[j] <- RTDETH
   root@RTEXUD[j] <- RTEXUD
   
   #----------------
   return(root)
 }
-#==================
-# root <- rhizodeposition(DINDEXs,GRsv,phenology,root)
