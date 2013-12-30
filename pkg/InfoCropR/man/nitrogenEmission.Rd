@@ -8,13 +8,10 @@ Nitrogen emission
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-nitrogenEmission(DINDEXs, carbonMine, SNBsv, soil, stress, SWBsv, tabFunction, nitrogenEmi)
+nitrogenEmission(carbonMine, SNBsv, soil, stress, SWBsv, tabFunction, nitrogenEmi)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonMine}{
 %%     ~~Describe \code{carbonMine} here~~
 }

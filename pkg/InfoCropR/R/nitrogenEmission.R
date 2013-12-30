@@ -1,5 +1,5 @@
 # nitrogenEmi
-nitrogenEmission <- function(DINDEXs, carbonMine, SNBsv, soil, stress,
+nitrogenEmission <- function(carbonMine, SNBsv, soil, stress,
                              SWBsv, tabFunction, nitrogenEmi)
 {  
   #---------- carbonMine Data
@@ -38,8 +38,7 @@ nitrogenEmission <- function(DINDEXs, carbonMine, SNBsv, soil, stress,
   N2OTOS <- N2OTOT                    #FJAV: Defined, Line 723: N2OTOS = INTGRL(ZERO,N2OTOT), but NOT used in FST
   
   #================
-  j <- length(nitrogenEmi@DINDEX) + 1
-  nitrogenEmi@DINDEX[j] <- DINDEXs
+  j <- length(nitrogenEmi@MBFAC) + 1
   
   nitrogenEmi@MBFAC[j]  <- MBFAC
   nitrogenEmi@N2ODEN[j] <- N2ODEN

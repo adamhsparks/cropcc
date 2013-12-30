@@ -1,5 +1,5 @@
 #SWBsv
-soilwaterBalance <- function(DINDEXs, control, cropsv, 
+soilwaterBalance <- function(TIME, control, cropsv, 
                              EDTSsv, management, soil, soilD,
                              srSUBPET, tabFunction, weather, SWBsv)
 {
@@ -83,7 +83,7 @@ soilwaterBalance <- function(DINDEXs, control, cropsv,
    RNSOIL <- tabFunction@RNSOIL
    
 # ------------------------------------- Weather Data : {All/One-DINDEXs}
-  weatherList <- .dataObjectExtract(weather, DINDEXs + 1)
+  weatherList <- .dataObjectExtract(weather, TIME + 1)
   for(j in 1:length(weatherList)) assign(names(weatherList)[j], weatherList[j])  
   
 

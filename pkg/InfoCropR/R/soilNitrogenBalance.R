@@ -1,5 +1,5 @@
 # SNBsv 
-soilNitrogenBalance <- function(DINDEXs, CNsv, control, crop, cropsv, 
+soilNitrogenBalance <- function(CNsv, control, crop, cropsv, 
                                 fertilisation, nitrogenD, nitrogenEmi, 
                                 nitrogenMine, phenology, soilD, stress, 
                                 SWBsv, tabFunction, SNBsv)
@@ -218,13 +218,12 @@ soilNitrogenBalance <- function(DINDEXs, CNsv, control, crop, cropsv,
   #FJAV: Defined, Line 745: NLOSSD = NLEACH+VOLAT+DENIT+NIMMOT+NRNOFF,
   #      but NOT used anywhere in FST
   
-  NLOSPT <- ANLV*LRFEED + SUKNLV + DMGSTR*ANLV + SUKNST + DMGSTR*ANST + ANSO*GNLOSS/ NOTNUL(GNO)
+  NLOSPT <- ANLV * LRFEED + SUKNLV + DMGSTR*ANLV + SUKNST + DMGSTR*ANST + ANSO*GNLOSS/ NOTNUL(GNO)
   #FJAV: Defined, Line 749-750: NLOSPT   = ANLV*LRFEED+SUKNLV+DMGSTR*ANLV+SUKNST+DMGSTR*ANST+...
   #      but NOT used anywhere in FST
   
   #================
-  j <- length(SNBsv@DINDEX) + 1
-  SNBsv@DINDEX[j] <- DINDEXs
+  j <- length(SNBsv@NH41) + 1
   
   SNBsv@NH41[j] <- NH41
   SNBsv@NH42[j] <- NH42
@@ -248,8 +247,5 @@ soilNitrogenBalance <- function(DINDEXs, CNsv, control, crop, cropsv,
   SNBsv@U2[j]     <- U2
   SNBsv@U3[j]     <- U3
   
-  #----------------
   return(SNBsv)
 }
-#==================
-# SNBsv <- soilNitrogenBalance(DINDEXs,CNsv,control,crop,cropsv,fertilisation,nitrogenD,nitrogenEmi,nitrogenMine,phenology,soilD,stress,SWBsv,tabFunction,SNBsv)

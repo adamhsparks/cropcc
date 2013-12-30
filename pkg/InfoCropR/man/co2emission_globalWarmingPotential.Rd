@@ -8,13 +8,10 @@ Greenhouse gas emission
 CO2 emission and greenhouse warming potential
 }
 \usage{
-co2emission_globalWarmingPotential(DINDEXs, carbonMine, management, methane, nitrogenEmi, co2Emission)
+co2emission_globalWarmingPotential(carbonMine, management, methane, nitrogenEmi, co2Emission)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonMine}{
 %%     ~~Describe \code{carbonMine} here~~
 }

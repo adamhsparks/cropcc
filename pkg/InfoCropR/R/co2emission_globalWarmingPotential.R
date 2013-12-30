@@ -1,5 +1,5 @@
 # co2Emission 
-co2emission_globalWarmingPotential <- function(DINDEXs, carbonMine, management, 
+co2emission_globalWarmingPotential <- function(carbonMine, management, 
                                                methane, nitrogenEmi, co2Emission)
 {
   #---------- carbonMine Data
@@ -39,8 +39,7 @@ co2emission_globalWarmingPotential <- function(DINDEXs, carbonMine, management,
   GLOBWP <- GWP                        #Line 902: GLOBWP = INTGRL(ZERO, GWP)
   
   #================
-  j <- length(co2Emission@DINDEX) + 1
-  co2Emission@DINDEX[j] <- DINDEXs
+  j <- length(co2Emission@CO2BAL) + 1
   
   co2Emission@CO2BAL[j] <- CO2BAL
   

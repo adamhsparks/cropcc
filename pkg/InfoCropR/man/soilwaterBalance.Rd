@@ -8,14 +8,14 @@ Soil water balance
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-soilwaterBalance(DINDEXs, control, cropsv, EDTSsv, management, soil, soilD, srSUBPET, tabFunction, weather, SWBsv)
+soilwaterBalance(TIME, control, cropsv, EDTSsv, management, soil, soilD, srSUBPET, tabFunction, weather, SWBsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
+\item{TIME}{
+%%     ~~Describe \code{control} here~~
 }
-  \item{control}{
+\item{control}{
 %%     ~~Describe \code{control} here~~
 }
   \item{cropsv}{

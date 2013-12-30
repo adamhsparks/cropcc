@@ -8,13 +8,10 @@ Soil nitrogen balance
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-soilNitrogenBalance(DINDEXs, CNsv, control, crop, cropsv, fertilisation, nitrogenD, nitrogenEmi, nitrogenMine, phenology, soilD, stress, SWBsv, tabFunction, SNBsv)
+soilNitrogenBalance(CNsv, control, crop, cropsv, fertilisation, nitrogenD, nitrogenEmi, nitrogenMine, phenology, soilD, stress, SWBsv, tabFunction, SNBsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{CNsv}{
 %%     ~~Describe \code{CNsv} here~~
 }
