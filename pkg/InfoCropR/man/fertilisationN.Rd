@@ -8,13 +8,10 @@ Update fertilisation
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-fertilisationN(DINDEXs, carbonMine, CNsv, crop, EDTSsv, management, phenology, stress, tabFunction, fertilisation)
+fertilisationN(carbonMine, CNsv, crop, EDTSsv, management, phenology, stress, tabFunction, fertilisation)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonMine}{
 %%     ~~Describe \code{carbonMine} here~~
 }

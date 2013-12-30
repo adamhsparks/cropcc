@@ -1,5 +1,5 @@
 # fertilisation
-fertilisationN <- function(DINDEXs, carbonMine, CNsv, crop, EDTSsv, 
+fertilisationN <- function(carbonMine, CNsv, crop, EDTSsv, 
                            management, phenology, stress, tabFunction, 
                            fertilisation)
 {
@@ -89,8 +89,7 @@ fertilisationN <- function(DINDEXs, carbonMine, CNsv, crop, EDTSsv,
             (CA3DEC + CL3DEC + LI3DEC)*1/CNOM3
   
   #================
-  j <- length(fertilisation@DINDEX) + 1
-  fertilisation@DINDEX[j] <- DINDEXs
+  j <- length(fertilisation@NHAPL1) + 1
   
   fertilisation@NHAPL1[j] <- NHAPL1
   fertilisation@NHAPL2[j] <- NHAPL2
@@ -114,5 +113,3 @@ fertilisationN <- function(DINDEXs, carbonMine, CNsv, crop, EDTSsv,
   #----------------
   return(fertilisation)
 }
-#==================
-# fertilisation <- fertilisationN(DINDEXs,carbonMine,CNsv,crop,EDTSsv,management,phenology,stress,tabFunction,fertilisation)

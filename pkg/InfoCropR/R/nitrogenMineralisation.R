@@ -1,5 +1,5 @@
 # nitrogenMine
-nitrogenMineralisation <- function(DINDEXs, control, EDTSsv, nitrogenD,
+nitrogenMineralisation <- function(control, EDTSsv, nitrogenD,
                                    nitrogenEmi, soilD, stress, nitrogenMine)
 {
   #---------- control Data
@@ -52,8 +52,7 @@ nitrogenMineralisation <- function(DINDEXs, control, EDTSsv, nitrogenD,
   MRATE3 <- POMIN3 - NMINS3
   
   #================
-  j <- length(nitrogenMine@DINDEX) + 1
-  nitrogenMine@DINDEX[j] <- DINDEXs
+  j <- length(nitrogenMine@MRATE1) + 1
   
   nitrogenMine@MRATE1[j] <- MRATE1
   nitrogenMine@MRATE2[j] <- MRATE2
@@ -66,5 +65,3 @@ nitrogenMineralisation <- function(DINDEXs, control, EDTSsv, nitrogenD,
   #----------------
   return(nitrogenMine)
 }
-#==================
-# nitrogenMine <- nitrogenMineralisation(DINDEXs,control,EDTSsv,nitrogenD,nitrogenEmi,soilD,stress,nitrogenMine)

@@ -8,13 +8,10 @@ Nitrogen mineralisation
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-nitrogenMineralisation(DINDEXs, control, EDTSsv, nitrogenD, nitrogenEmi, soilD, stress, nitrogenMine)
+nitrogenMineralisation(control, EDTSsv, nitrogenD, nitrogenEmi, soilD, stress, nitrogenMine)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }
