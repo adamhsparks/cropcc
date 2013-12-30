@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("CarbonMineralisationClass
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CA1DEC}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CA2DEC}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CA3DEC}:}{Object of class \code{"numeric"} ~~ }

@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("RootClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RTEXUD}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RTDETH}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ZRT}:}{Object of class \code{"numeric"} ~~ }

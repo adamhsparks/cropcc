@@ -1,5 +1,5 @@
 # CNsv
-cropNitrogen <- function(DINDEXs, carbonInmo, control, crop, cropsv, GRsv,
+cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
                          management, phenology, SNBsv, soil, soilD, srDELAY,
                          stress, SWBsv, tabFunction, CNsv)
 {
@@ -174,8 +174,7 @@ cropNitrogen <- function(DINDEXs, carbonInmo, control, crop, cropsv, GRsv,
   ANCRGR <- ANSO + ANLV + ANST
   
   #================
-  j <- length(CNsv@DINDEX) + 1
-  CNsv@DINDEX[j] <- DINDEXs
+  j <- length(CNsv@ANCRGR) + 1
   
   CNsv@ANCRGR[j] <- ANCRGR
   CNsv@ANLD[j] <- ANLD
@@ -201,5 +200,3 @@ cropNitrogen <- function(DINDEXs, carbonInmo, control, crop, cropsv, GRsv,
   #----------------
   return(CNsv)
 }
-#==================
-# CNsv <- cropNitrogen(DINDEXs,carbonInmo,control,crop,cropsv,GRsv,management,phenology,SNBsv,soil,soilD,srDELAY,stress,SWBsv,tabFunction,CNsv)

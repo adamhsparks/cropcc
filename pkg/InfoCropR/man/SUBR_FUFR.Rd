@@ -8,13 +8,10 @@ Water stress subroutine
 Computes factors accounting for water stress effect on water uptake.
 }
 \usage{
-SUBR_FUFR(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
+SUBR_FUFR(crop, soil, srSUBPET, SWBsv, srFUFR)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{crop}{
 %%     ~~Describe \code{crop} here~~
 }

@@ -8,13 +8,10 @@ Update nitrogen
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-cropNitrogen(DINDEXs, carbonInmo, control, crop, cropsv, GRsv, management, phenology, SNBsv, soil, soilD, srDELAY, stress, SWBsv, tabFunction, CNsv)
+cropNitrogen(carbonInmo, control, crop, cropsv, GRsv, management, phenology, SNBsv, soil, soilD, srDELAY, stress, SWBsv, tabFunction, CNsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonInmo}{
 %%     ~~Describe \code{carbonInmo} here~~
 }

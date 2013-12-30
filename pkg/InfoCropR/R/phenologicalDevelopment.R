@@ -1,5 +1,5 @@
 # phenology
-phenologicalDevelopment <- function(DINDEXs, control, crop, cropsv,
+phenologicalDevelopment <- function(control, crop, cropsv,
                                     EDTSsv, management, srSUBDD,
                                     srSUBPET, stress,
                                     tabFunction, phenology)
@@ -87,8 +87,7 @@ phenologicalDevelopment <- function(DINDEXs, control, crop, cropsv,
   GFD <- AMAX1(0, DAS - ANTHD)
   
   #================
-  j <- length(phenology@DINDEX) + 1
-  phenology@DINDEX[j] <- DINDEXs
+  j <- length(phenology@ANTHD) + 1
   
   phenology@ANTHD[j]  <- ANTHD
   phenology@DS[j]     <- DS
@@ -99,5 +98,3 @@ phenologicalDevelopment <- function(DINDEXs, control, crop, cropsv,
   #----------------
   return(phenology)
 }
-#==================
-# phenology <- phenologicalDevelopment(DINDEXs,control,crop,cropsv,EDTSsv,management,srSUBDD,srSUBPET,stress,tabFunction,phenology)

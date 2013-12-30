@@ -8,13 +8,10 @@ Update evapotranspiration
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-evapoTranspiration(DINDEXs, control, root, soilD, srFUFR, srSOIL, srSUBPET, SWBsv, tabFunction, cropsv)
+evapoTranspiration(control, root, soilD, srFUFR, srSOIL, srSUBPET, SWBsv, tabFunction, cropsv)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }

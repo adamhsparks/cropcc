@@ -12,9 +12,6 @@ carbonInmobilisation(DINDEXs, carbonMine, nitrogenD, nitrogenEmi, stress, carbon
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonMine}{
 %%     ~~Describe \code{carbonMine} here~~
 }

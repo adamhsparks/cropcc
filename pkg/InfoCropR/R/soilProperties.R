@@ -1,5 +1,5 @@
 # soil
-soilProperties <- function(DINDEXs, control, soilD, srSOIL, soil)
+soilProperties <- function(control, soilD, srSOIL, soil)
 {
   #---------------- control Data
   SOILSW <- control@SOILSW
@@ -76,8 +76,7 @@ soilProperties <- function(DINDEXs, control, soilD, srSOIL, soil)
   TKLT <- TKL1 + TKL2 + TKL3
   
   #================
-  j <- length(soil@DINDEX) + 1
-  soil@DINDEX[j] <- DINDEXs
+  j <- length(soil@BD1) + 1
   
   soil@BD1[j]    <- BD1
   soil@BD2[j]    <- BD2

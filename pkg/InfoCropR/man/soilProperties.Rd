@@ -8,13 +8,10 @@ Soil properties
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-soilProperties(DINDEXs, control, soilD, srSOIL, soil)
+soilProperties(control, soilD, srSOIL, soil)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }

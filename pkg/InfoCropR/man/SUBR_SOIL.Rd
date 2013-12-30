@@ -8,13 +8,10 @@ Soil subroutine
 Updates soil conditions
 }
 \usage{
-SUBR_SOIL(DINDEXs, soilD, srSOIL)
+SUBR_SOIL(soilD, srSOIL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{soilD}{
 %%     ~~Describe \code{soilD} here~~
 }

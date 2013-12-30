@@ -8,13 +8,10 @@ Carbon mineralisation (function)
 Updates values related to carbon mineralisation in the soil
 }
 \usage{
-carbonMineralisation(TIME, carbonInmo, co2Emission, control, EDTSsv, fertilisation, management, methane, nitrogenEmi, root, SNBsv, soilD, stress, tabFunction, carbonMine)
+carbonMineralisation(carbonInmo, co2Emission, control, EDTSsv, fertilisation, management, methane, nitrogenEmi, root, SNBsv, soilD, stress, tabFunction, carbonMine)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{TIME}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{carbonInmo}{
 %%     ~~Describe \code{carbonInmo} here~~
 }

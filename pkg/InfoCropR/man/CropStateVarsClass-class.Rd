@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("CropStateVarsClass", ...)
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ATRANS}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DSLR}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ETDAY}:}{Object of class \code{"numeric"} ~~ }

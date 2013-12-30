@@ -1,5 +1,5 @@
 # cropsv 
-evapoTranspiration <- function(DINDEXs, control, root, soilD, srFUFR, srSOIL, 
+evapoTranspiration <- function(control, root, soilD, srFUFR, srSOIL, 
                                srSUBPET, SWBsv, tabFunction, cropsv)
 {
   #---------- control Data
@@ -92,8 +92,7 @@ evapoTranspiration <- function(DINDEXs, control, root, soilD, srFUFR, srSOIL,
   ETSUM  <- ETDAY                      #Line 380: ETSUM = INTGRL(ZERO, ETDAY)                 #== cumulative evapotranspiration                          
     
   #-----
-  j <- length(cropsv@DINDEX) + 1
-  cropsv@DINDEX[j] <- DINDEXs
+  j <- length(cropsv@ATRANS) + 1
   
   cropsv@ATRANS[j] <- ATRANS 
   cropsv@DSLR[j]   <- DSLR
@@ -110,5 +109,3 @@ evapoTranspiration <- function(DINDEXs, control, root, soilD, srFUFR, srSOIL,
   
   return(cropsv)
 }
-#----------------------------------------------------------
-# cropsv <- evapoTranspiration(DINDEXs,control,root,soilD,srFUFR,srSOIL,srSUBPET,SWBsv,tabFunction,cropsv)

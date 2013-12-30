@@ -7,13 +7,10 @@ Leaf area subroutine
 \description{
 This subroutine computes daily increase of leaf area index (ha leaf/ ha ground/ d)   }
 \usage{
-SUBR_GLA(DINDEXs, control, cropsv, GRsv, management, phenology, stress, srGLA)
+SUBR_GLA(control, cropsv, GRsv, management, phenology, stress, srGLA)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }

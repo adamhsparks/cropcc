@@ -1,8 +1,6 @@
 setClass(Class="CropStateVarsClass",
          
          representation = representation(
-           
-          DINDEX = "numeric", 
 
           #EVAPO-TRANSPIRATION
           ATRANS = "numeric",           #== daily rate of transpiration, OR, actual water-uptake
@@ -86,8 +84,6 @@ setClass(Class="CropStateVarsClass",
          ),
          
          prototype = prototype(
-           
-          DINDEX = 10957,
         
           #EVAPO-TRANSPIRATION
           ATRANS = 0,

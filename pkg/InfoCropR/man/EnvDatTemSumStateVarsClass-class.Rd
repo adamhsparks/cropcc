@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("EnvDatTemSumStateVarsClas
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DSTART}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DTR}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{IRRIGS}:}{Object of class \code{"numeric"} ~~ }

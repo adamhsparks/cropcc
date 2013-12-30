@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srDELAYClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NLEAFP}:}{Object of class \code{"numeric"} ~~ }
   }
 }

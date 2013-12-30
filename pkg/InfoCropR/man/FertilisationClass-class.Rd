@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("FertilisationClass", ...)
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NHAPL1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NHAPL2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NHAPL3}:}{Object of class \code{"numeric"} ~~ }

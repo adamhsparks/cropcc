@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("CropNitrogenStateVarsClas
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ANCRGR}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ANLD}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ANLV}:}{Object of class \code{"numeric"} ~~ }

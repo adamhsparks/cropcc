@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("MethaneClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CH4PR1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CH4PR2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CH4PR3}:}{Object of class \code{"numeric"} ~~ }

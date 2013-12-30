@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("PhenologyClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ANTHD}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DS}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{GFD}:}{Object of class \code{"numeric"} ~~ }

@@ -205,8 +205,7 @@ out   <- ode(yini, times, SWBmod, parms=NULL)
 
 
 #-----------------------------
-  j <- length(SWBsv@DINDEX) + 1
-  SWBsv@DINDEX[j] <- DINDEXs
+  j <- length(SWBsv@AWF1) + 1
   
   SWBsv@AWF1[j]   <- AWF1
   SWBsv@AWF2[j]   <- AWF2
@@ -251,5 +250,3 @@ out   <- ode(yini, times, SWBmod, parms=NULL)
 
   return(SWBsv)
 }
-#  SWBsv <- soilwaterBalance(DINDEXs,control,cropsv,EDTSsv,management,soil,soilD,srSUBPET,tabFunction,weather,SWBsv)
-# ---------------------------------------------------------

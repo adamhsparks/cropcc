@@ -8,13 +8,10 @@ Stress
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-stressMultipleSources(DINDEXs, CNsv, control, cropsv, EDTSsv, management, soilD, srSUBPET, SWBsv, tabFunction, stress)
+stressMultipleSources(CNsv, control, cropsv, EDTSsv, management, soilD, srSUBPET, SWBsv, tabFunction, stress)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{CNsv}{
 %%     ~~Describe \code{CNsv} here~~
 }

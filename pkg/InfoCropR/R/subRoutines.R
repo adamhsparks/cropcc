@@ -3,7 +3,7 @@
 #               water uptake.
 #==================
 # srFUFR
-SUBR_FUFR <- function(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
+SUBR_FUFR <- function(crop, soil, srSUBPET, SWBsv, srFUFR)
 {
   #-------------------- crop Data
   CROPFC <- crop@CROPFC
@@ -84,8 +84,7 @@ SUBR_FUFR <- function(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
    WSE3 <- AMIN1(1, AMAX1(0, FR3))
   
   #================
-  j <- length(srFUFR@DINDEX) + 1
-  srFUFR@DINDEX[j] <- DINDEXs
+  j <- length(srFUFR@WSE1) + 1
   
   srFUFR@WSE1[j]   <- WSE1
   srFUFR@WSE2[j]   <- WSE2
@@ -94,9 +93,7 @@ SUBR_FUFR <- function(DINDEXs, crop, soil, srSUBPET, SWBsv, srFUFR)
   #----------------
    return(srFUFR)   
 }
-#==================
-# srFUFR <- SUBR_FUFR(DINDEXs,crop,soil,srSUBPET,SWBsv,srFUFR)
-# ---------------------------------------------------------
+
 
 
 # ---------------------------------------------------------
@@ -294,7 +291,7 @@ SUBR_SUBPET <- function(TIME, climate, control, cropsv, EDTSsv, soil,
 # IMPLICIT REAL(A-Z)
 #==================
 # srSOIL
-SUBR_SOIL <- function(DINDEXs, soilD, srSOIL)
+SUBR_SOIL <- function(soilD, srSOIL)
   {
    #---------- soilD Data
    SAND1 <- soilD@SAND1
@@ -326,8 +323,7 @@ SUBR_SOIL <- function(DINDEXs, soilD, srSOIL)
    KSATC3 <- SAND3 * 3
       
    #===============
-   j <- length(srSOIL@DINDEX) + 1
-   srSOIL@DINDEX[j] <- DINDEXs
+   j <- length(srSOIL@BDC1) + 1
    
    srSOIL@BDC1[j]   <- BDC1
    srSOIL@BDC2[j]   <- BDC2
@@ -355,10 +351,6 @@ SUBR_SOIL <- function(DINDEXs, soilD, srSOIL)
    #---------------
    return(srSOIL)
 }
-#==================
-# srSOIL <- SUBR_SOIL(DINDEXs,soilD,srSOIL)
-# ---------------------------------------------------------
-
 
 # ---------------------------------------------------------
 #   *  SUBROUTINE SUBDD                                                    *
@@ -380,7 +372,7 @@ SUBR_SOIL <- function(DINDEXs, soilD, srSOIL)
 #   *----------------------------------------------------------------------*
 #==================
 # srSUBDD
-SUBR_SUBDD <- function(DINDEXs, crop, EDTSsv, srSUBDD)
+SUBR_SUBDD <- function(crop, EDTSsv, srSUBDD)
 {
   #---------- crop Data
   TPMAXD <- crop@TPMAXD
@@ -406,7 +398,6 @@ SUBR_SUBDD <- function(DINDEXs, crop, EDTSsv, srSUBDD)
   #================
   j <- length(srSUBDD@HU) + 1  
   srSUBDD@HU[j]     <- TT
-  srSUBDD@DINDEX[j] <- DINDEXs
   
   #----------------
   return(srSUBDD)
@@ -422,7 +413,7 @@ SUBR_SUBDD <- function(DINDEXs, crop, EDTSsv, srSUBDD)
 # *           (ha leaf/ ha ground/ d)                                    *
 # * ---------------------------------------------------------------------*
 #==================
-SUBR_GLA <- function(DINDEXs, control, cropsv, GRsv, management, 
+SUBR_GLA <- function(control, cropsv, GRsv, management, 
                      phenology, stress, srGLA)
 {
   #---------- control Data
@@ -463,8 +454,7 @@ SUBR_GLA <- function(DINDEXs, control, cropsv, GRsv, management,
     if (ESWI == 0) GLAI <- 0
   
   #================
-  j <- length(srGLA@DINDEX) + 1
-  srGLA@DINDEX[j] <- DINDEXs
+  j <- length(srGLA@GLAI) + 1
   
   srGLA@GLAI[j] <- GLAI
   
@@ -481,7 +471,7 @@ SUBR_GLA <- function(DINDEXs, control, cropsv, GRsv, management,
 # *         (value either 0 or 1)                                        *
 # *----------------------------------------------------------------------*
 # srWSRT
-SUBR_WSRT <- function(DINDEXs, control, root, soil, soilD, SWBsv, srWSRT)
+SUBR_WSRT <- function(control, root, soil, soilD, SWBsv, srWSRT)
 {
   #---------- control Data
   TKL3   <- control@TKL3[length(control@TKL3)]
@@ -511,12 +501,9 @@ SUBR_WSRT <- function(DINDEXs, control, root, soil, soilD, SWBsv, srWSRT)
   if ((ZRT > (TKL1 + TKL2)) && (ZRT < (TKL1+TKL2+TKL3)) && (WCL3 < WCWP3)) WSERT <- 0
   
   #================
-  j <- length(srWSRT@DINDEX) + 1
-  srWSRT@DINDEX[j] <- DINDEXs
+  j <- length(srWSRT@WSERT) + 1
   srWSRT@WSERT[j]  <- WSERT
   
   #----------------
   return(srWSRT)
 }
-#==================
-# srWSRT <- SUBR_WSRT(DINDEXs,control,root,soil,soilD,SWBsv,srWSRT)

@@ -4,8 +4,6 @@ setClass(Class="CO2EmissionClass",
          
          representation = representation(
             
-           DINDEX = "numeric", 
-           
            CO2BAL = "numeric",
            
            CO2L1  = "numeric",
@@ -17,8 +15,6 @@ setClass(Class="CO2EmissionClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             CO2BAL = 0,
             

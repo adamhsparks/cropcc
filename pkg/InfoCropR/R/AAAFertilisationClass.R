@@ -2,9 +2,7 @@
 #-------------
 setClass(Class="FertilisationClass",
          
-         representation = representation(
-            
-           DINDEX = "numeric",                       
+         representation = representation(                     
            
            # N applied through NH4 in each soil layer
            NHAPL1 = "numeric",
@@ -32,9 +30,7 @@ setClass(Class="FertilisationClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,                        
-            
+           
             NHAPL1 = 0,
             NHAPL2 = 0,
             NHAPL3 = 0,

@@ -4,8 +4,6 @@ setClass(Class="CropNitrogenStateVarsClass",
          
          representation = representation(
             
-           DINDEX  = "numeric", 
-           
            ANCRGR  = "numeric",           #== actual N-content
            ANLD    = "numeric",
            ANLV    = "numeric",
@@ -37,8 +35,6 @@ setClass(Class="CropNitrogenStateVarsClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             ANCRGR = 0,
             ANLD   = 0,

@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("NitrogenEmissionClass", .
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{MBFAC}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{N2ODEN}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{N2ONIT}:}{Object of class \code{"numeric"} ~~ }

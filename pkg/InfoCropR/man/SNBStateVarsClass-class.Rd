@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("SNBStateVarsClass", ...)}
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NO31}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NO32}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NO33}:}{Object of class \code{"numeric"} ~~ }

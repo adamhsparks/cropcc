@@ -8,13 +8,10 @@ Root extension subroutine
 Decides if root extension growth continues or ceases.
 }
 \usage{
-SUBR_WSRT(DINDEXs, control, root, soil, soilD, SWBsv, srWSRT)
+SUBR_WSRT(control, root, soil, soilD, SWBsv, srWSRT)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{control}{
 %%     ~~Describe \code{control} here~~
 }

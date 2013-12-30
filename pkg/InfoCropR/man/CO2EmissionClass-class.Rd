@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("CO2EmissionClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CO2BAL}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CO2L1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CO2L2}:}{Object of class \code{"numeric"} ~~ }

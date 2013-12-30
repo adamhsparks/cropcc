@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("ManagementClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DAS}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NH}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NPLH}:}{Object of class \code{"numeric"} ~~ }

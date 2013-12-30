@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srFUFRClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{WSE1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{WSE2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{WSE3}:}{Object of class \code{"numeric"} ~~ }

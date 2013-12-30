@@ -3,8 +3,6 @@
 setClass(Class="EnvDatTemSumStateVarsClass",
          
          representation = representation(
- 
-           DINDEX   = "numeric",
 
            DSTART   = "numeric",
            DTR      = "numeric",           #== incident solar radiation
@@ -25,8 +23,6 @@ setClass(Class="EnvDatTemSumStateVarsClass",
          ),
          
          prototype = prototype( 
- 
-           DINDEX   = 10957,
 
            DSTART   = 0,
            DTR      = 0,

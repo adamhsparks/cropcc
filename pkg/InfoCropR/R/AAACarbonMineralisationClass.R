@@ -3,9 +3,7 @@
 setClass(Class="CarbonMineralisationClass",
          
          representation = representation(
-            
-           DINDEX = "numeric",
-           
+   
            #== carbon mineralized from organic matter
            CA1DEC = "numeric",
            CA2DEC = "numeric",
@@ -40,8 +38,6 @@ setClass(Class="CarbonMineralisationClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             CA1DEC = 0,
             CA2DEC = 0,

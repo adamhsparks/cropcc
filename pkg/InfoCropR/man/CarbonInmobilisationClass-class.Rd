@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("CarbonInmobilisationClass
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CIMMO1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CIMMO2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{CIMMO3}:}{Object of class \code{"numeric"} ~~ }

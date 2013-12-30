@@ -7,13 +7,10 @@ Heat units subroutine
 \description{
 This subroutine calculates the daily amount of heat units for calculation of the phenological development rate and early leaf area growth.}
 \usage{
-SUBR_SUBDD(DINDEXs, crop, EDTSsv, srSUBDD)
+SUBR_SUBDD(crop, EDTSsv, srSUBDD)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{DINDEXs}{
-%%     ~~Describe \code{DINDEXs} here~~
-}
   \item{crop}{
 %%     ~~Describe \code{crop} here~~
 }

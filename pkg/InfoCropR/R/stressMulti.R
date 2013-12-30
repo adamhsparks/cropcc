@@ -1,5 +1,5 @@
 # stress
-stressMultipleSources <- function(DINDEXs, CNsv, control, cropsv, EDTSsv,
+stressMultipleSources <- function(CNsv, control, cropsv, EDTSsv,
                                   management, soilD, srSUBPET, SWBsv,
                                   tabFunction, stress)
 {
@@ -60,8 +60,7 @@ stressMultipleSources <- function(DINDEXs, CNsv, control, cropsv, EDTSsv,
   NSMEAN <- NSTOT/NOTNUL(DAS)    #FJAV: NSTOT is only for NSMEAN, but NSMEAN is not used in FST anywhere
   
   #================
-  j <- length(stress@DINDEX) + 1
-  stress@DINDEX[j] <- DINDEXs
+  j <- length(stress@MFAC) + 1
   
   stress@MFAC[j]   <- MFAC
   stress@NSTRES[j] <- NSTRES
