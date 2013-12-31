@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srGLAClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{GLAI}:}{Object of class \code{"numeric"} ~~ }
   }
 }

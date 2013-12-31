@@ -3,8 +3,6 @@
 setClass(Class="SNBStateVarsClass",
          
          representation = representation(
-            
-           DINDEX = "numeric", 
            
            # Nitrate content in each soil layer
            NO31   = "numeric",
@@ -35,8 +33,6 @@ setClass(Class="SNBStateVarsClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             NO31   = 0,
             NO32   = 0,

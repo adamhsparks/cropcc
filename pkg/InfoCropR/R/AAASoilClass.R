@@ -4,8 +4,6 @@ setClass(Class="SoilClass",
          
          representation = representation(
            
-           DINDEX = "numeric",
-           
            #== bulk density
            BD1    = "numeric",
            BD2    = "numeric",
@@ -43,7 +41,6 @@ setClass(Class="SoilClass",
          
          prototype = prototype( 
            
-           DINDEX = 10957, 
            BD1 = 0,
            BD2 = 0,
            BD3 = 0,

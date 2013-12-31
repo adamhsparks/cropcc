@@ -3,8 +3,6 @@
 setClass(Class="PhenologyClass",
          
          representation = representation(
-            
-            DINDEX = "numeric",
            
             ANTHD  = "numeric",
             DS     = "numeric", #== Development stage
@@ -18,8 +16,6 @@ setClass(Class="PhenologyClass",
          ),
          
          prototype = prototype( 
-           
-            DINDEX = 10957,
             
             ANTHD  = 0,
             DS     = 0, #JvE: No DSI needed!

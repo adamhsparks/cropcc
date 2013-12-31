@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("StressClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{MFAC}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{NSTRES}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{WSTRES}:}{Object of class \code{"numeric"} ~~ }

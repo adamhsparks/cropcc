@@ -48,23 +48,6 @@ rhizodeposition(GRsv, phenology, root)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (DINDEXs, GRsv, phenology, root) 
-{
-    WRT <- GRsv@WRT[length(GRsv@WRT)]
-    DS <- phenology@DS[length(phenology@DS)]
-    RTEXUD <- INSW(DS - 1, WRT * 6e-04, WRT * 0.0016)
-    RTDETH <- WRT * 0.02
-    j <- length(root@DINDEX) + 1
-    root@DINDEX[j] <- DINDEXs
-    root@RTDETH[j] <- RTDETH
-    root@RTEXUD[j] <- RTEXUD
-    return(root)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

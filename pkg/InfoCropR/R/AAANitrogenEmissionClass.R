@@ -3,8 +3,6 @@
 setClass(Class="NitrogenEmissionClass",
          
          representation = representation(
-            
-           DINDEX = "numeric",
            
            MBFAC  = "numeric",           #== correction factor for microbial biomass, soil N mineralization
            N2ODEN = "numeric",           #== N2O formed due to denitrification
@@ -15,8 +13,6 @@ setClass(Class="NitrogenEmissionClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             MBFAC  = 0,
             N2ODEN = 0,

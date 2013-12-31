@@ -47,35 +47,6 @@ SUBR_SUBDD(crop, EDTSsv, srSUBDD)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (DINDEXs, crop, EDTSsv, srSUBDD) 
-{
-    TPMAXD <- crop@TPMAXD
-    TPOPT <- crop@TPOPT
-    TVBD <- crop@TVBD
-    TMAX <- EDTSsv@TMAX[length(EDTSsv@TMAX)]
-    TMIN <- EDTSsv@TMIN[length(EDTSsv@TMIN)]
-    TM <- (TMAX + TMIN)/2
-    TT <- 0
-    for (I in 1:24) {
-        TD <- TM + 0.5 * abs(TMAX - TMIN) * cos(0.2618 * (I - 
-            14))
-        if ((TD > TVBD) && (TD < TPMAXD)) {
-            if (TD > TPOPT) 
-                TD <- TPOPT - (TD - TPOPT) * (TPOPT - TVBD)/(TPMAXD - 
-                  TPOPT)
-            TT <- TT + (TD - TVBD)/24
-        }
-    }
-    j <- length(srSUBDD@HU) + 1
-    srSUBDD@HU[j] <- TT
-    srSUBDD@DINDEX[j] <- DINDEXs
-    return(srSUBDD)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

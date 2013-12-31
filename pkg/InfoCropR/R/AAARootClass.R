@@ -3,8 +3,6 @@
 setClass(Class="RootClass",
          
          representation = representation(
-            
-           DINDEX = "numeric", 
            
            RTEXUD = "numeric",             #== root exudates (assumed to be entirey carbohydrates)
            RTDETH = "numeric",           
@@ -20,7 +18,6 @@ setClass(Class="RootClass",
          
          prototype = prototype( 
             
-            DINDEX = 10957,
             RTEXUD = 0,
             RTDETH = 0,
             

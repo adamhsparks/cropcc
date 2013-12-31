@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("GrowthRateStateVarsClass"
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{LSTR}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RWLVG}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RWRT}:}{Object of class \code{"numeric"} ~~ }

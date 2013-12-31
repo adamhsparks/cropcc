@@ -54,32 +54,6 @@ sowingDate(TIME, control, soil, SWBsv, management)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (DINDEXs, soil, SWBsv, management) 
-{
-    SOWFXD <- management@SOWFXD[length(management@SOWFXD)]
-    SWSWCH <- management@SWSWCH[length(management@SWSWCH)]
-    WCFC1 <- soil@WCFC1[length(soil@WCFC1)]
-    WCL1 <- SWBsv@WCL1[length(SWBsv@WCL1)]
-    WCLSOW <- 0.85 * WCFC1
-    SOW0 <- INSW(WCL1 - WCLSOW, 0, 1)
-    SOW1 <- SOW0
-    SOW5 <- INSW(SOW1 - 1, 0, 1)
-    TIME <- DINDEXs
-    SOW6 <- INSW(SWSWCH - 1, SOW5, INSW(SOWFXD - TIME - 1, 1, 
-        0))
-    DAS <- SOW6
-    j <- length(management@DINDEX) + 1
-    management@DINDEX[j] <- DINDEXs
-    management@SOW6[j] <- SOW6
-    management@DAS[j] <- DAS
-    management@WCLSOW[j] <- WCLSOW
-    return(management)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

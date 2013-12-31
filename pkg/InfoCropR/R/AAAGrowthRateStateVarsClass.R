@@ -3,8 +3,6 @@
 setClass(Class="GrowthRateStateVarsClass",
          
          representation = representation(
-           
-          DINDEX = "numeric", 
           
           LSTR   = "numeric",           #== stem reserves
           RWLVG  = "numeric",           #== net growth rate of leaves
@@ -24,8 +22,6 @@ setClass(Class="GrowthRateStateVarsClass",
          
          prototype = prototype(
            
-          DINDEX = 10957,
-          
           LSTR   = 0,
           RWLVG  = 0,
           RWRT   = 0,   

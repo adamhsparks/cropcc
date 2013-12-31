@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srSUBDDClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{HU}:}{Object of class \code{"numeric"} ~~ }
   }
 }

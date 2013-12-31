@@ -59,39 +59,6 @@ SUBR_GLA(control, cropsv, GRsv, management, phenology, stress, srGLA)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function (DINDEXs, control, cropsv, GRsv, management, phenology, 
-    stress, srGLA) 
-{
-    DELT <- control@DELT
-    LAII <- control@LAII[length(control@LAII)]
-    LAI <- cropsv@LAI[length(cropsv@LAI)]
-    RGRL <- cropsv@RGRL[length(cropsv@RGRL)]
-    SLA <- cropsv@SLA[length(cropsv@SLA)]
-    RWLVG <- GRsv@RWLVG[length(GRsv@RWLVG)]
-    ESW <- management@ESW[length(management@ESW)]
-    ESWI <- management@ESWI[length(management@ESWI)]
-    DS <- phenology@DS[length(phenology@DS)]
-    HUVG <- phenology@HUVG[length(phenology@HUVG)]
-    WSTRES <- stress@WSTRES[length(stress@WSTRES)]
-    GLAI <- AMAX1(0, SLA * RWLVG)
-    if ((DS < 0.2) && (LAI < 0.75)) 
-        GLAI <- AMAX1(0, LAII * (exp(RGRL * HUVG)) * WSTRES)
-    if (RGRL <= 0) 
-        GLAI <- 0
-    if (ESW == 1) 
-        GLAI <- AMAX1(0, LAII/DELT)
-    if (ESWI == 0) 
-        GLAI <- 0
-    j <- length(srGLA@DINDEX) + 1
-    srGLA@DINDEX[j] <- DINDEXs
-    srGLA@GLAI[j] <- GLAI
-    return(srGLA)
-  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

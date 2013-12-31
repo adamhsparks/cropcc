@@ -3,8 +3,6 @@
 setClass(Class="NitrogenMineralisationClass",
          
          representation = representation(
-            
-           DINDEX = "numeric", 
            
            # temporary variable for N mineralization
            MRATE1 = "numeric",
@@ -19,8 +17,6 @@ setClass(Class="NitrogenMineralisationClass",
          ),
          
          prototype = prototype( 
-            
-            DINDEX = 10957,
             
             MRATE1 = 0,
             MRATE2 = 0,

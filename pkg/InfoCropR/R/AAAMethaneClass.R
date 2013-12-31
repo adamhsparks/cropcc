@@ -4,8 +4,6 @@ setClass(Class="MethaneClass",
          
          representation = representation(
             
-           DINDEX = "numeric", 
-           
            CH4PR1 = "numeric",
            CH4PR2 = "numeric",
            CH4PR3 = "numeric",
@@ -19,7 +17,6 @@ setClass(Class="MethaneClass",
          
          prototype = prototype( 
             
-            DINDEX = 10957,
             CH4PR1 = 0,
             CH4PR2 = 0,
             CH4PR3 = 0,

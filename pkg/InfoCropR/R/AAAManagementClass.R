@@ -4,8 +4,6 @@ setClass(Class="ManagementClass",
          
          representation = representation(
            
-           DINDEX = "numeric",
-           
            #SOWING DATE
            DAS    = "numeric", #variable
            NH     = "numeric", #parameter
@@ -50,9 +48,7 @@ setClass(Class="ManagementClass",
          ),
          
         prototype = prototype(
-          
-          DINDEX = 10957,
-           
+
           #SOWING DATE
           DAS    = 0,
           PUDLE  = 0,       # ** PUDLE IS 0 FOR UPLAND AND 1.0 FOR LOWLAND

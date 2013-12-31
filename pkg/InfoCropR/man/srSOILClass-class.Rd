@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srSOILClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{BDC1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{BDC2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{BDC3}:}{Object of class \code{"numeric"} ~~ }

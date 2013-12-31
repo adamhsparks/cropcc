@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("NitrogenMineralisationCla
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{MRATE1}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{MRATE2}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{MRATE3}:}{Object of class \code{"numeric"} ~~ }

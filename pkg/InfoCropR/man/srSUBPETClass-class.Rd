@@ -13,7 +13,6 @@ Objects can be created by calls of the form \code{new("srSUBPETClass", ...)}.
 }
 \section{Slots}{
   \describe{
-    \item{\code{DINDEX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{ANGOT}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{DAYLP}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{PEVAP}:}{Object of class \code{"numeric"} ~~ }
