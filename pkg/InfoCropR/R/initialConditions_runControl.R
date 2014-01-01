@@ -60,7 +60,7 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
   TMMX  <- weather@TMMX[TIME]
   
   #================
-  TPSI <- 0.5*(TMMX + TMMN)
+  #TPSI <- 0.5*(TMMX + TMMN)
   
   TKL3 <- INSW(PUDLE - 0.5, TKL3M, 0.1)
   
@@ -121,7 +121,7 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
   control@SWXWAT[j] <- SWXWAT
   
   control@TKL3[j]   <- TKL3
-  control@TPSI[j]   <- TPSI
+  #control@TPSI[j]   <- TPSI
   
   control@WL1I[j]   <- WL1I
   control@WL2I[j]   <- WL2I

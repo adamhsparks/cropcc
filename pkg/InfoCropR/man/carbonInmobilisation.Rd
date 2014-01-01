@@ -8,7 +8,7 @@ Carbon inmobilisation (function)
 Updates values related to carbon inmobilisation in the soil
 }
 \usage{
-carbonInmobilisation(DINDEXs, carbonMine, nitrogenD, nitrogenEmi, stress, carbonInmo)
+carbonInmobilisation(carbonMine, nitrogenD, nitrogenEmi, stress, carbonInmo)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

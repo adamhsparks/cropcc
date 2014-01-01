@@ -1,43 +1,25 @@
-\name{environmentalData_temperatureSum}
-\alias{environmentalData_temperatureSum}
+\name{initEDTSsv}
+\alias{initEDTSsv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Process weather data
+Set initial values of EDTSsv object
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-environmentalData_temperatureSum(TIME, control, crop, management, srSUBPET, SWBsv, tabFunction, weather, EDTSsv)
+initEDTSsv(weather, EDTSsv, control)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{TIME}{
-%%     ~~Describe \code{TIME} here~~
-}
-  \item{control}{
-%%     ~~Describe \code{control} here~~
-}
-  \item{crop}{
-%%     ~~Describe \code{crop} here~~
-}
-  \item{management}{
-%%     ~~Describe \code{management} here~~
-}
-  \item{srSUBPET}{
-%%     ~~Describe \code{srSUBPET} here~~
-}
-  \item{SWBsv}{
-%%     ~~Describe \code{SWBsv} here~~
-}
-  \item{tabFunction}{
-%%     ~~Describe \code{tabFunction} here~~
-}
   \item{weather}{
-%%     ~~Describe \code{weather} here~~
+%%     ~~Describe \code{x} here~~
 }
   \item{EDTSsv}{
-%%     ~~Describe \code{EDTSsv} here~~
+%%     ~~Describe \code{x} here~~
+}
+  \item{control}{
+%%     ~~Describe \code{x} here~~
 }
 }
 \details{
@@ -66,6 +48,14 @@ environmentalData_temperatureSum(TIME, control, crop, management, srSUBPET, SWBs
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
+##---- Should be DIRECTLY executable !! ----
+##-- ==>  Define data, use random,
+##--	or do  help(data=index)  for the standard data sets.
+
+## The function is currently defined as
+function (x) 
+{
+  }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

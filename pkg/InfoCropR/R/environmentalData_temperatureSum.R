@@ -7,7 +7,7 @@ environmentalData_temperatureSum <- function(TIME, control, crop,
   #---------- control Data
   DELT   <- control@DELT
   SWCPOT <- control@SWCPOT
-  TPSI   <- control@TPSI[length(control@TPSI)]
+  DSTART <- EDTSsv@DSTART
   
   #---------- crop Data
   POTATO <- crop@POTATO
@@ -42,10 +42,11 @@ environmentalData_temperatureSum <- function(TIME, control, crop,
   WN    <- weather@WN[TIME]
     
   #---------- EDTSsv Data
-  EDTSsv@TPS[1] <- TPSI
 
   RADSWC <- EDTSsv@RADSWC[length(EDTSsv@RADSWC)]
   TPS    <- EDTSsv@TPS[length(EDTSsv@TPS)]
+  TRAIN <- EDTSsv@TRAIN[length(EDTSsv@TRAIN)]
+  TIRRIG <- EDTSsv@TIRRIG[length(EDTSsv@TIRRIG)]
   
   #================
   CCTMAX <- AFGEN(CTMAXP, DOY)
@@ -53,9 +54,9 @@ environmentalData_temperatureSum <- function(TIME, control, crop,
   CCRAIN <- AFGEN(CRAINP, DOY)
   
   RAINF  <- AMAX1(0, RAIN*(100 + CCRAIN) / 100)
-  TRAIN  <- RAINF                  #Line 69: TRAIN = INTGRL(ZERO,RAINF)      #FJAV: Not used in FST
+  TRAIN  <- TRAIN + RAINF                  #Line 69: TRAIN = INTGRL(ZERO,RAINF)      #FJAV: Not used in FST
   IRRIGS <- IRRIG0 + IRRIG1 + IRRIG2 + IRRIG3
-  TIRRIG <- IRRIGS                 #Line 71: TIRRIG = INTGRL(ZERO,IRRIGS)
+  TIRRIG <- TIRRIG + IRRIGS                 #Line 71: TIRRIG = INTGRL(ZERO,IRRIGS)
   
   TMAX   <- TMMX + CCTMAX
   TMIN   <- TMMN + CCTMIN
@@ -75,16 +76,16 @@ environmentalData_temperatureSum <- function(TIME, control, crop,
   TTGM   <- INSW(SWCPOT - 1, AMAX1(10, TTGM1 / AMAX1(0.1, 
                      INSW(AWF1 - 1, AWF1, AWF1 / 10))), TTGM1)
   RDAS   <- DELT
-  DSTART <- RDAS   #Line 92: DSTART = INTGRL(ZERO, RDAS)
+  DSTART <- RDAS + DSTART   #Line 92: DSTART = INTGRL(ZERO, RDAS)
   
   #================
   j <- length(EDTSsv@DSTART) + 1
 
-  
   EDTSsv@DSTART[j] <- DSTART
   EDTSsv@DTR[j]    <- DTR
   EDTSsv@IRRIGS[j] <- IRRIGS
   EDTSsv@RAINF[j]  <- RAINF
+  EDTSsv@TRAIN[j]  <- TRAIN
   EDTSsv@TIRRIG[j] <- TIRRIG
   EDTSsv@TMAX[j]   <- TMAX
   EDTSsv@TMIN[j]   <- TMIN

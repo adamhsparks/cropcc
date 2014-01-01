@@ -13,7 +13,7 @@ sowingDate(TIME, control, soil, SWBsv, management)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{TIME}{
-%%     ~~Describe \code{DINDEXs} here~~
+%%     ~~Describe \code{TIME} here~~
 }
   \item{control}{
 %%     ~~Describe \code{soil} here~~

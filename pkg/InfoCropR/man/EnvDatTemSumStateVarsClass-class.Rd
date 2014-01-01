@@ -18,6 +18,7 @@ Objects can be created by calls of the form \code{new("EnvDatTemSumStateVarsClas
     \item{\code{IRRIGS}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RADSWC}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{RAINF}:}{Object of class \code{"numeric"} ~~ }
+    \item{\code{TRAIN}:}{Object of class \code{"numeric"} ~~ }   
     \item{\code{TIRRIG}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{TMAX}:}{Object of class \code{"numeric"} ~~ }
     \item{\code{TMIN}:}{Object of class \code{"numeric"} ~~ }
