@@ -1,11 +1,10 @@
-# TODO JvE: LAII = LAI[1] etc.
 initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
                                          phenology, soilD, tabFunction, 
                                          weather, control)
 {
   #---------- control Data
   DSI    <- control@DSI
-  SEEDRT <- control@SEEDRT
+  #SEEDRT <- control@SEEDRT
   SWCPOT <- control@SWCPOT
   
   #---------- crop Data  
@@ -72,17 +71,13 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
   WL2I <- WCLI2 * TKL2
   WL3I <- WCLI3 * TKL3
   
-  WLVI <- SEEDRT* AFGEN(FCSDEP, SOWDEP)*FRLVWT*RGMPST
-  WRTI <- SEEDRT - WLVI
+  #WLVI <- SEEDRT* AFGEN(FCSDEP, SOWDEP)*FRLVWT*RGMPST #Included in initGrowthRates
+  #WRTI <- SEEDRT - WLVI #Included in initGrowthRates
   
-  LAII <- WLVI*SLAVAR *AFGEN(SLACF, DSI) #JvE: Needs to be included in cropsv construction, because LAII = LAI[1]
+  LAII <- WLVI * SLAVAR *AFGEN(SLACF, DSI) 
   
-  NRTI <- WRTI* AFGEN(NMAXLT, DSI)*GREENF*0.5
-  NLVI <- WLVI* AFGEN(NMAXLT, DSI)*GREENF
-  
-  SOC1KG <- SOC1*TKL1/150*22000* INSW(PUDLE - 0.98, BDM1/1.56, 1)
-  SOC2KG <- SOC2*TKL2/150*22000* INSW(PUDLE - 0.98, BDM2/1.56, 1)
-  SOC3KG <- SOC3*TKL3/150*22000* INSW(PUDLE - 0.98, BDM3/1.56, 1)
+  NRTI <- WRTI * AFGEN(NMAXLT, DSI)*GREENF*0.5
+  NLVI <- WLVI * AFGEN(NMAXLT, DSI)*GREENF
   
   NO31I <- NO31II   #---------- FJAV: Not make sense. What meaning?
   NO32I <- NO32II
@@ -93,7 +88,6 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
   SWXNIT <- INSW(SWCPOT - 1, INSW(SWCNIT - 1, 0, 1), 1)
   FPOTAT <- INSW(POTATO - 1, 10, INSW(DS - 0.75, 10, 
                                  INSW(LAI - 0.08, -1, 1)))
-  
   #INSIDE SUBROUTINE SUBWRI
   #GNO <- GNO/10000                             #FJAV: GNO    inside phenology object, numberstorageOgans2.R 
   #SINKLT <- ifelse(SINKLT < 0, -1, SINKLT)     #FJAV: SINKLT inside phenology object, numberstorageOgans2.R
@@ -113,9 +107,9 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
   control@NO32I[j]  <- NO32I
   control@NO33I[j]  <- NO33I
   
-  control@SOC1KG[j] <- SOC1KG
-  control@SOC2KG[j] <- SOC2KG
-  control@SOC3KG[j] <- SOC3KG
+#   control@SOC1KG[j] <- SOC1KG
+#   control@SOC2KG[j] <- SOC2KG
+#   control@SOC3KG[j] <- SOC3KG
   
   control@SWXNIT[j] <- SWXNIT
   control@SWXWAT[j] <- SWXWAT

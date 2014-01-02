@@ -1,4 +1,4 @@
-carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
+carbonMineralisation <- function(carbonInmo, co2Emission, EDTSsv,
                                  fertilisation, management, methane, nitrogenEmi, 
                                  root, SNBsv, soilD, stress, tabFunction, carbonMine)
 { 
@@ -30,9 +30,13 @@ carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
   CO2L3 <- co2Emission@CO2L3[length(co2Emission@CO2L3)]
   
   #---------------- control Data
-  SOC1KG <- control@SOC1KG[length(control@SOC1KG)]
-  SOC2KG <- control@SOC2KG[length(control@SOC2KG)]
-  SOC3KG <- control@SOC3KG[length(control@SOC3KG)]
+#   SOC1KG <- control@SOC1KG[length(control@SOC1KG)]
+#   SOC2KG <- control@SOC2KG[length(control@SOC2KG)]
+#   SOC3KG <- control@SOC3KG[length(control@SOC3KG)]
+  
+  SOCNT1 <- carbonMine@SOCNT1[length(carbonMine@SOCNT1)]  
+  SOCNT2 <- carbonMine@SOCNT2[length(carbonMine@SOCNT2)]   
+  SOCNT3 <- carbonMine@SOCNT3[length(carbonMine@SOCNT3)] 
   
   #---------- EDTSsv Data
   DSTART <- EDTSsv@DSTART[length(EDTSsv@DSTART)]
@@ -108,7 +112,7 @@ carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
   OM2CRB <- (OM2APP*CARBO2                                 )*0.451 - CA2DEC
   OM3CRB <- (OM3APP*CARBO3                                 )*0.451 - CA3DEC
   
-  OM1CAS <- OM1CRB                    #Line 763: OM1CAS = INTGRL(ZERO,OM1CRB)
+  OM1CAS <- OM1CRB                    #Line 763: OM1CAS = INTGRL(ZERO,OM1CRB) JvE: Needs to be corrected!
   OM2CAS <- OM2CRB                    #Line 767: OM2CAS = INTGRL(ZERO,OM2CRB)
   OM3CAS <- OM3CRB                    #Line 771: OM3CAS = INTGRL(ZERO,OM3CRB)
   
@@ -121,9 +125,9 @@ carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
   OM2CLS <- OM2CEL
   OM3CLS <- OM3CEL
   
-  CL1DEC <- AMAX1(0, OM1CLS*(1 -exp(-DECELL))*TFAC*MBFAC* AMIN1(MFAC, PHFAC))
-  CL2DEC <- AMAX1(0, OM2CLS*(1- exp(-DECELL))*TFAC*MBFAC* AMIN1(MFAC, PHFAC))
-  CL3DEC <- AMAX1(0, OM3CLS*(1- exp(-DECELL))*TFAC*MBFAC* AMIN1(MFAC, PHFAC))
+  CL1DEC <- AMAX1(0, OM1CLS * (1 -exp(-DECELL)) * TFAC * MBFAC * AMIN1(MFAC, PHFAC))
+  CL2DEC <- AMAX1(0, OM2CLS * (1- exp(-DECELL)) * TFAC * MBFAC * AMIN1(MFAC, PHFAC))
+  CL3DEC <- AMAX1(0, OM3CLS * (1- exp(-DECELL)) * TFAC * MBFAC * AMIN1(MFAC, PHFAC))
   
   CELDEC <- CL1DEC + CL2DEC + CL3DEC             #== net mineralization of C from cellulose
   
@@ -148,9 +152,9 @@ carbonMineralisation <- function(carbonInmo, co2Emission, control, EDTSsv,
   SOCDC2 <- SOCNT2*(1 - exp(-DESOLC))*TFAC*MBFAC*AMIN1(MFAC, PHFAC)
   SOCDC3 <- SOCNT3*(1 - exp(-DESOLC))*TFAC*MBFAC*AMIN1(MFAC, PHFAC)
   
-  SOCNT1 <- SOC1KG + (-SOCDC1 + CIMMO1)  #Line 812: SOCNT1 = INTGRL(SOC1KG,SOCBL1)
-  SOCNT2 <- SOC2KG + (-SOCDC2 + CIMMO2)  #Line 825: SOCNT2 = INTGRL(SOC2KG,SOCBL2)
-  SOCNT3 <- SOC3KG + (-SOCDC3 + CIMMO3)  #Line 829: SOCNT3 = INTGRL(SOC3KG,SOCBL3)
+  SOCNT1 <- SOCNT1 + (-SOCDC1 + CIMMO1)  #Line 812: SOCNT1 = INTGRL(SOC1KG,SOCBL1) JvE: check SOCBL1
+  SOCNT2 <- SOCNT2 + (-SOCDC2 + CIMMO2)  #Line 825: SOCNT2 = INTGRL(SOC2KG,SOCBL2)
+  SOCNT3 <- SOCNT3 + (-SOCDC3 + CIMMO3)  #Line 829: SOCNT3 = INTGRL(SOC3KG,SOCBL3)
   
   DOC1 <- CARDEC + LIGDEC + CELDEC + SOCDC1 - CIMMO1 - CH4PR1 - CO2L1
   DOC2 <-                            SOCDC2 - CIMMO2 - CH4PR2 - CO2L2

@@ -6,7 +6,7 @@ leafGrowth <- function(CNsv, control, crop, EDTSsv, GRsv, management,
   NMOBIL <- CNsv@NMOBIL[length(CNsv@NMOBIL)]
   
   #---------- control Data
-  LAII <- control@LAII[length(control@LAII)]
+  LAII <- crop@LAII
   
   #---------- crop Data
   NMOBIF <- crop@NMOBIF

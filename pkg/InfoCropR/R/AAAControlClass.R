@@ -41,20 +41,18 @@ setClass(Class="ControlClass",
            IRRSEN = "numeric",
            NTADD  = "numeric",  #------------FJAV: (?) With 5 deffined values in different lines, but without explicit use in FST
            PRDEL  = "numeric",  #------------FJAV: Declarated in Line 1161, but Without use in FST
-           SEEDRT = "numeric",                 #== Quantity of seeds sown, OR, seed rate
+           #SEEDRT = "numeric",                 #== Quantity of seeds sown, OR, seed rate #Now under management JvE
            SWCPOT = "numeric",  #------------FJAV: Declarated in Lines 1072, and 1236
            SWXWAT = "numeric", # (*)
            
            WL1I  = "numeric", # (*)
            WL2I  = "numeric", # (*)
-           WL3I  = "numeric", # (*)
+           WL3I  = "numeric" # (*)
            
-           WLVI   = "numeric", # (*)           #== Initial leaf weight
-           WRTI   = "numeric", # (*)           #== Initial root weight
+          # WLVI   = "numeric", # (*)           #== Initial leaf weight
+           #WRTI   = "numeric", # (*)           #== Initial root weight
            
-           WSTI   = "numeric",
-           
-           XTIN   = "numeric"
+           #WSTI   = "numeric"
            
          ),
          
@@ -97,21 +95,19 @@ setClass(Class="ControlClass",
            IRRSEN = 1,
            NTADD  = 120,   #------------FJAV: Line 547: PARAM NTADD=120 / Line 1228: PARAM NTADD=0 / Line 1230: PARAM NTADD = 50 / Line 1232: PARAM NTADD = 100 / Line 1234: PARAM NTADD = 150
            PRDEL  = 1,
-           SEEDRT = 100,
+           #SEEDRT = 100,
            SWCPOT = 1,     #------------FJAV: Declarated in Line 1072:  PARAM SWCPOT = 0;  and Line 1236: PARAM SWCPOT = 1
                            #FJAV: Without evaluation, and not change value             
            SWXWAT = 0,
            
            WL1I = 0,
            WL2I = 0,
-           WL3I = 0,
+           WL3I = 0
            
-           WLVI   = 0,
-           WRTI   = 0,
+           #WLVI   = 0,
+          # WRTI   = 0,
            
-           WSTI   = 0,
-           
-           XTIN   = 1
+           #WSTI   = 0
            
          ),
          

@@ -1,16 +1,13 @@
 # GRsv
-growthRates <- function(control, crop, cropsv, management,
+growthRates <- function(crop, cropsv, management,
                         phenology, root, stress, tabFunction, GRsv)
   {
   
-  #---------- control Data
-  #FWCANE <- control@FWCANE
-  WLVI   <- control@WLVI[length(control@WLVI)]
-  WRTI   <- control@WRTI[length(control@WRTI)]
-  WSTI   <- control@WSTI
-  
   #---------- crop Data
   ENERGY <- crop@ENERGY  
+  WLVI   <- crop@WLVI
+  WSTI   <- crop@WSTI
+  WRTI   <- crop@WRTI   
   
   #---------- cropsv Data
   AGFR   <- cropsv@AGFR[length(cropsv@AGFR)]

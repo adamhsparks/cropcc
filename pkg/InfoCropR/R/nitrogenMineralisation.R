@@ -1,9 +1,9 @@
 # nitrogenMine
-nitrogenMineralisation <- function(control, EDTSsv, nitrogenD,
+nitrogenMineralisation <- function(EDTSsv, nitrogenD,
                                    nitrogenEmi, soilD, stress, nitrogenMine)
 {
-  #---------- control Data
-  TKL3   <- control@TKL3[length(control@TKL3)]
+  
+  
   
   #---------- EDTSsv Data
   DSTART <- EDTSsv@DSTART[length(EDTSsv@DSTART)]
@@ -26,6 +26,7 @@ nitrogenMineralisation <- function(control, EDTSsv, nitrogenD,
   
   TKL1 <- soilD@TKL1
   TKL2 <- soilD@TKL2
+  TKL3 <- soilD@TKL3
   
   #---------- stress Data
   MFAC  <- stress@MFAC[length(stress@MFAC)]

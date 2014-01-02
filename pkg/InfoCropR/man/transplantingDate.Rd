@@ -8,13 +8,10 @@ Transplanting date
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-transplantingDate(control, soil, SWBsv, management)
+transplantingDate(soil, SWBsv, management)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{control}{
-%%     ~~Describe \code{control} here~~
-}
   \item{soil}{
 %%     ~~Describe \code{soil} here~~
 }

@@ -4,10 +4,10 @@ germination <- function(phenology, management)
   #---------- phenology Data
   j <- length(phenology@DS)
   
-  if(management@ESW[j] > 0.5) 
+  if(sum(management@ESW) > 0.5) 
   {  
-    management@ESW[j+1] <- 1
-    management@ESWI[j+1] <- 1 #ESWI should be eliminated later; it is just an auxiliary variable in FST
+    management@ESW[j+1] <- 0
+    management@ESWI[j+1] <- 1
     return(management)
   }
   else 

@@ -58,6 +58,8 @@ setClass(Class="SoilDataClass",
            
            TKL3M  = "numeric",
            
+           TKL3   = "numeric",
+           
            WCFCM1 = "numeric",
            WCFCM2 = "numeric",
            WCFCM3 = "numeric",
@@ -124,6 +126,8 @@ setClass(Class="SoilDataClass",
            TKL2   = 300,
            
            TKL3M  = 600,
+           
+           TKL3   =   0,
            
            WCFCM1 = 0.24,
            WCFCM2 = 0.24,

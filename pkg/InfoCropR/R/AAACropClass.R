@@ -99,8 +99,16 @@ setClass(Class="CropClass",
            MUSTRD = "numeric",
            POTATO = "numeric",
            LEGUME = "numeric",
-           NHRICE = "numeric"         #NH4 uptake capability (e.g. rice)
+           NHRICE = "numeric",         #NH4 uptake capability (e.g. rice)
            #NHRICE=0.1 FOR UPLAND CROPS, 1 FOR RICE                 
+                      
+           WSTI   = "numeric",
+           WLVI   = "numeric",
+           WRTI   = "numeric",
+           LAII   = "numeric",
+           
+           NLVI   = "numeric", #Initial N in leaf
+           NRTI   = "numeric"  #Initial N in root
            
            ),
          
@@ -203,9 +211,17 @@ setClass(Class="CropClass",
            MUSTRD = 0,
            POTATO = -1,
            LEGUME = 0,
-           NHRICE = 0.1
+           NHRICE = 0.1,
            #NHRICE=0.1 FOR UPLAND CROPS, 1 FOR RICE                    
 
+           WSTI   = 0,
+           WLVI   = 0,
+           WRTI   = 0,
+           LAII   = 0,
+           
+           NLVI   = 0,
+           NRTI   = 0
+           
          ),
          
          validity = function(object)

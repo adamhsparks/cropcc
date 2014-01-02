@@ -18,9 +18,6 @@ carbonMineralisation(carbonInmo, co2Emission, control, EDTSsv, fertilisation, ma
   \item{co2Emission}{
 %%     ~~Describe \code{co2Emission} here~~
 }
-  \item{control}{
-%%     ~~Describe \code{control} here~~
-}
   \item{EDTSsv}{
 %%     ~~Describe \code{EDTSsv} here~~
 }

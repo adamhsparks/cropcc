@@ -413,12 +413,12 @@ SUBR_SUBDD <- function(crop, EDTSsv, srSUBDD)
 # *           (ha leaf/ ha ground/ d)                                    *
 # * ---------------------------------------------------------------------*
 #==================
-SUBR_GLA <- function(control, cropsv, GRsv, management, 
+SUBR_GLA <- function(control, crop, cropsv, GRsv, management, 
                      phenology, stress, srGLA)
 {
   #---------- control Data
   DELT <- control@DELT
-  LAII <- control@LAII[length(control@LAII)]
+  LAII <- crop@LAII
   
   #---------- cropsv Data
   LAI    <- cropsv@LAI[length(cropsv@LAI)]

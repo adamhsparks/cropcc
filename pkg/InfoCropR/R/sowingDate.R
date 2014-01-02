@@ -1,4 +1,4 @@
-sowingDate <- function(TIME, control, soil, SWBsv, management)
+sowingDate <- function(TIME, soil, SWBsv, management)
 {
   #------------------ management data
   SOWFXD <- management@SOWFXD  

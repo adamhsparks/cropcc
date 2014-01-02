@@ -1,11 +1,11 @@
 # phenology
-phenologicalDevelopment <- function(control, crop, cropsv,
+phenologicalDevelopment <- function(crop, cropsv,
                                     EDTSsv, management, srSUBDD,
                                     srSUBPET, stress,
                                     tabFunction, phenology)
 {
 #---------- control Data
-  DSI <- control@DSI
+  DSI <- phenology@DS[1]
   
 #---------- crop Data
   DAYSEN <- crop@DAYSEN
@@ -62,7 +62,7 @@ phenologicalDevelopment <- function(control, crop, cropsv,
   RDSA   <- (TPAV - TGMBD)*SOW6*.1 / TTGM
   RDSB   <- INSW(DS - 1, DRV, DRR)
   RDS    <- INSW(DS - 0.1, RDSA, RDSB) #== rate of change in DS
-  DS     <- DSI + RDS                  #Line 147: DS = INTGRL(DSI,RDS)
+  DS     <- DS + RDS                  #Line 147: DS = INTGRL(DSI,RDS)
                                        #FJAV: or DS[1] <- DSI; DS <- DS + RDS
   #---------------------------------------------------------------------------------------------
   DS     <- INSW(DS, -DS, DS)          #FJAV: DS can not be negative, is defined from 0, then...

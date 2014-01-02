@@ -19,6 +19,8 @@ setClass(Class="ManagementClass",
                                                        #FJAV: Without evaluation and not change value
            WCLSOW = "numeric", #variable
            
+           #SEED RATE
+           SEEDRT = "numeric", #parameter
            
            #EMERGENCE SWITCH
            ESW    = "numeric", #variable 
@@ -32,6 +34,7 @@ setClass(Class="ManagementClass",
            IRSWCH = "numeric", #---------- par
            #IRRAMT = "numeric", #---------- par
            SWCWAT = "numeric", #---------- par
+           XT1   = "numeric", #----------- parameter
            NEWAGE = "numeric", #--- var
            
            #FERTILISATION
@@ -61,6 +64,9 @@ setClass(Class="ManagementClass",
           SWSWCH = 1,          
           SOW6   = 0,
           
+          #SEED RATE
+          SEEDRT = 100,
+          
           #GERMINATION
           SOWFXD = 319,
           
@@ -76,6 +82,7 @@ setClass(Class="ManagementClass",
           IRSWCH = 1,
           #IRRAMT = 20,                 #FJAV: Defined, Line 1141: PARAM IRSWCH =1. ;IRRAMT =20., but NOT-USED in FST anywhere
           SWCWAT = 0,
+          XT1 = 1,
           NEWAGE = 0,
           
           #FERTILISATION

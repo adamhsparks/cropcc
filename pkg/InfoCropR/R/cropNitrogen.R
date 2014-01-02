@@ -18,8 +18,8 @@ cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
   ANST   <- CNsv@ANST[length(CNsv@ANST)]
   
   #---------- control Data
-  NLVI   <- control@NLVI[length(control@NLVI)]
-  NRTI   <- control@NRTI[length(control@NRTI)]
+  NLVI   <- crop@NLVI[length(control@NLVI)]
+  NRTI   <- crop@NRTI[length(control@NRTI)]
   SWXNIT <- control@SWXNIT[length(control@SWXNIT)]
   TKL3   <- control@TKL3[length(control@TKL3)]
   
