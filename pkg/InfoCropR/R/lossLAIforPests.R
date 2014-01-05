@@ -1,9 +1,9 @@
 # cropsv 
-lossLAIforPests <- function(control, crop, EDTSsv, GRsv, management, 
+lossLAIforPests <- function(crop, EDTSsv, GRsv, management, 
                              pestD, phenology, stress, tabFunction, cropsv)
 {
   #---------- control Data
-  SEEDRT <- control@SEEDRT
+  SEEDRT <- management@SEEDRT
   
   #---------- crop Data
   DSMAXL <- crop@DSMAXL
@@ -80,5 +80,3 @@ lossLAIforPests <- function(control, crop, EDTSsv, GRsv, management,
   #----------------
   return(cropsv)
 }
-#==================
-# cropsv <- lossLAIforPests6(control,crop,EDTSsv,GRsv,management,pestD,phenology,stress,tabFunction,cropsv)

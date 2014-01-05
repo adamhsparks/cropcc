@@ -1,5 +1,5 @@
 #SWBsv
-soilwaterBalance <- function(TIME, control, cropsv, 
+soilwaterBalance <- function(TIME, cropsv, 
                              EDTSsv, management, soil, soilD,
                              srSUBPET, tabFunction, weather, SWBsv)
 {
@@ -8,13 +8,8 @@ soilwaterBalance <- function(TIME, control, cropsv,
 #============================================================ READ OBJECTS DATA ===== : {VarsQuantity/VarsType}   
 
 # ------------------------------------- Control Data : {Some/Unique, Last}
-  INPOND <- control@INPOND
-  IRRSEN <- control@IRRSEN
-  TKL3   <- control@TKL3[length(control@TKL3)]
-  SWXWAT <- control@SWXWAT[length(control@SWXWAT)]
-  WL1I   <- control@WL1I[length(control@WL1I)]
-  WL2I   <- control@WL2I[length(control@WL2I)]
-  WL3I   <- control@WL3I[length(control@WL3I)]
+  IRRSEN <- management@IRRSEN
+  SWXWAT <- management@SWXWAT
   
 # ------------------------------------- Crop State Variable Data : {Some/Last}
   LAI    <- cropsv@LAI[length(cropsv@LAI)]
@@ -61,16 +56,12 @@ soilwaterBalance <- function(TIME, control, cropsv,
   
   TKL1   <- soilD@TKL1
   TKL2   <- soilD@TKL2
+  TKL3   <- soilD@TKL3
 
 # ------------------------------------- srSUBPET Data : {Some/Last}
   PEVAP <- srSUBPET@PEVAP[length(srSUBPET@PEVAP)]
   
 # ------------------------------------- SoilWaterBalance State Variable Data : {All/Last}
-  SWBsv@PONDTP[1] <- INPOND
-
-  SWBsv@WL1T[1] <- WL1I
-  SWBsv@WL2T[1] <- WL2I
-  SWBsv@WL3T[1] <- WL3I
 
   SWBsvList <- .dataObjectExtract(SWBsv,"last")
   for(j in 1:length(SWBsvList)) assign(names(SWBsvList)[j], SWBsvList[j])

@@ -1,5 +1,5 @@
 # cropsv 
-growthandRadiation <- function(climate, CNsv, control, crop, EDTSsv, 
+growthandRadiation <- function(climate, CNsv, crop, EDTSsv, 
                                 GRsv, management, phenology, stress, 
                                 tabFunction, cropsv)
 {
@@ -10,7 +10,7 @@ growthandRadiation <- function(climate, CNsv, control, crop, EDTSsv,
   NFIX <- CNsv@NFIX[length(CNsv@NFIX)]
   
   #---------- control Data
-  SWCPOT <- control@SWCPOT
+  SWCPOT <- management@SWCPOT
   
   #---------- crop Data
   COSNFX <- crop@COSNFX

@@ -9,6 +9,10 @@ setClass(Class="SNBStateVarsClass",
            NO32   = "numeric",
            NO33   = "numeric",
            
+           NO31T  = "numeric",
+           NO32T  = "numeric",
+           NO33T  = "numeric",
+           
            #Soil N balance
            SOILN1 = "numeric",
            SOILNT = "numeric",           
@@ -17,6 +21,10 @@ setClass(Class="SNBStateVarsClass",
            NH41   = "numeric",
            NH42   = "numeric", 
            NH43   = "numeric",
+           
+           NH41T  = "numeric",
+           NH42T  = "numeric", 
+           NH43T  = "numeric",
            
            T1     = "numeric",
            T2     = "numeric",
@@ -33,19 +41,28 @@ setClass(Class="SNBStateVarsClass",
          ),
          
          prototype = prototype( 
+                      
+            NO31   = 0.8,
+            NO32   = 0.7,
+            NO33   = 0.3,
             
-            NO31   = 0,
-            NO32   = 0,
-            NO33   = 0,
+            NO31T  = 0.8, #Only difference with NO31 is that these can go below 0.001
+            NO32T  = 0.7,
+            NO33T  = 0.3,
             
             SOILN1 = 0,
             
             SOILNT = 0,            
             
             #***   Ammonia balance
-            NH41   = 0,           #== [kg/ha]
-            NH42   = 0,           #== [kg/ha]
+            NH41   = 0.2,           #== [kg/ha]
+            NH42   = 0.8,           #== [kg/ha]
             NH43   = 0,           #== [kg/ha]
+
+            NH41T  = 0.2,
+            NH42T  = 0.8, 
+            NH43T  = 0,
+            
             T1   = 0,
             T2   = 0,
             T3   = 0,

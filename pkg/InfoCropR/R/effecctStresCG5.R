@@ -1,8 +1,8 @@
 # cropsv
-effecctStresCG5 <- function(control, crop, EDTSsv, phenology, SWBsv, tabFunction, cropsv)
+effecctStresCG5 <- function(management, crop, EDTSsv, phenology, SWBsv, tabFunction, cropsv)
 {
   #---------- control Data
-  SWCPOT <- control@SWCPOT
+  SWCPOT <- management@SWCPOT
   
   #---------- crop Data
   FLDCRP <- crop@FLDCRP

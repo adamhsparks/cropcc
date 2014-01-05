@@ -31,13 +31,13 @@ setClass(Class="SoilDataClass",
            LIGNI2 = "numeric", 
            LIGNI3 = "numeric",
            
-           NH41I  = "numeric",
-           NH42I  = "numeric",
-           NH43I  = "numeric",
+           #NH41I  = "numeric",
+           #NH42I  = "numeric",
+           #NH43I  = "numeric",
            
-           NO31II = "numeric",
-           NO32II = "numeric",
-           NO33II = "numeric",
+           #NO31II = "numeric",
+           #NO32II = "numeric",
+           #NO33II = "numeric",
                       
            PHSOL  = "numeric",
            
@@ -102,13 +102,13 @@ setClass(Class="SoilDataClass",
            LIGNI2 = 0.1, 
            LIGNI3 = 0.1,
            
-           NH41I  = 0.2,  #FJAV: (?)Line 1186: INCON NH41I=0.2;NH42I=0.8;NH43I=.0
-           NH42I  = 0.8,
-           NH43I  = 0,
+           #NH41I  = 0.2,  #FJAV: (?)Line 1186: INCON NH41I=0.2;NH42I=0.8;NH43I=.0
+           #NH42I  = 0.8,
+           #NH43I  = 0,
            
-           NO31II = 0.8,
-           NO32II = 0.7,
-           NO33II = 0.3,
+           #NO31II = 0.8,
+           #NO32II = 0.7,
+           #NO33II = 0.3,
            
            PHSOL  = 8.1,
            

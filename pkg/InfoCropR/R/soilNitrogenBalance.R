@@ -1,5 +1,5 @@
 # SNBsv 
-soilNitrogenBalance <- function(CNsv, control, crop, cropsv, 
+soilNitrogenBalance <- function(CNsv, crop, cropsv, 
                                 fertilisation, nitrogenD, nitrogenEmi, 
                                 nitrogenMine, phenology, soilD, stress, 
                                 SWBsv, tabFunction, SNBsv)
@@ -18,11 +18,7 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   NUPTK1 <- CNsv@NUPTK1[length(CNsv@NUPTK1)]
   NUPTK2 <- CNsv@NUPTK2[length(CNsv@NUPTK2)]
   NUPTK3 <- CNsv@NUPTK3[length(CNsv@NUPTK3)]
-  
-  #---------- control Data
-  NO31I <- control@NO31I[length(control@NO31I)]
-  NO32I <- control@NO32I[length(control@NO32I)]
-  NO33I <- control@NO33I[length(control@NO33I)]
+
   
   #---------- crop Data
   NHRICE <- crop@NHRICE
@@ -81,6 +77,11 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   NO32   <- SNBsv@NO32[length(SNBsv@NO32)]
   NO33   <- SNBsv@NO33[length(SNBsv@NO33)]
   
+  
+  NO31T <- SNBsv@NO31T[length(SNBsv@NO31T)]
+  NO32T <- SNBsv@NO32T[length(SNBsv@NO32T)]
+  NO33T <- SNBsv@NO33T[length(SNBsv@NO33T)]
+  
   T1 <- SNBsv@T1[length(SNBsv@T1)]
   T2 <- SNBsv@T2[length(SNBsv@T2)]
   T3 <- SNBsv@T3[length(SNBsv@T3)]
@@ -90,9 +91,9 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   U3     <- SNBsv@U3[length(SNBsv@U3)]
   
   #---------- soilD Data
-  NH41I <- soilD@NH41I
-  NH42I <- soilD@NH42I
-  NH43I <- soilD@NH43I
+  NH41T <- SNBsv@NH41T[length(SNBsv@NH41T)]
+  NH42T <- SNBsv@NH42T[length(SNBsv@NH42T)]
+  NH43T <- SNBsv@NH43T[length(SNBsv@NH43T)]
   
   #---------- stress Data
   MFAC   <- stress@MFAC[length(stress@MFAC)]
@@ -140,9 +141,9 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   U3 <- UAPPL3 - UHYDR3
   
   #***   Ammonia balance
-  NH41T <- NH41I + T1                  #Line 604: NH41T = INTGRL(NH41I,T1)
-  NH42T <- NH42I + T2                  #Line 608: NH42T = INTGRL(NH42I,T2)
-  NH43T <- NH43I + T3                  #Line 611: NH43T = INTGRL(NH43I,T3)
+  NH41T <- NH41T + T1                  #Line 604: NH41T = INTGRL(NH41I,T1)
+  NH42T <- NH42T + T2                  #Line 608: NH42T = INTGRL(NH42I,T2)
+  NH43T <- NH43T + T3                  #Line 611: NH43T = INTGRL(NH43I,T3)
   
   NH41  <- AMAX1(0.01, NH41T)
   NH42  <- AMAX1(0.01, NH42T)
@@ -198,9 +199,9 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   T5 <- NHNO32 + NOAPL2 + NO3FL2 + NO3FL6 - NO3FL7 - NO3FL3                  - INSW(RICE - 1, NIMMO2, INSW(NH42 - NIMMO2, NIMMO2 - NH42, 0)) - NUPNO2
   T6 <- NHNO33 + NOAPL3 + NO3FL3 + NO3FL5 - NO3FL6 - NO3FL4                  - INSW(RICE - 1, NIMMO3, INSW(NH43 - NIMMO3, NIMMO3 - NH43, 0)) - NUPNO3
   
-  NO31T <- NO31I + T4                  #Line 631: NO31T = INTGRL(NO31I,T4)
-  NO32T <- NO32I + T5                  #Line 632: NO32T = INTGRL(NO32I,T5)
-  NO33T <- NO33I + T6                  #Line 633: NO33T = INTGRL(NO33I,T6)
+  NO31T <- NO31T + T4                  #Line 631: NO31T = INTGRL(NO31I,T4)
+  NO32T <- NO32T + T5                  #Line 632: NO32T = INTGRL(NO32I,T5)
+  NO33T <- NO33T + T6                  #Line 633: NO33T = INTGRL(NO33I,T6)
   
   NO31 <- AMAX1(0.001, NO31T)
   NO32 <- AMAX1(0.001, NO32T)
@@ -221,6 +222,7 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   NLOSPT <- ANLV * LRFEED + SUKNLV + DMGSTR*ANLV + SUKNST + DMGSTR*ANST + ANSO*GNLOSS/ NOTNUL(GNO)
   #FJAV: Defined, Line 749-750: NLOSPT   = ANLV*LRFEED+SUKNLV+DMGSTR*ANLV+SUKNST+DMGSTR*ANST+...
   #      but NOT used anywhere in FST
+  #JvE: Probably good to capture these for analysis
   
   #================
   j <- length(SNBsv@NH41) + 1
@@ -228,6 +230,10 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   SNBsv@NH41[j] <- NH41
   SNBsv@NH42[j] <- NH42
   SNBsv@NH43[j] <- NH43
+  
+  SNBsv@NH41T[j] <- NH41T
+  SNBsv@NH42T[j] <- NH42T
+  SNBsv@NH43T[j] <- NH43T
   
   SNBsv@T1[j] <- T1
   SNBsv@T2[j] <- T2
@@ -238,6 +244,10 @@ soilNitrogenBalance <- function(CNsv, control, crop, cropsv,
   SNBsv@NO31[j]   <- NO31
   SNBsv@NO32[j]   <- NO32
   SNBsv@NO33[j]   <- NO33
+  
+  SNBsv@NO31T[j]   <- NO31T
+  SNBsv@NO32T[j]   <- NO32T
+  SNBsv@NO33T[j]   <- NO33T
   
   SNBsv@SOILN1[j]   <- SOILN1
   

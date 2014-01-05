@@ -11,13 +11,16 @@ setClass(Class="ManagementClass",
            PUDLE  = "numeric", #parameter
            SEEDAG = "numeric", #parameter
            #SOW0   = "numeric", #SOWING DATE DEPENDENT UPON MOISTURE IN LAYER 1 OR UPON FIXED DATE
-           SOW6   = "numeric", #variable
+           SOW6   = "numeric", #variable?
            SOWDEP = "numeric", #parameter        #== sowing depth
            SOWFXD = "numeric", #parameter
            SPROUT = "numeric", #parameter
            SWSWCH = "numeric", #parameter         #SWSWCH is 1 for fixed sowing date and is 0 for soil moisture dependence.
                                                        #FJAV: Without evaluation and not change value
            WCLSOW = "numeric", #variable
+           
+           SWCPOT = "numeric", #parameter
+           SWXWAT = "numeric", #parameter
            
            #SEED RATE
            SEEDRT = "numeric", #parameter
@@ -36,6 +39,7 @@ setClass(Class="ManagementClass",
            SWCWAT = "numeric", #---------- par
            XT1   = "numeric", #----------- parameter
            NEWAGE = "numeric", #--- var
+           IRRSEN = "numeric", #parameter
            
            #FERTILISATION
            SWCNIT = "numeric", #---------- par
@@ -84,11 +88,15 @@ setClass(Class="ManagementClass",
           SWCWAT = 0,
           XT1 = 1,
           NEWAGE = 0,
+          IRRSEN = 1,
           
           #FERTILISATION
           SWCNIT = 0,
           NTSWCH = 0,
           
+          #WATER SWITCHES
+          SWCPOT = 1, #Line 1072 says it should be 0, line 1236 says it should be 1
+          SWXWAT = 0,
           
           #ORGANIC MATTER
           LASTRT = 100,
