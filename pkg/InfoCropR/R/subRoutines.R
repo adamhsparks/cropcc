@@ -196,7 +196,7 @@ SUBR_SUBPET <- function(TIME, climate, control, cropsv, EDTSsv, soil,
   
   #---------- weather Data
   DOY   <- weather@DOY[TIME]
-  LAT   <- weather@LAT                              #weather@LAT[weather@DINDEX == DINDEXs]
+  LAT   <- weather@LAT
   RDD   <- weather@RDD[TIME]
   
   #================   
@@ -281,9 +281,6 @@ SUBR_SUBPET <- function(TIME, climate, control, cropsv, EDTSsv, soil,
   #----------------
   return(srSUBPET)
 }
-#==================
-#  srSUBPET <- SUBR_SUBPET(DINDEXs,climate,control,cropsv,EDTSsv,soil,SWBsv,tabFunction,weather,srSUBPET)
-# ---------------------------------------------------------
 
 
 # ---------------------------------------------------------
@@ -413,11 +410,10 @@ SUBR_SUBDD <- function(crop, EDTSsv, srSUBDD)
 # *           (ha leaf/ ha ground/ d)                                    *
 # * ---------------------------------------------------------------------*
 #==================
-SUBR_GLA <- function(control, crop, cropsv, GRsv, management, 
+SUBR_GLA <- function(crop, cropsv, GRsv, management, 
                      phenology, stress, srGLA)
 {
-  #---------- control Data
-  DELT <- control@DELT
+  #---------- crop data (initial LAI)
   LAII <- crop@LAII
   
   #---------- cropsv Data
@@ -448,7 +444,7 @@ SUBR_GLA <- function(control, crop, cropsv, GRsv, management,
     if (RGRL <= 0) GLAI <- 0
   
   #*---- Growth at day of seedling emergence:
-    if (ESW == 1) GLAI <- AMAX1(0, LAII/DELT)
+    if (ESW == 1) GLAI <- AMAX1(0, LAII)
   
   #*---- Growth before seedling emergence:
     if (ESWI == 0) GLAI <- 0

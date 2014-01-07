@@ -1,11 +1,7 @@
 # cropsv 
-evapoTranspiration <- function(control, root, soilD, srFUFR, srSOIL, 
+evapoTranspiration <- function(root, soilD, srFUFR, srSOIL, 
                                srSUBPET, SWBsv, tabFunction, cropsv)
 {
-  #---------- control Data
-  DELT  <- control@DELT
-  IDSLR <- control@IDSLR
-  TKL3  <- control@TKL3[length(control@TKL3)]
   
   #---------- cropsv Data
   DSLR   <- cropsv@DSLR[length(cropsv@DSLR)]
@@ -21,6 +17,7 @@ evapoTranspiration <- function(control, root, soilD, srFUFR, srSOIL,
   SAND1 <- soilD@SAND1
   TKL1  <- soilD@TKL1
   TKL2  <- soilD@TKL2
+  TKL3  <- soilD@TKL3
   
   #---------- srFUFR Data
   WSE1 <- srFUFR@WSE1[length(srFUFR@WSE1)]
@@ -64,16 +61,16 @@ evapoTranspiration <- function(control, root, soilD, srFUFR, srSOIL,
   TRWL3 <- TRRM*WSE3*ZRT3* AFGEN(EDPTFT, AWF3)
   
   ATRANS <- TRWL1 + TRWL2 + TRWL3
-  TATRAN <- ATRANS #FJAV: Defined, Line 356: TATRAN = INTGRL(ZERO, ATRANS), but NOT-USED in FST  #== cumulative transpiration
+  #TATRAN <- ATRANS + TATRAN #FJAV: Defined, Line 356: TATRAN = INTGRL(ZERO, ATRANS), but NOT-USED in FST  #== cumulative transpiration
   
   #------------------------------------ EVAPORATION
   PEVAPC <- PEVAP - PEVAP*AMIN1(0.95, WEEDCV)                   #== potential evaporation of the crop
   
-  DSLRRT <- INSW(POND - 0.5, 1, -(DSLR - 1)/DELT)
-  DSLR   <- IDSLR + DSLRRT            #Line 361: DSLR = INTGRL(IDSLR, DSLRRT)
+  DSLRRT <- INSW(POND - 0.5, 1, -(DSLR - 1))
+  DSLR   <- DSLR + DSLRRT
 
   EVSD   <- AMAX1(0, AMIN1(PEVAPC, PEVAPC / (DSLR + 0.001)^0.5))
-  EVSH   <- AMAX1(0, AMIN1(PEVAPC, (WL1 - WCAD1*TKL1) / DELT + WLFL1))
+  EVSH   <- AMAX1(0, AMIN1(PEVAPC, (WL1 - WCAD1*TKL1) + WLFL1))
   AEVAP  <- INSW(POND - 0.5, EVSD, EVSH)                                       #== actual evaporation
   EES    <- AFGEN(EESTAB, SAND1)                                               #== texture-specific exponential function
   

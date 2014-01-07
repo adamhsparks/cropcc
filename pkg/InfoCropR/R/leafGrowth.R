@@ -1,5 +1,5 @@
 # cropsv
-leafGrowth <- function(CNsv, control, crop, EDTSsv, GRsv, management, 
+leafGrowth <- function(CNsv, crop, EDTSsv, GRsv, management, 
                           phenology, srGLA, stress, tabFunction, cropsv)
 {
   #---------- CNsv Data 
@@ -83,5 +83,3 @@ leafGrowth <- function(CNsv, control, crop, EDTSsv, GRsv, management,
   #----------------
   return(cropsv)
 }
-#==================
-# cropsv <- leafGrowth4(CNsv,control,crop,EDTSsv,GRsv,management,phenology,srGLA,stress,tabFunction,cropsv)
