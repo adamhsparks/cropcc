@@ -1,10 +1,7 @@
-# root
-rootingDepth2 <- function(control, crop, cropsv, GRsv, management, 
+rootingDepth <- function(crop, cropsv, GRsv, management, 
                           phenology, soil, soilD, srWSRT, tabFunction, 
                           root)
 {
-  #---------- control Data
-  TKL3   <- control@TKL3[length(control@TKL3)]
   
   #---------- crop Data
   TTVG   <- crop@TTVG
@@ -38,6 +35,7 @@ rootingDepth2 <- function(control, crop, cropsv, GRsv, management,
   #---------- soilD Data
   TKL1 <- soilD@TKL1
   TKL2 <- soilD@TKL2
+  TKL3 <- soilD@TKL3
   
   #---------- srWSRT Data
   WSERT <- srWSRT@WSERT[length(srWSRT@WSERT)]

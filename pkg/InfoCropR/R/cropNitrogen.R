@@ -1,5 +1,5 @@
 # CNsv
-cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
+cropNitrogen <- function(carbonInmo, crop, cropsv, GRsv,
                          management, phenology, SNBsv, soil, soilD, srDELAY,
                          stress, SWBsv, tabFunction, CNsv)
 {
@@ -16,14 +16,11 @@ cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
   ANRT   <- CNsv@ANRT[length(CNsv@ANRT)]
   ANSO   <- CNsv@ANSO[length(CNsv@ANSO)]
   ANST   <- CNsv@ANST[length(CNsv@ANST)]
-  
-  #---------- control Data
+   
+  #---------- crop Data
   NLVI   <- crop@NLVI[length(control@NLVI)]
   NRTI   <- crop@NRTI[length(control@NRTI)]
-  SWXNIT <- control@SWXNIT[length(control@SWXNIT)]
-  TKL3   <- control@TKL3[length(control@TKL3)]
   
-  #---------- crop Data
   CRPNFX <- crop@CRPNFX
   GREENF <- crop@GREENF
   LEGUME <- crop@LEGUME
@@ -65,6 +62,7 @@ cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
   #---------- management Data
   CNBACT <- management@CNBACT[length(management@CNBACT)]
   ESW    <- management@ESW[length(management@ESW)]
+  SWXNIT <- management@SWXNIT
   
   #---------- phenology Data
   DS     <- phenology@DS[length(phenology@DS)]
@@ -86,6 +84,7 @@ cropNitrogen <- function(carbonInmo, control, crop, cropsv, GRsv,
   #---------- soilD Data
   TKL1  <- soilD@TKL1
   TKL2  <- soilD@TKL2
+  TKL3  <- soilD@TKL3
   
   #---------- srDELAY Data
   NLEAFP <- srDELAY@NLEAFP[length(srDELAY@NLEAFP)]

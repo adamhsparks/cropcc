@@ -70,7 +70,9 @@ setClass(Class="SoilDataClass",
                       
            WCWPM1 = "numeric",
            WCWPM2 = "numeric",
-           WCWPM3 = "numeric"
+           WCWPM3 = "numeric",
+           
+           SOILSW = "numeric" #SOILSW is 0 for measured data otherwise 1, line 1175
             
          ),
          
@@ -139,7 +141,9 @@ setClass(Class="SoilDataClass",
            
            WCWPM1 = 0.07,
            WCWPM2 = 0.07,
-           WCWPM3 = 0.07
+           WCWPM3 = 0.07,
+           
+           SOILSW = 0
            
          ),
          

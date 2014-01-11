@@ -1,10 +1,9 @@
 # soil
-soilProperties <- function(control, soilD, srSOIL, soil)
+soilProperties <- function(soilD, srSOIL, soil)
 {
-  #---------------- control Data
-  SOILSW <- control@SOILSW
-  TKL3   <- control@TKL3[length(control@TKL3)]
   
+  SOILSW <- soilD@SOILSW
+
   #---------------- soil Data
   PDCF1  <- soil@PDCF1[length(soil@PDCF1)]
   PDCF2  <- soil@PDCF2[length(soil@PDCF2)]
@@ -20,6 +19,7 @@ soilProperties <- function(control, soilD, srSOIL, soil)
   
   TKL1   <- soilD@TKL1
   TKL2   <- soilD@TKL2
+  TKL3   <- soilD@TKL3
   
   WCFCM1 <- soilD@WCFCM1
   WCFCM2 <- soilD@WCFCM2

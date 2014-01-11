@@ -44,6 +44,7 @@ setClass(Class="ManagementClass",
            #FERTILISATION
            SWCNIT = "numeric", #---------- par
            NTSWCH = "numeric", #---------- par
+           SWXNIT = "numeric", # (*)
            
            #ORGANIC MATTER
            LASTRT = "numeric", #---------- par
@@ -93,6 +94,7 @@ setClass(Class="ManagementClass",
           #FERTILISATION
           SWCNIT = 0,
           NTSWCH = 0,
+          SWXNIT = 0,
           
           #WATER SWITCHES
           SWCPOT = 1, #Line 1072 says it should be 0, line 1236 says it should be 1

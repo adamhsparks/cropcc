@@ -27,12 +27,12 @@ setClass(Class="ControlClass",
            SOC2KG = "numeric", # (*) #First value of SOCNT2
            SOC3KG = "numeric", # (*)
            
-           SOILSW = "numeric",
+           
            TKL3   = "numeric", # (*)           #== soil layer 3 thickness
            TPSI   = "numeric", # (*)
            
            #*** Switches for simulation control
-           SWXNIT = "numeric", # (*)
+
            FPOTAT = "numeric", # (*)
            
            #------------------
@@ -81,12 +81,11 @@ setClass(Class="ControlClass",
            SOC2KG = 0,
            SOC3KG = 0,
            
-           SOILSW = 0,    #Line 1175: * SOILSW IS 0. FOR MEASURED DATA, OTHERWISE =1.
+           #SOILSW = 0,    #Line 1175: * SOILSW IS 0. FOR MEASURED DATA, OTHERWISE =1.
            TKL3   = 0,
            TPSI   = 0,
            
            #*** Switches for simulation control
-           SWXNIT = 0,
            FPOTAT = 0,
            
            #------------------

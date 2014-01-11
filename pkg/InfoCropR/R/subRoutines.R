@@ -467,10 +467,8 @@ SUBR_GLA <- function(crop, cropsv, GRsv, management,
 # *         (value either 0 or 1)                                        *
 # *----------------------------------------------------------------------*
 # srWSRT
-SUBR_WSRT <- function(control, root, soil, soilD, SWBsv, srWSRT)
+SUBR_WSRT <- function(root, soil, soilD, SWBsv, srWSRT)
 {
-  #---------- control Data
-  TKL3   <- control@TKL3[length(control@TKL3)]
   
   #---------- root Data
   ZRT <- root@ZRT[length(root@ZRT)]
@@ -483,6 +481,7 @@ SUBR_WSRT <- function(control, root, soil, soilD, SWBsv, srWSRT)
   #---------- soilD Data
   TKL1 <- soilD@TKL1
   TKL2 <- soilD@TKL2
+  TKL3 <- soilD@TKL3
   
   #---------- SWBsv Data
   WCL1 <- SWBsv@WCL1[length(SWBsv@WCL1)]

@@ -1,15 +1,11 @@
 # stress
-stressMultipleSources <- function(CNsv, control, cropsv, EDTSsv,
+stressMultipleSources <- function(CNsv, cropsv, EDTSsv,
                                   management, soilD, srSUBPET, SWBsv,
                                   tabFunction, stress)
 {
   #---------- CNsv Data
   ANCRGR <- CNsv@ANCRGR[length(CNsv@ANCRGR)]
   ANCRPT <- CNsv@ANCRPT[length(CNsv@ANCRPT)]
-  
-  #---------- control Data
-  SWXNIT <- control@SWXNIT[length(control@SWXNIT)]
-  SWXWAT <- control@SWXWAT[length(control@SWXWAT)]
   
   #---------- cropsv Data 
   ATRANS <- cropsv@ATRANS[length(cropsv@ATRANS)]
@@ -20,6 +16,8 @@ stressMultipleSources <- function(CNsv, control, cropsv, EDTSsv,
   #---------- management Data
   DAS  <- management@DAS[length(management@DAS)]
   ESWI <- management@ESWI[length(management@ESWI)]
+  SWXNIT <- management@SWXNIT[length(management@SWXNIT)]
+  SWXWAT <- management@SWXWAT[length(control@SWXWAT)]
   
   #---------- soilD Data
   PHSOL <- soilD@PHSOL
