@@ -12,7 +12,7 @@ germination <- function(phenology, management)
   }
   else 
   {
-    DS <- phenology@RDSA[j]
+    DS <- phenology@DS[j]
     
     #---------------- GERMINATION
     GERM <- max(0, DS - 0.1)

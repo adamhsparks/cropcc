@@ -1,7 +1,8 @@
-evaluateConditions <- function(control, cropsv, phenology)
+evaluateConditions <- function(crop, cropsv, phenology)
 {
-  #---------- control Data
-  FPOTAT <- control@FPOTAT[length(control@FPOTAT)]
+  
+  POTATO <- crop@POTATO
+  LAI <- cropsv@LAI[length(cropsv@LAI)]
   
   #---------- cropsv Data
   FROST <- cropsv@FROST[length(cropsv@FROST)]
@@ -10,6 +11,10 @@ evaluateConditions <- function(control, cropsv, phenology)
   DS     <- phenology@DS[length(phenology@DS)]
   GFD    <- phenology@GFD[length(phenology@GFD)]
   SINKLT <- phenology@SINKLT[length(phenology@SINKLT)]
+  
+  FPOTAT <- INSW(POTATO - 1, 10, INSW(DS - 0.75, 10, 
+                                      INSW(LAI - 0.08, -1, 1)))
+  
   
   #===========
 #   condition <- ifelse(DS     > 2.01, TRUE, FALSE)
@@ -36,14 +41,3 @@ evaluateConditions <- function(control, cropsv, phenology)
   #-----------
   return(condition)
 }
-#==================
-# condition <- evaluateConditions(control,cropsv,phenology)
-
-
-
-
-
-  
-  
-  
-  

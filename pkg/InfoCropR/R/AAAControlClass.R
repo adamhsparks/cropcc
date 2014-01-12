@@ -8,7 +8,7 @@ setClass(Class="ControlClass",
            
            #All of the following should simply be the first value of each object (phenology, cropsv, etc.)
            
-           DSI    = "numeric",                 #== Initial value of Development stage (DS)
+           #DSI    = "numeric",                 #== Initial value of Development stage (DS)
            
            ETSWCH = "numeric",
            GRSWCH = "numeric",  #------------FJAV: Declarated in Line 1205, but Without use in FST
@@ -62,7 +62,7 @@ setClass(Class="ControlClass",
            STTIME = 319,
            AEZ    = 1,
            
-           DSI    = 0,
+           #DSI    = 0,
            
            ETSWCH = 0,  #------------FJAV: Ninguna asignaci?n cambia su valor en FST, asignado en Line 1204, pero es un conmutador! (?)
            GRSWCH = 0,

@@ -3,9 +3,9 @@ initialConditions_runControl <- function(TIME, crop, cropsv, management, pestD,
                                          weather, control)
 {
   #---------- control Data
-  DSI    <- control@DSI
+  #DSI    <- control@DSI
   #SEEDRT <- control@SEEDRT
-  SWCPOT <- control@SWCPOT
+  #SWCPOT <- control@SWCPOT
   
   #---------- crop Data  
   FRLVWT <- crop@FRLVWT

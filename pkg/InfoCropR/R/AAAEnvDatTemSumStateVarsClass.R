@@ -1,5 +1,3 @@
-#EDTSsv [environmentalData_temperatureSum]
-#-------------
 setClass(Class="EnvDatTemSumStateVarsClass",
          
          representation = representation(
@@ -31,6 +29,7 @@ setClass(Class="EnvDatTemSumStateVarsClass",
            RADSWC   = 1, # ---------- par ---
            RAINF    = 0,
            TIRRIG   = 0,
+           TRAIN    = 0,
            TMAX     = 0,
            TMIN     = 0,
            TPAD     = 0,

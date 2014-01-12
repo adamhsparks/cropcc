@@ -7,7 +7,7 @@ environmentalData_temperatureSum <- function(TIME, control, crop,
   #---------- control Data
   DELT   <- control@DELT
   SWCPOT <- management@SWCPOT
-  DSTART <- EDTSsv@DSTART
+  DSTART <- EDTSsv@DSTART[length(EDTSsv@DSTART)]
   
   #---------- crop Data
   POTATO <- crop@POTATO
