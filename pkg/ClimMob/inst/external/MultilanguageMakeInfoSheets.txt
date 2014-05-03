@@ -15,7 +15,7 @@ Village:	Aldea:
 Municipality:	Municipio:
 Item names	Nombres de los objetos
 Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
-You received the following items to rank:	Uste recibió los siguientes objetos para clasificar:
+You received the following items to rank:	Usted recibió los siguientes objetos para clasificar:
 Ranking	Clasificación
 Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
 You ranked these items in the following order:	Usted clasificó estos objetos en el orden que sigue:

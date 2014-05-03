@@ -10,7 +10,13 @@
   
   rankingsD <- myData[,rankings]
   itemsgivenD <- myData[,itemsgiven]
-  explanatoryD <- myData[,explanatory]
+  #explanatoryD <- myData[,explanatory]
+  if(explanatory[1] == "nogroups"){
+    
+    nogroups <- rep(1, times=dim(myData)[1])
+    myData <- data.frame(myData, nogroups)
+    
+  }
   
   itemnames <- sort(unique(as.vector(unlist(itemsgivenD))))
   
@@ -153,8 +159,16 @@
         
         if(nq>1){myData_i <- myData[myData[,questionVar] == questionsAnalyzed[i],]}
         else{myData_i <- myData}
-        .GlobalEnv$models[[i]] <- .treeModel(myData_i, itemsgivenVars, rankingsVars, explanatoryVars)
-        
+        .GlobalEnv$models[[i]] <- try(.treeModel(myData_i, itemsgivenVars, rankingsVars, explanatoryVars), silent=TRUE)
+        if(inherits(.GlobalEnv$models[[i]], "try-error")) 
+        {
+          
+          .GlobalEnv$models[[i]] <- try(.treeModel(myData_i, itemsgivenVars, rankingsVars, "nogroups"), silent=TRUE)
+          print(paste("Could not create model: ", questionsAnalyzed[i]), " with this set of explanatory variables. A model with no explanatory variables was created instead. You may get better results with another combination of explanatory variables.", collapse="")
+          if(inherits(.GlobalEnv$models[[i]], "try-error")) {stop(paste("Could not create model:", questionsAnalyzed[i]))}
+          
+        }
+               
       }
       
       gmessage(tl[24,la], title="Done", icon="info")

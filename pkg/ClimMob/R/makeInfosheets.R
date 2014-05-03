@@ -111,7 +111,7 @@
   infoSheetRanking <- gexpandgroup(tl[19,la], container=group2, horizontal=FALSE, expand=TRUE)
   font(infoSheetRanking) <- list(size=12)
   glabel(tl[20,la], container=infoSheetRanking)
-  infoSheetRankingIntrotext <- gtext(tl[21], container=infoSheetRanking)
+  infoSheetRankingIntrotext <- gtext(tl[21,la], container=infoSheetRanking)
   size(infoSheetRankingIntrotext) <- c(250,40)
   visible(infoSheetRanking) <- FALSE
   
