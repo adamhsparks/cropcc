@@ -87,7 +87,13 @@
     addTable(rtf, varsTable)
     addParagraph(rtf, "\n")
     addParagraph(rtf, paste(" ", tl[22,la], "\n", sep="")) #Table with item types
-    itemtypes <- as.data.frame(as.matrix(colnames(worth(models[[1]]))))
+    
+    #Exclude variables that produce errors  
+    te <- vector(length=length(models))
+    for(k in 1:length(models)) te[k] <- inherits(models[[k]], "try-error")
+    varPred <- which(!te) 
+    
+    itemtypes <- as.data.frame(as.matrix(colnames(worth(models[[varPred[1]]]))))
     colnames(itemtypes) <- tl[23,la]
     addTable(rtf, itemtypes)
     
@@ -112,17 +118,31 @@
     for(i in 1:lq)
     {
       
-      table_i <- worth(models[[i]])
-      Node <- rownames(table_i)
-      table_i <- round(table_i, digits=3)
-      table_i <- data.frame(Node, table_i)
       if(lq>1){addParagraph(rtf, questionsAnalyzed[i])}
-      addParagraph(rtf, "\n")
-      addTable(rtf, table_i, font.size=9, row.names=FALSE, NA.string="-")
-      addParagraph(rtf, "\n")
-      addPlot(rtf, plot.fun=plot, width=6, height=6, res=400, models[[i]])
-      addPageBreak(rtf)
-      addParagraph(rtf, paste(capture.output(summary(models[[i]])), collapse="\n"))
+      
+      #Insert exception if the model does not exist (=error).
+      if(!inherits(models[[i]], "try-error"))
+      {
+        
+        table_i <- worth(models[[i]])
+        Node <- rownames(table_i)
+        table_i <- round(table_i, digits=3)
+        table_i <- data.frame(Node, table_i)
+        
+        addParagraph(rtf, "\n")
+        addTable(rtf, table_i, font.size=9, row.names=FALSE, NA.string="-")
+        addParagraph(rtf, "\n")
+        addPlot(rtf, plot.fun=plot, width=6, height=6, res=400, models[[i]])
+        addPageBreak(rtf)
+        addParagraph(rtf, paste(capture.output(summary(models[[i]])), collapse="\n"))
+        
+      } else {
+        
+        #TODO Some text sayihg that the model was not constructed.
+        
+      }
+      
+      
       addPageBreak(rtf)
       
     }

@@ -164,8 +164,8 @@
         {
           
           .GlobalEnv$models[[i]] <- try(.treeModel(myData_i, itemsgivenVars, rankingsVars, "nogroups"), silent=TRUE)
-          print(paste("Could not create model: ", questionsAnalyzed[i]), " with this set of explanatory variables. A model with no explanatory variables was created instead. You may get better results with another combination of explanatory variables.", collapse="")
-          if(inherits(.GlobalEnv$models[[i]], "try-error")) {stop(paste("Could not create model:", questionsAnalyzed[i]))}
+          print(paste("Could not create model: ", questionsAnalyzed[i], " with this set of explanatory variables. A model with no explanatory variables was created instead. You may get better results with another combination of explanatory variables.", collapse=""))
+          if(inherits(.GlobalEnv$models[[i]], "try-error")) {print(paste("Could not create model:", questionsAnalyzed[i]))}
           
         }
                

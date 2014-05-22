@@ -50,6 +50,11 @@
   questionsAnalyzed <- get("questionsAnalyzed")
   models <- get("models")
   
+  #Exclude variables that produce errors  
+  te <- vector(length=length(models))
+  for(k in 1:length(models)) te[k] <- inherits(models[[k]], "try-error")
+  varPred <- which(!te) 
+  
   w6 <- gwindow(title=tl[1,la], visible=FALSE, parent=c(1,1)) 
   size(w6) <- c(500,700)
   
@@ -194,16 +199,14 @@
     addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
     
-    
     IDs <- unique(as.character(myData[,observeridVar]))
  
-    
     for(j in 1:length(IDs))
     {
       
       svalue(pbar) <- 10 + round((j/length(IDs)) * 89.99)
-      iall <- which(IDs[j] == myData[,observeridVar])
-      i <- iall[1]
+      iall <- which(IDs[j] == myData[,observeridVar]) #row numbers of ID
+      i <- iall[1] #first row with ID
       
       addPageBreak(rtf)
       
@@ -261,15 +264,26 @@
       
       if(ne$isPredictedRanking || ne$isTop){
         
-        pred <- NULL
+        predi <- NULL
         for(ii in 1:length(iall)){ 
           
-          rankii <- .predict.bttree(models[[ii]], newdata = myData[iall[ii],], type = "rank")
-          predii <- colnames(rankii)[order(rankii)]
-          pred <- rbind(pred, predii)
+          if(inherits(models[[ii]], "try-error")){
+            
+            predii <- NULL
+            
+          } else {
+          
+            rankii <- .predict.bttree(models[[ii]], newdata = myData[iall[ii],], type = "rank")
+            predii <- colnames(rankii)[order(rankii)]
+          
+          } 
+          predi <- rbind(predi, predii)
           
         }                
-            
+        
+        pred <- matrix(nrow=length(iall), ncol=ncol(predi))      
+        pred[varPred,] <- predi
+      
       }
       
       if(ne$isPredictedRanking){
