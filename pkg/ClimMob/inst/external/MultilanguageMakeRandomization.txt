@@ -1,8 +1,8 @@
-ClimMob - Create randomization	ClimMob - Crear aleatorizaci髇
-Create randomization	Crear aleatorizaci髇
+ClimMob - Create randomization	ClimMob - Crear aleatorizaci贸n
+Create randomization	Crear aleatorizaci贸n
 Identifier (prepended to file name and observer IDs):	Identificador (prefijo para nombre de archivo e IDs de observadores):
-Number of observers:	N鷐ero de observadores:
-Number of items each observer compares:	N鷐ero de elementos que cada observador compara:
+Number of observers:	N煤mero de observadores:
+Number of items each observer compares:	N煤mero de elementos que cada observador compara:
 Names of items:	Nombres de los elementos:
 Select folder to write to:	Seleccione una carpeta para grabar:
 Decimal separator:	Separador decimal:
@@ -10,11 +10,11 @@ Dot	Punto
 Comma	Coma
 Format:	Formato:
 Excel	Excel
-Standard	Est醤dar
-Create randomization	Crear aleatorizaci髇
-Complete the remaining blanks on the form.	Complete los vac韔s en el formulario.
+Standard	Est谩ndar
+Create randomization	Crear aleatorizaci贸n
+Complete the remaining blanks on the form.	Complete los vac铆os en el formulario.
 ClimMobRandomization.csv	ClimMobAleatorizacion.csv
 File written to disk: 	Archivo grabado: 
 Observer	Observador
 Item	Objeto
-Done	Acci髇 completada
+Done	Acci贸n completada

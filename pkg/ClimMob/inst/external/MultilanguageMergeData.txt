@@ -1,7 +1,7 @@
 ClimMob - Merge datasets	ClimMob - Fusionar datos
 Merge datasets	Fusionar datos
 Select first file:	Seleccione primer archivo:
-Select a file...	Seleccione un archivo…
+Select a file...	Seleccione un archivoÂ…
 Select second file:	Seleccione segundo archivo:
 Select folder to write to:	Seleccione carpeta para grabar archivo:
 Decimal separator:	Separador decimal:
@@ -9,10 +9,10 @@ Dot	Punto
 Comma	Coma
 Format:	Formato:
 Excel	Excel
-Standard	Estándar
+Standard	EstÃ¡ndar
 Merge	Fusionar
 Merged	Fusionado
-Done	Acción completada
+Done	AcciÃ³n completada
 Data merged:	Datos fusionado: 
 Data could not be merged.	No se pueden fusionar los datos.
 Error	Error

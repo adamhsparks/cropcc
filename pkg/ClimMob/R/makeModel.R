@@ -47,7 +47,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeModel.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMakeModel.txt", package="ClimMob"), header=FALSE, encoding="UTF-8"))
   colnames(tl) <- NULL
   
   if(!exists("myData", envir=.GlobalEnv)){

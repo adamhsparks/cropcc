@@ -8,5 +8,5 @@ ExampleTable.csv	ExampleTable.csv
 Data could not be read.	No se puede leer el archivo.
 Error	Error
 Data loaded.	Datos cargados.
-Done	Acción completada
+Done	AcciÃ³n completada
 ClimMob - Load data	ClimMob - Carga datos

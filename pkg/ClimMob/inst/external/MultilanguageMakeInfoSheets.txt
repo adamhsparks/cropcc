@@ -1,43 +1,43 @@
 ClimMob - Create info sheets	ClimMob - Crear hojas informativas
 Create info sheets	Crear hojas informativas
-Info sheet title	Título de la hoja informativa
-Type the title:	Escribe el título:
-Thank you for participating!	¡Gracias por su participación!
-General intro text	Introducción general
-These are the results of the experiment you contributed to.	A continuación se presentan los resultados de la investigación en que usted ha participado.
+Info sheet title	TÃ­tulo de la hoja informativa
+Type the title:	Escribe el tÃ­tulo:
+Thank you for participating!	Â¡Gracias por su participaciÃ³n!
+General intro text	IntroducciÃ³n general
+These are the results of the experiment you contributed to.	A continuaciÃ³n se presentan los resultados de la investigaciÃ³n en que usted ha participado.
 Participant name and place	Nombre y domicilio del participante
 Type the text:	Escribe el texto:
-Title (Mr/Mrs/Etc.):	Título (Señora/Señor):
+Title (Mr/Mrs/Etc.):	TÃ­tulo (SeÃ±ora/SeÃ±or):
 None	Ninguna
 Given name:	Nombre(s):
 Family name:	Apellido(s):
 Village:	Aldea:
 Municipality:	Municipio:
 Item names	Nombres de los objetos
-Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
-You received the following items to rank:	Usted recibió los siguientes objetos para clasificar:
-Ranking	Clasificación
-Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
-You ranked these items in the following order:	Usted clasificó estos objetos en el orden que sigue:
-Predicted ranking	Clasificación predicha
-Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+Type the intro text for this element:	Escribe tu texto de introducciÃ³n para esta parte:
+You received the following items to rank:	Usted recibiÃ³ los siguientes objetos para clasificar:
+Ranking	ClasificaciÃ³n
+Type the intro text for this element:	Escribe tu texto de introducciÃ³n para esta parte:
+You ranked these items in the following order:	Usted clasificÃ³ estos objetos en el orden que sigue:
+Predicted ranking	ClasificaciÃ³n predicha
+Type the intro text for this element:	Escribe tu texto de introducciÃ³n para esta parte:
 The group of participants similar to you ranked these same items in the following order:	El grupo de participantes similares a usted clasificaron estos objetos en este orden:
 Top items	Objetos mejor valorados 
-Type the intro text for this element:	Escribe tu texto de introducción para esta parte:
+Type the intro text for this element:	Escribe tu texto de introducciÃ³n para esta parte:
 The group of participants similar to you ranked as the best out of all items:	El grupo de participantes similares a usted clasificaron estos objetos como los mejores:
-Number of highest ranking items to be shown:	Número de los objetos mejor valorados que se enseña:
+Number of highest ranking items to be shown:	NÃºmero de los objetos mejor valorados que se enseÃ±a:
 Concluding message	Comentario final
 Type the text:	Escribe el texto:
-For more information, contact us at…	Para más información, nos puede contactar…
+For more information, contact us atÂ…	Para mÃ¡s informaciÃ³n, nos puede contactarÂ…
 File name:	Nombre de archivo:
 Select folder to write to:	Seleccione una carpeta para grabar:
 Create info sheets	Crear hojas informativas
-Writing...	Escribiendo…
+Writing...	EscribiendoÂ…
 ClimMob info sheets	ClimMob - Hojas informativas
 Author:	Autor:
 Item	Objeto
 Name	Nombre
 Info sheets written to 	Hojas informativas grabadas en
-Done	Acción completada
+Done	AcciÃ³n completada
 You should load the data and create a model first.	Debe cargar datos y crear un modelo antes.
 You should create a model first.	Debe crear un modelo antes.

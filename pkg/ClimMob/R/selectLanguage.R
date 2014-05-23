@@ -1,7 +1,7 @@
 .selectLanguage <- function()
 {
   
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageSelectLanguage.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageSelectLanguage.txt", package="ClimMob"), header=FALSE, encoding="UTF-8"))
   colnames(tl) <- NULL
     
   w1 <- gwindow(visible=FALSE, title=paste(tl[1,]))
@@ -25,7 +25,7 @@
   hh <- function(h, ...)
   {
     
-    langn <- ifelse(svalue(lang)=="English",1,2)
+    langn <- ifelse(svalue(lang)=="English",1,2) #Needs to change if there is a third language
     .GlobalEnv$la <- langn
     dispose(w1)
     .menuClimMob()

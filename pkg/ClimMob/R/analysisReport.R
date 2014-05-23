@@ -2,7 +2,7 @@
 {
   
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageAnalysisReport.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageAnalysisReport.txt", package="ClimMob"), header=FALSE, encoding="UTF-8"))
   colnames(tl) <- NULL
     
   if(!exists("myData", envir=.GlobalEnv)){
@@ -158,7 +158,7 @@
     
     dispose(w5)
     
-    gmessage("Report created.", title="Done", icon="info")
+    gmessage("Report created.", title="Done", icon="info") #TODO Should get this from the file rather than EN only!
     
     dispose(w5)
     

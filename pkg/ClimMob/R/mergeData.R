@@ -1,7 +1,7 @@
 .mergeData <- function(){
     
   la <- get("la")
-  tl <- as.matrix(read.delim(system.file("external/MultilanguageMergeData.txt", package="ClimMob"), header=FALSE, encoding="latin1"))
+  tl <- as.matrix(read.delim(system.file("external/MultilanguageMergeData.txt", package="ClimMob"), header=FALSE, encoding="UTF-8"))
   colnames(tl) <- NULL
   
   w <- gwindow(title=tl[1,la], visible=FALSE)
