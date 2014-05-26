@@ -265,7 +265,7 @@
       if(ne$isPredictedRanking || ne$isTop){
         
         predi <- NULL
-        for(ii in 1:length(iall)){ 
+        for(ii in 1:length(models)){ 
           
           if(inherits(models[[ii]], "try-error")){
             
