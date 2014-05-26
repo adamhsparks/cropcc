@@ -1,5 +1,6 @@
 #This function converts all non-ASCII characters into the Unicode format that rtf understands
 #This helps to make everything work regardless of the locale (= regional settings / language)
+#Works with vectors, but not matrices
 
 .Unicodify <- function(x)
 { 
@@ -10,7 +11,7 @@
   for(i in 1:n)
   {
     
-    xi <- x[i]
+    xi <- as.character(x[i])
     xx <- unlist(strsplit(xi, split=NULL))
     j <- which(is.na(charToInt(xx)))
     

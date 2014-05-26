@@ -64,21 +64,21 @@
   font(ttitle) <- list(size=16)
 
   infoSheetTitle <- gexpandgroup(tl[3,la], container=group2, horizontal=FALSE)
-  font(infoSheetTitle) <- list(size=12)
+  #font(infoSheetTitle) <- list(size=12)
   glabel(tl[4,la], container=infoSheetTitle)
   infoSheetTitletext <- gtext(text=tl[5,la], container=infoSheetTitle, width=2, height=1)
   size(infoSheetTitletext) <- c(250,40)
   visible(infoSheetTitle) <- FALSE
   
   infoSheetIntro <- gexpandgroup(tl[6,la], container=group2, horizontal=FALSE)
-  font(infoSheetIntro) <- list(size=12)
+  #font(infoSheetIntro) <- list(size=12)
   glabel(tl[9,la], container=infoSheetIntro)
   infoSheetIntrotext <- gtext(text=tl[7,la], container=infoSheetIntro, width=2, height=1)
   size(infoSheetIntrotext) <- c(250,40)
   visible(infoSheetIntro) <- FALSE
   
   infoSheetNames <- gexpandgroup(tl[8,la], container=group2, horizontal=FALSE, expand=TRUE)
-  font(infoSheetNames) <- list(size=12)
+  #font(infoSheetNames) <- list(size=12)
   glabel(tl[10,la], container=infoSheetNames)
   group6 <- ggroup(horizontal=TRUE, container= infoSheetNames)
   infoSheetNames1 <- gcombobox(c(tl[11,la], colnames(myData)), selected = 1, editable = FALSE, container=group6)
@@ -107,28 +107,28 @@
   visible(infoSheetNames) <- FALSE
   
   infoSheetItemnames <- gexpandgroup(tl[16,la], container=group2, horizontal=FALSE, expand=TRUE)
-  font(infoSheetItemnames) <- list(size=12)
+  #font(infoSheetItemnames) <- list(size=12)
   glabel(tl[17,la], container=infoSheetItemnames)
   infoSheetItemnamesIntrotext <- gtext(tl[18,la], container=infoSheetItemnames)
   size(infoSheetItemnamesIntrotext) <- c(250,40)
   visible(infoSheetItemnames) <- FALSE
   
   infoSheetRanking <- gexpandgroup(tl[19,la], container=group2, horizontal=FALSE, expand=TRUE)
-  font(infoSheetRanking) <- list(size=12)
+  #font(infoSheetRanking) <- list(size=12)
   glabel(tl[20,la], container=infoSheetRanking)
   infoSheetRankingIntrotext <- gtext(tl[21,la], container=infoSheetRanking)
   size(infoSheetRankingIntrotext) <- c(250,40)
   visible(infoSheetRanking) <- FALSE
   
   infoSheetPredictedRanking <- gexpandgroup(tl[22,la], container=group2, horizontal=FALSE, expand=TRUE)
-  font(infoSheetPredictedRanking) <- list(size=12)
+  #font(infoSheetPredictedRanking) <- list(size=12)
   glabel(tl[23,la], container=infoSheetPredictedRanking)
   infoSheetPredictedRankingIntrotext <- gtext(tl[24,la], container=infoSheetPredictedRanking)
   size(infoSheetPredictedRankingIntrotext) <- c(250,40)
   visible(infoSheetPredictedRanking) <- FALSE
   
   infoSheetTop <- gexpandgroup(tl[25,la], container=group2, horizontal=FALSE, expand=TRUE)
-  font(infoSheetTop) <- list(size=12)
+  #font(infoSheetTop) <- list(size=12)
   glabel(tl[26,la], container=infoSheetTop)
   infoSheetTopIntrotext <- gtext(tl[27,la], container=infoSheetTop)
   size(infoSheetTopIntrotext) <- c(250,40)
@@ -142,19 +142,19 @@
   visible(infoSheetTop) <- FALSE
   
   infoSheetConclusion <- gexpandgroup(tl[29,la], container=group2, horizontal=FALSE)
-  font(infoSheetConclusion) <- list(size=12)
+  #font(infoSheetConclusion) <- list(size=12)
   glabel(tl[30,la], container=infoSheetConclusion)
   infoSheetConclusiontext <- gtext(text=tl[31,la], container=infoSheetConclusion, width=2, height=1)
   size(infoSheetConclusiontext) <- c(250,40)
   visible(infoSheetConclusion) <- FALSE
     
   gl1 <- glabel(tl[32,la], container=group2)
-  font(gl1) <- list(size=12)
+  #font(gl1) <- list(size=12)
   setfilenameIS <- gtext(text=".doc", container=group2, width=2, height=1)
   size(setfilenameIS) <- c(250,20)
     
   gl2 <- glabel(tl[33,la], container=group2)
-  font(gl2) <- list(size=12)
+  #font(gl2) <- list(size=12)
   a <- gfilebrowse(text=tl[33,la], type="selectdir", container=group2)
   svalue(a) <- getwd()
   group3 <- ggroup(horizontal=TRUE, spacing=10, container=group2, expand=TRUE)
@@ -194,7 +194,7 @@
     setFontSize(rtf, font.size=14)
     addPng(rtf, system.file("external/ClimMob-logo.png", package="ClimMob"), width=3.9, height=1.9)
     addParagraph(rtf)
-    addHeader(rtf, .Unicodify(title=tl[36,la]))
+    addHeader(rtf, title=.Unicodify(tl[36,la]))
     addParagraph(rtf, paste(tl[37,la], Sys.info()[["user"]]))
     addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
@@ -219,17 +219,17 @@
       
       if(ne$isNames){
       
-        if(svalue(infoSheetNames1) != tl[11,la]){addText(rtf, paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep=""))} 
+        if(svalue(infoSheetNames1) != tl[11,la]){addText(rtf, .Unicodify(paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep="")))} 
   
-        if(svalue(infoSheetNames2) != tl[11,la]){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames2)], sep=""))} 
+        if(svalue(infoSheetNames2) != tl[11,la]){addText(rtf, .Unicodify(paste(" ", myData[i, svalue(infoSheetNames2)], sep="")))} 
         
-        if(svalue(infoSheetNames3) != tl[11,la]){addText(rtf, paste(" ", myData[i, svalue(infoSheetNames3)], sep=""))}
+        if(svalue(infoSheetNames3) != tl[11,la]){addText(rtf, .Unicodify(paste(" ", myData[i, svalue(infoSheetNames3)], sep="")))}
         
         addParagraph(rtf, "\n")
         
-        if(svalue(infoSheetPlace1) != tl[11,la]){addParagraph(rtf, myData[i, svalue(infoSheetPlace1)])}
+        if(svalue(infoSheetPlace1) != tl[11,la]){addParagraph(rtf, .Unicodify(myData[i, svalue(infoSheetPlace1)]))}
         
-        if(svalue(infoSheetPlace2) != tl[11,la]){addParagraph(rtf, myData[i, svalue(infoSheetPlace2)])}
+        if(svalue(infoSheetPlace2) != tl[11,la]){addParagraph(rtf, .Unicodify(myData[i, svalue(infoSheetPlace2)]))}
       
       } 
       addParagraph(rtf)
@@ -281,7 +281,7 @@
           
         }                
         
-        pred <- matrix(nrow=length(iall), ncol=ncol(predi))      
+        pred <- matrix(ncol=ncol(predi), nrow=length(iall))      
         pred[varPred,] <- predi
       
       }
