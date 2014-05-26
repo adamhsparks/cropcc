@@ -1,2 +1,2 @@
-import(gWidgets2, psychotree, utils, rtf, gWidgets2tcltk)
+import(gWidgets2, psychotree, utils, rtf, gWidgets2tcltk, R.oo, stringi)
 exportPattern("^[^\\.]")

@@ -25,7 +25,7 @@
   hh <- function(h, ...)
   {
     
-    langn <- ifelse(svalue(lang)=="English",1,2) #Needs to change if there is a third language
+    langn <- ifelse(svalue(lang)=="English",1,2) #TODO Needs to change if there is a third language
     .GlobalEnv$la <- langn
     dispose(w1)
     .menuClimMob()

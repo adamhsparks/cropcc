@@ -194,7 +194,7 @@
     setFontSize(rtf, font.size=14)
     addPng(rtf, system.file("external/ClimMob-logo.png", package="ClimMob"), width=3.9, height=1.9)
     addParagraph(rtf)
-    addHeader(rtf, title=tl[36,la])
+    addHeader(rtf, .Unicodify(title=tl[36,la]))
     addParagraph(rtf, paste(tl[37,la], Sys.info()[["user"]]))
     addParagraph(rtf, format(Sys.time(), "%H:%M:%S %a %b %d %Y "))
     addParagraph(rtf)
@@ -236,14 +236,14 @@
       
       if(ne$isIntro){
         
-        addParagraph(rtf, svalue(infoSheetIntrotext))
+        addParagraph(rtf, .Unicodify(svalue(infoSheetIntrotext)))
         addParagraph(rtf) 
       
       }
       
       if(ne$isItemnames){
         
-        addParagraph(rtf, svalue(infoSheetItemnamesIntrotext)) 
+        addParagraph(rtf, .Unicodify(svalue(infoSheetItemnamesIntrotext))) 
         addTable(rtf, itemTable)
         addParagraph(rtf, "\n") 
       
@@ -251,7 +251,7 @@
       
       if(ne$isRanking){
       
-        addParagraph(rtf, svalue(infoSheetRankingIntrotext)) 
+        addParagraph(rtf, .Unicodify(svalue(infoSheetRankingIntrotext))) 
         rankingTable <- myData[iall,rankingsVars]
         rankingTable <- t(apply(rankingTable, 1, function(x) return(itemTable[order(x),2])))
         colnames(rankingTable) <- rankingsVars
@@ -307,7 +307,7 @@
       
       if(ne$isTop){
       
-        addParagraph(rtf, svalue(infoSheetTopIntrotext)) 
+        addParagraph(rtf, .Unicodify(svalue(infoSheetTopIntrotext))) 
         
         topTable <- pred[,1:svalue(infoSheetTopX),drop=FALSE]
         colnames(topTable) <- paste(1:svalue(infoSheetTopX), ".", sep="")
@@ -325,7 +325,7 @@
       
       if(ne$isConclusion){
       
-        addParagraph(rtf, svalue(infoSheetConclusiontext)) 
+        addParagraph(rtf, .Unicodify(svalue(infoSheetConclusiontext))) 
       
       } 
       

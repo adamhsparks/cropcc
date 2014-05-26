@@ -54,27 +54,27 @@
     
     #filenameReport <- get("filenameReport")
     
-    rtf <- RTF(svalue(setfilename), font.size=12)
+    rtf <- RTF(svalue(setfilename), font.size=12) 
     addPng(rtf, system.file("external/ClimMob-logo.png", package="ClimMob"), width=3.9, height=2.2)
     addParagraph(rtf, "\n")
-    addHeader(rtf, title=tl[9,la])
+    addHeader(rtf, title=.Unicodify(tl[9,la]))
     addParagraph(rtf, paste(tl[10,la], Sys.info()[["user"]], sep=""))
     addParagraph(rtf, "\n")
-    addParagraph(rtf, tl[11,la])
+    addParagraph(rtf, .Unicodify(tl[11,la]))
     addParagraph(rtf, "\n")
-    addParagraph(rtf, tl[12,la])
+    addParagraph(rtf, .Unicodify(tl[12,la]))
     addParagraph(rtf, "\n")   
-    addParagraph(rtf, tl[13,la])    
+    addParagraph(rtf, .Unicodify(tl[13,la]))    
     addParagraph(rtf, "\n")
-    addParagraph(rtf, tl[14,la])    
+    addParagraph(rtf, .Unicodify(tl[14,la]))    
     addParagraph(rtf, "\n")
-    addParagraph(rtf, tl[15,la])
+    addParagraph(rtf, .Unicodify(tl[15,la]))
     addParagraph(rtf, "\n")
     
     uniqueObs <- unique(as.character(unlist(myData[,observeridVar])))
     uniqueItems <- unique(as.character(unlist(myData[,itemsgivenVars])))
     lq <- length(models)
-    varsNamesForTable <- tl[16:19,la]
+    varsNamesForTable <- .Unicodify(tl[16:19,la])
     varsValuesForTable <- c(
       length(uniqueObs), 
       length(itemsgivenVars),
@@ -83,10 +83,10 @@
     )
   
     varsTable <- data.frame(varsNamesForTable,varsValuesForTable)
-    colnames(varsTable) <- tl[20:21,la]  
+    colnames(varsTable) <- .Unicodify(tl[20:21,la])  
     addTable(rtf, varsTable)
     addParagraph(rtf, "\n")
-    addParagraph(rtf, paste(" ", tl[22,la], "\n", sep="")) #Table with item types
+    addParagraph(rtf, paste(" ", .Unicodify(tl[22,la]), "\n", sep="")) #Table with item types
     
     #Exclude variables that produce errors  
     te <- vector(length=length(models))
@@ -94,7 +94,7 @@
     varPred <- which(!te) 
     
     itemtypes <- as.data.frame(as.matrix(colnames(worth(models[[varPred[1]]]))))
-    colnames(itemtypes) <- tl[23,la]
+    colnames(itemtypes) <- .Unicodify(tl[23,la])
     addTable(rtf, itemtypes)
     
     addParagraph(rtf, "\n")
@@ -102,23 +102,23 @@
     if(lq > 1)
     {
       
-      addParagraph(rtf, tl[24,la]) #Table with questions
+      addParagraph(rtf, .Unicodify(tl[24,la])) #Table with questions
       addParagraph(rtf, "\n")
       qA <- as.data.frame(as.matrix(questionsAnalyzed))
-      colnames(qA) <- tl[25,la]
+      colnames(qA) <- .Unicodify(tl[25,la])
       addTable(rtf, qA)
       
     }
     addParagraph(rtf, "\n")
     
-    addParagraph(rtf, tl[26,la])
+    addParagraph(rtf, .Unicodify(tl[26,la]))
     addPageBreak(rtf)
     #models is a list of 1 or more bttree models
 
     for(i in 1:lq)
     {
       
-      if(lq>1){addParagraph(rtf, questionsAnalyzed[i])}
+      if(lq>1){addParagraph(rtf, .Unicodify(questionsAnalyzed[i]))}
       
       #Insert exception if the model does not exist (=error).
       if(!inherits(models[[i]], "try-error"))
@@ -134,7 +134,7 @@
         addParagraph(rtf, "\n")
         addPlot(rtf, plot.fun=plot, width=6, height=6, res=400, models[[i]])
         addPageBreak(rtf)
-        addParagraph(rtf, paste(capture.output(summary(models[[i]])), collapse="\n"))
+        addParagraph(rtf, .Unicodify(paste(capture.output(summary(models[[i]])), collapse="\n")))
         
       } else {
         
@@ -146,7 +146,8 @@
       addPageBreak(rtf)
       
     }
-
+    
+    #References don't need .Unicodify
     addParagraph(rtf, tl[27,la])
     addParagraph(rtf, tl[28,la])  
     addParagraph(rtf, tl[29,la])
