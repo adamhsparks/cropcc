@@ -15,8 +15,8 @@
   if(type == "worth") return(w)
 
   ## get rank
-  o <- t(apply(-w, 1, rank))
-
+  o <- t(apply(-w, 1, function(x) rank(x, ties.method="random"))) #Ties are given in random order
+ 
   return(o)
 }
 
@@ -200,7 +200,8 @@
     addParagraph(rtf)
     
     IDs <- unique(as.character(myData[,observeridVar]))
- 
+    allItems <- as.character(unique(unlist(myData[, itemsgivenVars])))
+    
     for(j in 1:length(IDs))
     {
       
@@ -213,7 +214,7 @@
       itemTable <- cbind(itemsgivenVars, as.matrix(t(myData[i, itemsgivenVars])))
       colnames(itemTable) <- c(tl[38,la], tl[39,la])
           
-      if(ne$isTitle){addHeader(rtf, svalue(infoSheetTitletext), font.size=16)}
+      if(ne$isTitle){addHeader(rtf, .Unicodify(svalue(infoSheetTitletext)), font.size=16)}
      
       addParagraph(rtf, "\n")
       
@@ -264,38 +265,37 @@
       
       if(ne$isPredictedRanking || ne$isTop){
         
-        predi <- NULL
-        for(ii in 1:length(models)){ 
+        myDatai <- myData[i,]
+        
+        pred <- matrix(NA, nrow=length(varPred), ncol=length(allItems))
+        
+        for(ii in 1:length(varPred)){ 
           
-          if(inherits(models[[ii]], "try-error")){
-            
-            predii <- NULL
-            
-          } else {
-          
-            rankii <- .predict.bttree(models[[ii]], newdata = myData[iall[ii],], type = "rank")
-            predii <- colnames(rankii)[order(rankii)]
-          
-          } 
-          predi <- rbind(predi, predii)
+          rankii <- .predict.bttree(models[[varPred[ii]]], newdata = myDatai, type = "rank")
+          predii <- colnames(rankii)[order(rankii)]
+          pred[ii,1:length(predii)] <- predii
           
         }                
-        
-        pred <- matrix(ncol=ncol(predi), nrow=length(iall))      
-        pred[varPred,] <- predi
       
       }
       
       if(ne$isPredictedRanking){
         
         addParagraph(rtf, svalue(infoSheetPredictedRankingIntrotext))
+        #itemsGiveni <- as.character(t(myData[i, itemsgivenVars]))
+        allItemsi <- as.character(unique(unlist(myData[iall, itemsgivenVars])))
+        predGiven <- matrix(ncol=length(allItemsi), nrow=dim(pred)[1])
+        for(k in 1:nrow(predGiven)) {
+          
+          pGk <- pred[k,which(pred[k,] %in% allItemsi)]
+          predGiven[k,1:length(pGk)] <- pGk
         
-        predGiven <- t(apply(pred, 1, function(x) x[x %in% as.character(t(myData[i, itemsgivenVars]))]))
+        }
         colnames(predGiven) <- rankingsVars
         rownames(predGiven) <- NULL
         if(!is.na(questionVar)){
           
-          predGiven <- cbind(as.character(myData[iall,questionVar]), predGiven)
+          predGiven <- cbind(questionsAnalyzed[varPred], predGiven)
           colnames(predGiven)[1] <- questionVar    
         
         }
@@ -314,7 +314,7 @@
         rownames(topTable) <- NULL
         if(!is.na(questionVar)){
           
-          topTable <- cbind(as.character(myData[iall,questionVar]), topTable)
+          topTable <- cbind(questionsAnalyzed[varPred], topTable)
           colnames(topTable)[1] <- questionVar    
           
         }
