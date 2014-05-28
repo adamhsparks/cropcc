@@ -220,7 +220,7 @@
       
       if(ne$isNames){
       
-        if(svalue(infoSheetNames1) != tl[11,la]){addText(rtf, .Unicodify(paste("\\fs28", myData[i, svalue(infoSheetNames1)], sep="")))} 
+        if(svalue(infoSheetNames1) != tl[11,la]){addText(rtf, .Unicodify(paste("\\fs28 ", myData[i, svalue(infoSheetNames1)], sep="")))} 
   
         if(svalue(infoSheetNames2) != tl[11,la]){addText(rtf, .Unicodify(paste(" ", myData[i, svalue(infoSheetNames2)], sep="")))} 
         
