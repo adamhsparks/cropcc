@@ -34,6 +34,8 @@
     }
   }
   
+  if(!is.character(itemnames)) itemnames <- paste("V", itemnames, sep="")
+  
   pc <- paircomp(pc, labels=itemnames)
   
   myData$pc <- pc

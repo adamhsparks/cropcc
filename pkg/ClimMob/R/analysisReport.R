@@ -93,7 +93,7 @@
     for(k in 1:length(models)) te[k] <- inherits(models[[k]], "try-error")
     varPred <- which(!te) 
     
-    itemtypes <- as.data.frame(as.matrix(colnames(worth(models[[varPred[1]]]))))
+    itemtypes <- as.data.frame(as.matrix(labels(models[[varPred[1]]]$data$pc)))
     colnames(itemtypes) <- .Unicodify(tl[23,la])
     addTable(rtf, itemtypes)
     
@@ -125,7 +125,7 @@
       {
         
         table_i <- worth(models[[i]])
-        Node <- rownames(table_i)
+        if(is.null(dim(table_i))){Node <- names(table_i)} else{Node <- rownames(table_i)}
         table_i <- round(table_i, digits=3)
         table_i <- data.frame(Node, table_i)
         
